@@ -26,6 +26,12 @@ namespace PPC_1
             );
 
             routes.MapRoute(
+                name: "CadastroPPC",
+                url: "CadastroPPC",
+                defaults: new { controller = "Home", action = "CadastroPPC", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
