@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro_de_Curso";
+}
+
+<div class="table-bordered">
+    <div class="titulo">
+        <h2>Incluir Dados Gerais do Curso</h2>
+    </div>
+    <div class="container-fluid">
+    <form>
+        <div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Tipo do Curso</label>
+                    <input class="form-control" type="text" id="nome_curso" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Modalidade</label>
+                    <input class="form-control" type="text" id="modalidade" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Denominação Curso:</label>
+                <input class="form-control" type="text" name="denominacao_curso">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Habilitação:</label>
+                    <input class="form-control" type="text" size="25" id="habilitacao" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Local de Oferta:</label>
+                    <input class="form-control" id="local_oferta">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Turnos de Funcionamento</label>
+                    <input class="form-control" id="turno" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Número de vagas para cada Turno:</label>
+                    <input class="form-control" id="numero_de_vagas" />vagas anuais.
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label>Carga Horária do Curso:</label>
+                    <input class="form-control" id="carga_horaria" />
+                </div>
+
+                <label>Estrutura Curricular:</label>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Regime Letivo</label>
+                        <input class="form-control" id="regime_letivo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Períodos</label>
+                        <input class="form-control" id="quantidade_de_periodos" />
+                    </div>
+                </div>
+                <label>Coordenador do Curso:</label>
+
+                <div class="form-group">
+                    <label>Nome: </label>
+                    <select class="form-control">
+                        <option>Coordenador 1</option>
+                        <option>Coordenador 2</option>
+                        <option>Coordenador 3</option>
+                        <option>Coordenador 4</option>
+                    </select><br />
+                    <label>CPF</label><br />
+                    <label>Titulação</label><br />
+                    <br />
+                        <button class="btn btn-primary btn-group-lg">Salvar</button>
+                        <button class="btn btn-danger btn-group-lg">Limpar</button>
+                        <button class="btn btn-warning btn-group-lg">Alterar</button>
+                </div>
+            </div>
+
+
+
+</form>
+</div>
+
+
+
+    @section Scripts {
+        <script src="~/Scripts/app.js"></script>
+    }
+</div>
+
