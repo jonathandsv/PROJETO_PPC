@@ -17,10 +17,10 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-
+/*cornflowerblue*/
 .titulo {
     color:white;
-    background-color:cornflowerblue;
+    background-color:grey;
     text-align:center;
     box-shadow:inherit;
     border:groove;
@@ -33,4 +33,18 @@
 .lista-cursos {
     font-size: medium;
 }
+
+.telaPrincipal{
+    padding-top:8px;
+}
+
+.navPermanente {
+    background-color:grey;
+}
+
+.titulopermanente{
+    color:white;
+    font-size:30px;
+}
+
 
