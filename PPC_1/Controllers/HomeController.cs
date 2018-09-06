@@ -47,5 +47,12 @@ namespace PPC_1.Controllers
 
             return View();
         }
+
+        public ActionResult PPC()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

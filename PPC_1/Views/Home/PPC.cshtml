@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "PPC";
+}
+
+<div class="jumbotron">
+
+    <div class="titulo">
+        <h2>PPC</h2>
+    </div>
+
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label>Filtrar Cursos</label>
+            <select class="form-control">
+                <option>Curso 1</option>
+                <option>Curso 2</option>
+                <option>Curso 3</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-4">
+            <button class="btn btn-success ajustarBotao">Localizar</button>
+        </div>
+    </div>
+
+    <!--<div class="col-md-12">
+        <label>TESTE</label>
+    </div>-->
+    <br />
+    <br />
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <h2>Resultado</h2>
+        </div>
+        <div class="form-group col-md-12">
+            <button class="btn btn-primary" onclick="/Home/CadastroPPC"> + Novo PPC</button>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">ID CURSO</th>
+                    <th class="text-center">NOME  </th>
+                    <th class="text-center">DENOMINAÇÃO</th>
+                    <th class="text-center">Opções</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Nome</td>
+                    <td class="text-center">DENOMINAÇÃO</td>
+                    <td class="text-center"><button class="btn btn-warning">Alterar</button></td>
+                    <td class="text-center"><button class="btn btn-danger">Remover</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
