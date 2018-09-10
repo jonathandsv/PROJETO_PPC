@@ -17,7 +17,7 @@ if (typeof jQuery === 'undefined') {
 throw new Error('AdminLTE requires jQuery')
 }
 
-/* BoxRefresh()
+/* BoxRefresh()w
  * =========
  * Adds AJAX content control to a box.
  *
