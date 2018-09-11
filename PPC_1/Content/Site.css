@@ -21,10 +21,10 @@ body {
 /*cornflowerblue*/
 .titulo {
     color:white;
-    background-color:grey;
+    background-color:steelblue;
     text-align:center;
     box-shadow:inherit;
-    border:groove;
+    border:solid;
 }
 
 #tabelaescondida {

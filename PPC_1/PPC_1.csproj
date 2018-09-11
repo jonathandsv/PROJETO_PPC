@@ -164,6 +164,7 @@
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\CO.PNG" />
     <Content Include="Content\img\user2-160x160.jpg" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
