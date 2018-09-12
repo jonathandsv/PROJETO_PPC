@@ -1,5 +1,9 @@
 ﻿function mostrarTabela() {
     $('#tabelaescondida').show();
-    $('#novoCurso').hide();
+    $('#tdCursos').hide();
     
 };
+
+function AdicionarReadonly() {
+    $('input').add('readonly');
+}

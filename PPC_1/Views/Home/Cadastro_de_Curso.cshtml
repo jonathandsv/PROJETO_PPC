@@ -2,106 +2,104 @@
 @{
     ViewBag.Title = "Cadastro_de_Curso";
 }
-
-<div class="jumbotron">
-    <div class="titulo">
-        <h2>Incluir Dados Gerais do Curso</h2>
-    </div>
-    <div class="container-fluid">
-        <form>
-            <div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Tipo do Curso</label>
-                        <input class="form-control" type="text" id="nome_curso" />
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label>Modalidade</label>
-                        <input class="form-control" type="text" id="modalidade" />
-                    </div>
+<section class="content-header">
+    <h1>
+        Cursos
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Curso</a></li>
+        <li class="active">Novo Curso</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cadastrar Cursos</h3>
                 </div>
-
-                <div class="form-group col-md-12">
-                    <label>Denominação Curso:</label>
-                    <input class="form-control" type="text" name="denominacao_curso">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Habilitação:</label>
-                        <input class="form-control" type="text" size="25" id="habilitacao" />
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group col-xs-6">
+                            <label>Tipo do Curso</label>
+                            <input type="text" class="form-control" placeholder="Tipo ..." />
+                        </div>
+                        <div class="form-group col-xs-6 pull-right">
+                            <label>Modalidade:</label>
+                            <input type="text" class="form-control" placeholder="Modalidade ..." />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Denominação do Curso:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Habilitação:</label>
+                            <input type="text" class="form-control" placeholder="Habilitação ..." />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Local de Oferta:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Turnos de Funcionamento:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Números de vagas para cada turno:</label>
+                            <input type="number" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Carga Horária do Curso</label>
+                            <input type="number" class="form-control-static" maxlength="10" />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <h4>Estrutura Curricular</h4>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Regime Letivo:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Periodos:</label>
+                            <input class="form-control" placeholder="Texto ..." />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <h4>Coordenador do Curso</h4>
+                        </div>
+                        <div class="form-group col-xs-10">
+                            <label>Nome</label>
+                            <select class="form-control">
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <a class="form-control btn btn-info">Cadastrar novo Coordenador</a>
+                        </div>
+                        <div class="form-group col-xs-5">
+                            <label>CPF</label>
+                            <input type="number" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-7">
+                            <label>Titulação</label>
+                            <input type="text" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-5">
+                            <label>Tempo de Dedicação</label>
+                            <input type="text" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <button class="btn btn-primary pull-right espaco">Salvar</button>
+                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
+                            <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Local de Oferta:</label>
-                        <input class="form-control" id="local_oferta">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Turnos de Funcionamento</label>
-                        <input class="form-control" id="turno" />
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label>Número de vagas para cada Turno:</label>
-                        <input class="form-control" id="numero_de_vagas" />vagas anuais.
-                    </div>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label>Carga Horária do Curso:</label>
-                    <input class="form-control" id="carga_horaria" />
-                </div>
-
-                <label>Estrutura Curricular:</label>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label>Regime Letivo</label>
-                        <input class="form-control" id="regime_letivo" />
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label>Períodos</label>
-                        <input class="form-control" id="quantidade_de_periodos" />
-                    </div>
-                </div>
-                <label>Coordenador do Curso:</label>
-
-                <div class="form-row">
-                    <div class="form-group col-md-8">
-                        <label>Nome: </label>
-                        <select class="form-control">
-                            <option>Coordenador 1</option>
-                            <option>Coordenador 2</option>
-                            <option>Coordenador 3</option>
-                            <option>Coordenador 4</option>
-                        </select><br />
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <a href="/Home/CadastrarCoordenador">Cadastrar Novo Coordenador</a>
-                    </div>
-                </div>
-                <div class="form-group col-md-12">
-                    <label>CPF</label><br />
-                    <label>Titulação</label><br />
-                    <br />
-
-                    <button class="btn btn-primary btn-group-lg">Salvar</button>
-                    <button class="btn btn-danger btn-group-lg">Limpar</button>
-                    <button class="btn btn-warning btn-group-lg">Alterar</button>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-
-
-
-    @section Scripts {
-        <script src="~/Scripts/app.js"></script>
-    }
-</div>
-
+</section>
