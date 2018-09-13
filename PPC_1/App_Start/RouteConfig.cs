@@ -38,6 +38,12 @@ namespace PPC_1
             );
 
             routes.MapRoute(
+                name: "CadastroProfessor",
+                url: "CadastroProfessor",
+                defaults: new { controller = "Home", action = "CadastroProfessor", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

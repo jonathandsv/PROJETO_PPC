@@ -54,5 +54,12 @@ namespace PPC_1.Controllers
 
             return View();
         }
+
+        public ActionResult CadastroProfessor()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

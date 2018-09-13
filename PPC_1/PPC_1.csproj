@@ -225,6 +225,7 @@
     <Content Include="Views\Home\ConsultarCurso.cshtml" />
     <Content Include="Views\Home\CadastroPPC.cshtml" />
     <Content Include="Views\Home\PPC.cshtml" />
+    <Content Include="Views\Home\CadastroProfessor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
