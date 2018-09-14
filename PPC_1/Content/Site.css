@@ -61,6 +61,26 @@ body {
     margin-left:8px;
 }
 
+.centro{
+    text-align:center;
+}
 
+.mone {
+    width: 60px;
+    font-size:18px;
+}
+
+.borda {
+    border-color: lightgray;
+    border-top: 1px solid #d2d6de;
+    border-bottom: 1px solid #d2d6de;
+    border-left: 1px solid #d2d6de;
+    border-right: 1px solid #d2d6de;
+    height:200px;
+}
+
+.inputsAlinhados{
+    width:100%;
+}
 /*https://adminlte.io/ */
 

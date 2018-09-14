@@ -61,5 +61,10 @@ namespace PPC_1.Controllers
 
             return View();
         }
+
+        public ActionResult CadastroDisciplina()
+        {
+            return View();
+        }
     }
 }
