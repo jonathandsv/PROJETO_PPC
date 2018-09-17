@@ -10,12 +10,14 @@ namespace PPC_1.Models
     public class PPCDB
     {
 
-       private SqlConnection ConexaoBanco() {
+        private SqlConnection ConexaoBanco()
+        {
             string conexao = WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             SqlConnection sqlConn = new SqlConnection(conexao);
-            return(sqlConn);
+            return (sqlConn);
         }
+    }
 
         
 
