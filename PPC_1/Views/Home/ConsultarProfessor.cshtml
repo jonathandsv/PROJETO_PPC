@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "ConsultarProfessor";
+}
+
+<section class="content-header">
+    <h1>
+        Professores
+        <small>Listas de todos os Professores cadastrados</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Professor</a></li>
+        <li class="active">Todos os Professores</li>
+    </ol>
+</section>
+<section id="tdCursos" class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID Professor</th>
+                                <th>Nome</th>
+                                <th>Denominação</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a onclick="mostrarTabela()" class="btn btn-primary">Abrir</a></td>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 4.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">Excluir</a>
+                                    <a href="#" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="btn btn-primary">Abrir</a></td>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 5.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">Excluir</a>
+                                    <a href="#" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>ID PPC</th>
+                                <th>Curso</th>
+                                <th>Perfil do Curso</th>
+                                <th>Opções</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tabelaescondida" class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Todos os Cursos</h3>
+                </div>
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group col-xs-6">
+                            <label>Tipo do Curso</label>
+                            <input type="text" class="form-control" placeholder="Tipo ..." />
+                        </div>
+                        <div class="form-group col-xs-6 pull-right">
+                            <label>Modalidade:</label>
+                            <input type="text" class="form-control" placeholder="Modalidade ..." />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Denominação do Curso:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Habilitação:</label>
+                            <input type="text" class="form-control" placeholder="Habilitação ..." />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Local de Oferta:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Turnos de Funcionamento:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Números de vagas para cada turno:</label>
+                            <input type="number" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Carga Horária do Curso</label>
+                            <input type="number" class="form-control-static" maxlength="10" />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <h4>Estrutura Curricular</h4>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Regime Letivo:</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Periodos:</label>
+                            <input class="form-control" placeholder="Texto ..." />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <h4>Coordenador do Curso</h4>
+                        </div>
+                        <div class="form-group col-xs-10">
+                            <label>Nome</label>
+                            <select class="form-control">
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                                <option>NOME1</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <a class="form-control btn btn-info">Cadastrar novo Coordenador</a>
+                        </div>
+                        <div class="form-group col-xs-5">
+                            <label>CPF</label>
+                            <input type="number" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-7">
+                            <label>Titulação</label>
+                            <input type="text" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-5">
+                            <label>Tempo de Dedicação</label>
+                            <input type="text" class="form-control" readonly />
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <button class="btn btn-primary pull-right espaco">Salvar</button>
+                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
+                            <button onclick="AdicionarReadonly()" class="btn btn-warning pull-right espaco">Alterar</button>
+                            <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
