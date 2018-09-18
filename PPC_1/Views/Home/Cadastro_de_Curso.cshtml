@@ -1,4 +1,4 @@
-﻿
+﻿@model PPC_1.Models.Curso 
 @{
     ViewBag.Title = "Cadastro_de_Curso";
 }
@@ -19,11 +19,11 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Cadastrar Cursos</h3>
                 </div>
-                <form role="form">
+                <form role="form" action="/Home/NovoCurso">
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            <input type="text" class="form-control" placeholder="Tipo ..." />
+                            <input  type="text" class="form-control" placeholder="Tipo ..." />
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
@@ -93,7 +93,7 @@
                             <input type="text" class="form-control" readonly />
                         </div>
                         <div class="form-group col-xs-12">
-                            <button class="btn btn-primary pull-right espaco">Salvar</button>
+                            <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>
                             <button class="btn btn-warning pull-right espaco">Cancelar</button>
                             <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
                         </div>

@@ -7,6 +7,6 @@ namespace PPC_1.Models
 {
     public class Professor
     {
-        public 
+         
     }
 }

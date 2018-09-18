@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PPC_1.Models;
 
 namespace PPC_1.Controllers
 {
@@ -29,7 +30,7 @@ namespace PPC_1.Controllers
 
         public ActionResult Cadastro_de_Curso()
         {
-            ViewBag.Message = "Your contact page.";
+            
 
             return View();
         }
@@ -71,5 +72,13 @@ namespace PPC_1.Controllers
         {
             return View();
         }
+
+        //Fim da chamada de páginas 
+
+        public Curso NovoCurso(Curso curso)
+        {
+            string cursos = "teste";
+            return(null);
+        } 
     }
 }
