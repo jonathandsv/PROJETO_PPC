@@ -13,14 +13,14 @@ namespace PPC_1.Models
 
         private string ConexaoBanco()
         {
-            string conexao = WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            
 
             //SqlConnection sqlConn = new SqlConnection(conexao);
             //return (sqlConn);
-            return (conexao);
+            return (WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
-        public Curso EnserirCurso(Curso inserir)
+        public Curso InserirCurso(Curso inserir)
         {
             
             string inserirValores = "INSERT INTO CURSO (ID_CURSO, " +
@@ -44,7 +44,8 @@ namespace PPC_1.Models
                                                         "@CARGA_HORARIA, " +
                                                         "@REGIME_LETIVO, " +
                                                         "@QUANTIDADE_DE_PERIODOS, " +
-                                                        "ID_COORDENADOR)"; 
+                                                        "ID_COORDENADOR)";
+            string conexao
             SqlConnection sqlConn = new SqlConnection(ConexaoBanco());
             using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
             {

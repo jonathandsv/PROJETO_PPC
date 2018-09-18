@@ -75,9 +75,10 @@ namespace PPC_1.Controllers
 
         //Fim da chamada de páginas 
 
-        public Curso NovoCurso(Curso curso)
+        public ActionResult NovoCurso(Curso curso)
         {
-            string cursos = "teste";
+            PPCDB pPCDB = new PPCDB();
+            curso = pPCDB.InserirCurso(curso);
             return(null);
         } 
     }
