@@ -23,7 +23,7 @@
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            <input  type="text" class="form-control" placeholder="Tipo ..." />
+                            @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", type = "text", placeholder="Tipo ..." })
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
