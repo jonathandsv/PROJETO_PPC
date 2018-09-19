@@ -13,10 +13,6 @@ namespace PPC_1.Models
 
         private string ConexaoBanco()
         {
-
-
-            //SqlConnection sqlConn = new SqlConnection(conexao);
-            //return (sqlConn);
             return (WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
@@ -83,7 +79,4 @@ namespace PPC_1.Models
             }
         }
     }
-
-
-
 }

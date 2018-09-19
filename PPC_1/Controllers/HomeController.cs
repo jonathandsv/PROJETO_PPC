@@ -9,22 +9,9 @@ namespace PPC_1.Controllers
 {
     public class HomeController : Controller
     {
+        //Chamada de páginas
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -37,28 +24,24 @@ namespace PPC_1.Controllers
 
         public ActionResult ConsultarCurso()
         {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
         public ActionResult CadastroPPC()
         {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
         public ActionResult PPC()
         {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
         public ActionResult CadastroProfessor()
         {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }
