@@ -24,7 +24,7 @@ namespace PPC_1.Controllers
 
         public ActionResult ConsultarCurso()
         {
-
+            List<Coordenador> coordenadores = new List<Coordenador>();
             return View();
         }
 

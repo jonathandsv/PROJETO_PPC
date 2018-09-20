@@ -16,7 +16,7 @@ namespace PPC_1.Models
             return (WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
-        public Curso InserirCurso(Curso inserir)
+        public Curso InserirCurso(Curso curso)
         {
 
             try
@@ -53,16 +53,16 @@ namespace PPC_1.Models
 
                     using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
                     {
-                        comm.Parameters.Add("@TIPO_CURSO", SqlDbType.VarChar, 50).Value = inserir.TipoDeCurso;
-                        comm.Parameters.Add("@MODALIDADE", SqlDbType.VarChar, 50).Value = inserir.Modalidade;
-                        comm.Parameters.Add("@DENOMINACAO_CURSO", SqlDbType.VarChar, 50).Value = inserir.DenominacaoCurso;
-                        comm.Parameters.Add("@HABILITACAO", SqlDbType.VarChar, 50).Value = inserir.Habilitacao;
-                        comm.Parameters.Add("@LOCAL_OFERTA", SqlDbType.VarChar, 50).Value = inserir.LocalDeOferta;
-                        comm.Parameters.Add("@TURNO", SqlDbType.VarChar, 50).Value = inserir.TurnosDeFuncionamento;
-                        comm.Parameters.Add("@NUMERO_DE_VAGAS", SqlDbType.Int).Value = inserir.NumerosDeVagasCadaTurno;
-                        comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = inserir.CargaHorariaDoCurso;
-                        comm.Parameters.Add("@REGIME_LETIVO", SqlDbType.VarChar, 50).Value = inserir.RegimeLetivo;
-                        comm.Parameters.Add("@QUANTIDADE_DE_PERIODOS", SqlDbType.Int).Value = inserir.Periodos;
+                        comm.Parameters.Add("@TIPO_CURSO", SqlDbType.VarChar, 50).Value = curso.TipoDeCurso;
+                        comm.Parameters.Add("@MODALIDADE", SqlDbType.VarChar, 50).Value = curso.Modalidade;
+                        comm.Parameters.Add("@DENOMINACAO_CURSO", SqlDbType.VarChar, 50).Value = curso.DenominacaoCurso;
+                        comm.Parameters.Add("@HABILITACAO", SqlDbType.VarChar, 50).Value = curso.Habilitacao;
+                        comm.Parameters.Add("@LOCAL_OFERTA", SqlDbType.VarChar, 50).Value = curso.LocalDeOferta;
+                        comm.Parameters.Add("@TURNO", SqlDbType.VarChar, 50).Value = curso.TurnosDeFuncionamento;
+                        comm.Parameters.Add("@NUMERO_DE_VAGAS", SqlDbType.Int).Value = curso.NumerosDeVagasCadaTurno;
+                        comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = curso.CargaHorariaDoCurso;
+                        comm.Parameters.Add("@REGIME_LETIVO", SqlDbType.VarChar, 50).Value = curso.RegimeLetivo;
+                        comm.Parameters.Add("@QUANTIDADE_DE_PERIODOS", SqlDbType.Int).Value = curso.Periodos;
                         
 
                         sqlConn.Open();
@@ -77,6 +77,36 @@ namespace PPC_1.Models
             {
                 throw ex;
             }
+        }
+
+        public  List<Coordenador> BuscarCoordenadores()
+        {
+            string conexao = ConexaoBanco();
+
+            string stringBuscar = @"SELECT * FROM USUARIOS WHERE ID_PERFIL = 1";
+
+            SqlConnection sqlConn = new SqlConnection(conexao);
+
+            sqlConn.Open();
+
+            SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn);
+
+            SqlDataReader dr = leitor.ExecuteReader();
+
+            List<Coordenador> coordenadores = new List<Coordenador>();
+
+
+            while (dr.Read())
+            {
+                Coordenador coordenador = new Coordenador();
+                coordenador.Nome = dr["NOME_USUARIO"].ToString();
+                coordenador.MaiorTitulacao = dr["MAIOR_TITULACAO"].ToString();
+                coordenadores.Add(coordenador);
+                coordenadores.Add(coordenador);
+                coordenadores.Add(coordenador);
+            }
+
+            return(coordenadores);
         }
     }
 }
