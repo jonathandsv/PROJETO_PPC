@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Sistema PPC</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -31,7 +31,7 @@
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="../../index2.html" class="logo">
+            <a href="/Home/Index" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>P</b>PC</span>
                 <!-- logo for regular state and mobile devices -->
@@ -58,35 +58,18 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="~/Content/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <img src="~/Content/img/CO.PNG" class="img-circle" alt="User Image">
 
                                     <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        Coordenador 
                                     </p>
                                 </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="#" class="btn btn-default btn-flat">Sair</a>
                                     </div>
                                 </li>
                             </ul>
@@ -145,13 +128,13 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                             <ul class="treeview-menu">
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Todos os Cursos</a></li>
-                                <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Novo Cursos</a></li>
+                                <li><a href="/Home/ConsultarCurso"><i class="fa fa-circle-o"></i> Todos os Cursos</a></li>
+                                <li><a href="/Home/Cadastro_de_Curso"><i class="fa fa-circle-o"></i> Novo Cursos</a></li>
                             </ul>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Todos os Cursos</a></li>
-                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Novo Cursos</a></li>
+                            <li><a href="/Home/ConsultarCurso"><i class="fa fa-circle-o"></i> Todos os Cursos</a></li>
+                            <li><a href="/Home/Cadastro_de_Curso"><i class="fa fa-circle-o"></i> Novo Cursos</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -162,8 +145,8 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                             <ul class="treeview-menu">
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Todos os Professor</a></li>
-                                <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Novo Professor</a></li>
+                                <li><a href="/Home/ConsultarProfessor"><i class="fa fa-circle-o"></i> Todos os Professor</a></li>
+                                <li><a href="/Home/CadastroProfessor"><i class="fa fa-circle-o"></i> Novo Professor</a></li>
                             </ul>
                         </a>
                     </li>
@@ -191,7 +174,7 @@
                             </span>
                             <ul class="treeview-menu">
                                 <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Todas as disciplinas</a></li>
-                                <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Cadastrar as disciplinas</a></li>
+                                <li><a href="/Home/CadastroDisciplina"><i class="fa fa-circle-o"></i> Cadastrar as disciplinas</a></li>
                             </ul>
                         </a>
                         <ul class="treeview-menu">
@@ -253,6 +236,7 @@
             </section>
             <!-- /.sidebar -->
         </aside>
+
         <div class="content-wrapper">
             @RenderBody()
         </div>
@@ -263,6 +247,7 @@
             <strong></strong> Todos os direitos
             reservados.
         </footer>
+</div>
         <!-- Control Sidebar -->
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
@@ -284,6 +269,7 @@
         <script src="~/Scripts/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="~/Scripts/demo.js"></script>
+        <script src="~/Scripts/app.js"></script>
         <!-- page script -->
         <script>
             $(function () {

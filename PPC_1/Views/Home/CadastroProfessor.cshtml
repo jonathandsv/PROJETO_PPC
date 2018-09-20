@@ -1,0 +1,415 @@
+﻿
+@{
+    ViewBag.Title = "CadastroProfessor";
+}
+<section class="content-header">
+    <h1>
+        Professor
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Professor</a></li>
+        <li class="active">Cadastro de Professor</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box-header with-border">
+                <h3>Cadastrar Professor</h3>
+            </div>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Dados Pessoais</a></li>
+                    <li><a href="#tab2" data-toggle="tab" aria-expanded="true">Atuação IES</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                            <form role="form">
+                                <div class="box-body">
+                                    <div class="form-group col-xs-12">
+                                        <div class="box box-primary">
+                                                <div class="box-body">
+                                                    <div class="form-group col-xs-8">
+                                                        <label>Nome: </label>
+                                                        <input type="text" class="form-control" placeholder="Nome ..." />
+                                                    </div>
+                                                    <div class="form-group col-xs-4">
+                                                        <label>CPF: </label>
+                                                        <input type="text" class="form-control" placeholder="CPF ..." />
+                                                    </div>
+                                                    <div class="form-group col-xs-6">
+                                                        <label>Maior Titulação</label>
+                                                        <input type="text" class="form-control" placeholder="Maior Titulação ..." />
+                                                    </div>
+                                                    <div class="form-group col-xs-6">
+                                                        <label>Área de Formação</label>
+                                                        <input type="text" class="form-control" placeholder="Área de Formação" />
+                                                    </div>
+                                                    <div class="form-group col-xs-8">
+                                                        <label>Curriculo Lattos (link)</label>
+                                                        <input type="text" class="form-control" placeholder="Curriculo Lattos" />
+                                                    </div>
+                                                    <div class="form-group col-xs-4">
+                                                        <label>Data de Atualização</label>
+                                                        <input type="date" class="form-control" placeholder="Data de atualização ..." />
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <button class="btn btn-primary pull-right">Cadastrar</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="nav-tabs-custom ">
+                            <ul class="nav nav-tabs ">
+                                <li class="active"><a href="#tab2_1" data-toggle="tab" aria-expanded="true">Geral</a></li>
+                                <li><a href="#tab2_2" data-toggle="tab" aria-expanded="true">Atuação Profissional</a></li>
+                                <li><a href="#tab2_3" data-toggle="tab" aria-expanded="true">Publicações</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab2_1">
+                                    <form role="form">
+                                        <div class="box-body">
+                                            <div class="form-group col-xs-12">
+                                                <div class="box box-primary">
+                                                    <div class="box-body">
+                                                        <div class="form-group col-xs-4">
+                                                            <label>Matrícula *</label>
+                                                            <input type="number" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group col-xs-4">
+                                                            <label>Data Admissão *</label>
+                                                            <div class="input-group date">
+                                                                <div class="input-group-addon">
+                                                                    <i class="fa fa-calendar">
+                                                                    </i>
+                                                                </div>
+                                                                <input type="date" class="form-control pull-right" id="datepicker" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-12">
+                                                            <label>informe a quantidade de horas das atividades</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-12">
+                                                            <div class="form-group col-xs-6">
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Horas NDE</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Orientação TCC</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Coordenação Curso</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Coordenação Outros Cursos</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Pesquisa (Semestre Atual)</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Atividades extra classe no curso</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Atividades extra classe outros curso</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Qtde de Horas Curso</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <input type="number" class="form-control" />
+                                                                    <label>Qtde de Horas Outros Cursos</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="content">
+                                                            <div class="form-group col-xs-12">
+                                                                <div class="form-group col-xs-6">
+                                                                    <h4>Disciplinas ministradas no Curso *</h4>
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <td>Disciplina</td>
+                                                                                <td>Carga Horária</td>
+                                                                                <td></td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><button class="btn btn-primary btn-sm">Adicionar</button>    Disciplina</td>
+                                                                                <td>120 horas</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <h4>Disciplinas ministradas em outros Cursos da IES</h4>
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <td>Disciplina</td>
+                                                                                <td>Carga Horária</td>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><button class="btn btn-primary btn-sm espaco">Adicionar</button>    Disciplina</td>
+                                                                                <td>120 horas</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!--Desenvolver em js uma funcão que faça a linha da tabela mudar de cor quando tiver sido escolhido o curso-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab2_2">
+                                    <form role="form">
+                                        <div class="box-body">
+                                            <div class="form-group col-xs-12">
+                                                <div class="box box-primary">
+                                                    <div class="box-body">
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-12">
+                                                                <div class="form-group col-xs-6">
+                                                                    <label>
+                                                                        <input type="checkbox" class="minimal">
+                                                                    </label>
+                                                                    <label>Membro NDE</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-6">
+                                                                    <label>
+                                                                        <input type="checkbox" class="minimal">
+                                                                    </label>
+                                                                    <label>Membro Colegiado?</label>
+                                                                </div>
+                                                                <div class="form-group col-xs-12">
+                                                                    <label>
+                                                                        <input type="checkbox" class="minimal">
+                                                                    </label>
+                                                                    <label>Docente com formação/capacitação/experiência pedagogica?</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <h4 class="centro">O Sistema irá calcular o tempo em anos e mese a partir da diferença com a data atual.</h4>
+                                                            <br />
+                                                            <div class="form-group col-xs-6 borda">
+                                                                <div class="box-header with-border">
+                                                                    <h4>Tempo de Vínculo Initerrupto do docente com o curso</h4>
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Data Inicial</label>
+                                                                    <input type="date" class="form-control" />
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Tempo Total</label>
+                                                                    <input type="text" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 borda">
+                                                                <div class="box-header with-border">
+                                                                    <h4>Tempo Experiência Magistério Superior</h4>
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Data Inicial</label>
+                                                                    <input type="date" class="form-control" />
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Tempo Total</label>
+                                                                    <input type="text" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 borda">
+                                                                <div class="box-header with-border">
+                                                                    <h4>Experiência em curso a distância</h4>
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Data Inicial</label>
+                                                                    <input type="date" class="form-control" />
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Tempo Total</label>
+                                                                    <input type="text" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 borda">
+                                                                <div class="box-header with-border">
+                                                                    <h4>Tempo Experiência Profissional</h4>
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Data Inicial</label>
+                                                                    <input type="date" class="form-control" />
+                                                                </div>
+                                                                <div class="form-group col-xs-3">
+                                                                    <label>Tempo Total</label>
+                                                                    <input type="text" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="box-header with-border">
+                                                            <h4>Participação em Eventos</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-12">
+                                                            <input type="number" class="form-group-lg col-xs-2" />
+                                                            <label>Quantidade</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-12 borda">
+                                                            <h4 class="centro">Anexar Comprovantes: </h4>
+                                                            <table class="table table-condensed">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>Itens</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>Item one</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Item two</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Item tree</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab2_3">
+                                    <form role="form">
+                                        <div class="box-body">
+                                            <div class="form-group col-xs-12">
+                                                <div class="box box-primary">
+                                                    <div class="box-body">
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Artigos publicados em períodos científicos</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>na área (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>em outras áreas (qtde)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Livros ou capítulos</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>livros publicados na área (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>livros publicados em outras áreas (qtde)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Trabalhos publicados anuais</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>completos (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>resumos (qtde)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Propriedade Intelectual</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>depositado (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>registrado (qtde)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-12 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Outras Puplicações</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>Tradução de livros, capitulos de livros ou artigos publicados (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>Projetos e/ou produções técnicos artisticos e culturais (qtde)</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6 inputsAlinhados">
+                                                                <input class="mone" type="number" />
+                                                                <label>Produção didático-pedagógico relevante, publicado ou não (qtde)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-12 borda">
+                                                            <h4 class="centro">Anexar Comprovantes: </h4>
+                                                            <table class="table table-condensed">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>Itens</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>Item one</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Item two</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Item tree</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+

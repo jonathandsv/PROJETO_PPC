@@ -1,68 +1,129 @@
-﻿@model PPC_1.Models.Curso 
+﻿
 @{
-    ViewBag.Title = "Cadastro_de_Curso";
+    ViewBag.Title = "ConsultarProfessor";
 }
+
 <section class="content-header">
     <h1>
-        Cursos
+        Professores
+        <small>Listas de todos os Professores cadastrados</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Curso</a></li>
-        <li class="active">Novo Curso</li>
+        <li><a href="#">Professor</a></li>
+        <li class="active">Todos os Professores</li>
     </ol>
 </section>
-<section class="content">
+<section id="tdCursos" class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID Professor</th>
+                                <th>Nome</th>
+                                <th>Denominação</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a onclick="mostrarTabela()" class="btn btn-primary">Abrir</a></td>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 4.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">Excluir</a>
+                                    <a href="#" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="btn btn-primary">Abrir</a></td>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 5.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td>
+                                    <a href="#" class="btn btn-danger">Excluir</a>
+                                    <a href="#" class="btn btn-warning">Editar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>ID PPC</th>
+                                <th>Curso</th>
+                                <th>Perfil do Curso</th>
+                                <th>Opções</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tabelaescondida" class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Cadastrar Cursos</h3>
+                    <h3 class="box-title">Todos os Cursos</h3>
                 </div>
-                <form role="form" action="/Home/NovoCurso">
+                <form role="form">
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", type = "text", placeholder="Tipo ..." })
+                            <input type="text" class="form-control" placeholder="Tipo ..." />
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
-                            @Html.TextBoxFor(x => x.Modalidade, new { @class = "form-control", type = "text", placeholder = "Modalidade ..." })
+                            <input type="text" class="form-control" placeholder="Modalidade ..." />
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Denominação do Curso:</label>
-                            @Html.TextBoxFor(x => x.DenominacaoCurso, new { @class = "form-control", type = "text"  })
+                            <input type="text" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Habilitação:</label>
-                            @Html.TextBoxFor(x => x.Habilitacao, new { @class = "form-control", type = "text", placehilder = "Habilitação..." })
+                            <input type="text" class="form-control" placeholder="Habilitação ..." />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Local de Oferta:</label>
-                            @Html.TextBoxFor(x => x.LocalDeOferta, new { @class = "form-control", type = "text"})
+                            <input type="text" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Turnos de Funcionamento:</label>
-                            @Html.TextBoxFor(x => x.TurnosDeFuncionamento, new { @class = "form-control", type = "text"})
+                            <input type="text" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Números de vagas para cada turno:</label>
-                            @Html.TextBoxFor(x => x.NumerosDeVagasCadaTurno, new { @class = "form-control", type = "text"})
+                            <input type="number" class="form-control" />
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Carga Horária do Curso</label>
-                            @Html.TextBoxFor(x => x.CargaHorariaDoCurso, new { @class = "form-control-static", maxlength = "10", type = "number"})
+                            <input type="number" class="form-control-static" maxlength="10" />
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Estrutura Curricular</h4>
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Regime Letivo:</label>
-                            @Html.TextBoxFor(x => x.RegimeLetivo, new { @class = "form-control", type = "text" })
+                            <input type="text" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Periodos:</label>
-                            @Html.TextBoxFor(x => x.Periodos, new { @class = "form-control", type = "text", placeholder = "Texto ..." })
+                            <input class="form-control" placeholder="Texto ..." />
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Coordenador do Curso</h4>
@@ -93,8 +154,9 @@
                             <input type="text" class="form-control" readonly />
                         </div>
                         <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>
+                            <button class="btn btn-primary pull-right espaco">Salvar</button>
                             <button class="btn btn-warning pull-right espaco">Cancelar</button>
+                            <button onclick="AdicionarReadonly()" class="btn btn-warning pull-right espaco">Alterar</button>
                             <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
                         </div>
                     </div>
@@ -103,3 +165,4 @@
         </div>
     </div>
 </section>
+
