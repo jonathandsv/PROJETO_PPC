@@ -101,8 +101,7 @@ namespace PPC_1.Models
                 Coordenador coordenador = new Coordenador();
                 coordenador.Nome = dr["NOME_USUARIO"].ToString();
                 coordenador.MaiorTitulacao = dr["MAIOR_TITULACAO"].ToString();
-                coordenadores.Add(coordenador);
-                coordenadores.Add(coordenador);
+                coordenador.CPF = dr["CPF"].ToString();
                 coordenadores.Add(coordenador);
             }
 

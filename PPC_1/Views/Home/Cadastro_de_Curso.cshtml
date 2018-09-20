@@ -1,6 +1,8 @@
-﻿@model PPC_1.Models.Curso 
+﻿@model PPC_1.Models.Curso
+
 @{
     ViewBag.Title = "Cadastro_de_Curso";
+    
 }
 <section class="content-header">
     <h1>
@@ -70,11 +72,10 @@
                         <div class="form-group col-xs-10">
                             <label>Nome</label>
                             <select class="form-control">
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
+                                @foreach (var item in ViewBag.Lista)
+                                {
+                                    <option onclick="PreencherDadosCoordenador(@item.CPF, @item.MaiorTitulacao)">@item.Nome</option>
+                                }
                             </select>
                         </div>
                         <div class="form-group col-xs-2">
@@ -82,11 +83,11 @@
                         </div>
                         <div class="form-group col-xs-5">
                             <label>CPF</label>
-                            <input type="number" class="form-control" readonly />
+                            <input type="number" class="form-control" id="preencheauto" readonly />
                         </div>
                         <div class="form-group col-xs-7">
                             <label>Titulação</label>
-                            <input type="text" class="form-control" readonly />
+                            <input type="text" class="form-control" id="preencheauto1" readonly />
                         </div>
                         <div class="form-group col-xs-5">
                             <label>Tempo de Dedicação</label>

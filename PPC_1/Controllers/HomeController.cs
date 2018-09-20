@@ -17,7 +17,10 @@ namespace PPC_1.Controllers
 
         public ActionResult Cadastro_de_Curso()
         {
-            
+            PPCDB coordenadores = new PPCDB();
+
+            List<Coordenador> ListaDeCoodenadores = coordenadores.BuscarCoordenadores();
+            ViewBag.Lista = ListaDeCoodenadores;
 
             return View();
         }
