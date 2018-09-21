@@ -8,7 +8,7 @@ function AdicionarReadonly() {
     $('input').add('readonly');
 }
 
-function PreencherDadosCoordenador(CPF, MaiorTitulacao) {
-    $('.preencheauto').add('placeholder', CPF);
-    $('.preencheauto1').add('placeholder', MaiorTitulacao);
+function PreencherDadosCoordenador(CPF) {
+    $('#preencheauto').prop('placeholder', CPF);
+    //$('.preencheauto1').add('placeholder', MaiorTitulacao);
 }
