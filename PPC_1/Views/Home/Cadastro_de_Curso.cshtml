@@ -25,7 +25,7 @@
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", type = "text", placeholder="Tipo ..." })
+                            @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", type = "text", placeholder = "Tipo ..." })
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Denominação do Curso:</label>
-                            @Html.TextBoxFor(x => x.DenominacaoCurso, new { @class = "form-control", type = "text"  })
+                            @Html.TextBoxFor(x => x.DenominacaoCurso, new { @class = "form-control", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Habilitação:</label>
@@ -41,19 +41,19 @@
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Local de Oferta:</label>
-                            @Html.TextBoxFor(x => x.LocalDeOferta, new { @class = "form-control", type = "text"})
+                            @Html.TextBoxFor(x => x.LocalDeOferta, new { @class = "form-control", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Turnos de Funcionamento:</label>
-                            @Html.TextBoxFor(x => x.TurnosDeFuncionamento, new { @class = "form-control", type = "text"})
+                            @Html.TextBoxFor(x => x.TurnosDeFuncionamento, new { @class = "form-control", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Números de vagas para cada turno:</label>
-                            @Html.TextBoxFor(x => x.NumerosDeVagasCadaTurno, new { @class = "form-control", type = "text"})
+                            @Html.TextBoxFor(x => x.NumerosDeVagasCadaTurno, new { @class = "form-control", type = "text" })
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Carga Horária do Curso</label>
-                            @Html.TextBoxFor(x => x.CargaHorariaDoCurso, new { @class = "form-control-static", maxlength = "10", type = "number"})
+                            @Html.TextBoxFor(x => x.CargaHorariaDoCurso, new { @class = "form-control-static", maxlength = "10", type = "number" })
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Estrutura Curricular</h4>
@@ -71,12 +71,13 @@
                         </div>
                         <div class="form-group col-xs-10">
                             <label>Nome</label>
-                            <select class="form-control">
+                            <select class="form-control" id="selectCoordenador">
                                 @foreach (var item in ViewBag.Lista)
                                 {
-                                    <option onclick="PreencherDadosCoordenador(@item.CPF)">@item.Nome</option>
+                                    <option value="@item.CPF">@item.Nome</option>
                                 }
                             </select>
+
                         </div>
                         <div class="form-group col-xs-2">
                             <a class="form-control btn btn-info">Cadastrar novo Coordenador</a>
@@ -100,6 +101,7 @@
                         </div>
                     </div>
                 </form>
+                <button>adicionar</button>
             </div>
         </div>
     </div>
