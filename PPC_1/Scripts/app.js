@@ -28,8 +28,8 @@ function AdicionarReadonly() {
 
 $("#selectCoordenador").change(function () {
     var slt = "";
-    $("option[value]").each(function () {
-        slt += $(this).text() + " ";
+    $("option[value]").text(function () {
+        slt = $(this).val();
     });
     $("#preencheauto").val(slt); 
 })
