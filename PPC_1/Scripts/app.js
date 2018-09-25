@@ -27,10 +27,6 @@ function AdicionarReadonly() {
 //}
 
 $("#selectCoordenador").change(function () {
-    var slt = "";
-    $("option[value]").text(function () {
-        slt = $(this).val();
-    });
-    $("#preencheauto").val(slt); 
+    $("#preencheauto").val($(this).val());
 })
     

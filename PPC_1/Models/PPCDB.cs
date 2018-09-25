@@ -99,6 +99,7 @@ namespace PPC_1.Models
             while (dr.Read())
             {
                 Coordenador coordenador = new Coordenador();
+                coordenador.Id = Convert.ToInt32(dr["ID_USUARIO"]);
                 coordenador.Nome = dr["NOME_USUARIO"].ToString();
                 coordenador.MaiorTitulacao = dr["MAIOR_TITULACAO"].ToString();
                 coordenador.CPF = dr["CPF"].ToString();
