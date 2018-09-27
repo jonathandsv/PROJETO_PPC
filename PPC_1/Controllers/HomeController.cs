@@ -78,5 +78,12 @@ namespace PPC_1.Controllers
 
             return Json(coordenador, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult BuscarCursos(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Curso curso = pPCDB.BuscarCursos(id);
+            return Json(curso, JsonRequestBehavior.AllowGet);
+        }
     }
 }

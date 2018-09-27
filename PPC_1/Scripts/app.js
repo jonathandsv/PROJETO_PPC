@@ -8,8 +8,16 @@ $("listaDeCursos").change(function () {
     var id = $("idParaMostrarTabela").val();
     $.ajax({
         type: 'GET',
-        url: 'BuscarCursos'
-    })
+        url: 'BuscarCursos',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
 })
 
 function AdicionarReadonly() {

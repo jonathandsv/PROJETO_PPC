@@ -110,6 +110,43 @@ namespace PPC_1.Models
 
             return (cursos);
         }
+
+        public Curso BuscarCursos(int id)
+        {
+            string conexao = ConexaoBanco();
+
+            string stringBuscar = @"SELECT FROM CURSOS WHERE ID_CURSO = @id";
+
+            SqlConnection sqlConn = new SqlConnection(conexao);
+
+            sqlConn.Open();
+
+            Curso curso = new Curso();
+
+            using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+            {
+                SqlDataReader dr = leitor.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    
+                    curso.Id = Convert.ToInt32(dr["ID_CURSO"]);
+                    curso.TipoDeCurso = dr["TIPO_CURSO"].ToString();
+                    curso.Modalidade = dr["MODALIDADE"].ToString();
+                    curso.DenominacaoCurso = dr["DENOMINACAO_CURSO"].ToString();
+                    curso.Habilitacao = dr["HABILITACAO"].ToString();
+                    curso.LocalDeOferta = dr["LOCAL_OFERTA"].ToString();
+                    curso.TurnosDeFuncionamento = dr["TURNO"].ToString();
+                    curso.NumerosDeVagasCadaTurno = Convert.ToInt32(dr["NUMERO_DE_VAGAS"]);
+                    curso.CargaHorariaDoCurso = Convert.ToInt32(dr["CARGA_HORARIA"]);
+                    curso.RegimeLetivo = dr["REGIME_LETIVO"].ToString();
+                    curso.Periodos = Convert.ToInt32(dr["QUANTIDADE_DE_PERIODOS"]);
+                }
+            }
+
+
+            return (curso);
+        }
         public Coordenador BuscarCoordenadores(int id)
         {
             string conexao = ConexaoBanco();
