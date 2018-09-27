@@ -78,6 +78,35 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+        public Coordenador BuscarCoordenadores(int id)
+        {
+            string conexao = ConexaoBanco();
+
+            string stringBuscar = @"SELECT * FROM USUARIOS WHERE ID_USUARIO = @id";
+
+            SqlConnection sqlConn = new SqlConnection(conexao);
+
+            sqlConn.Open();
+            Coordenador coordenador = new Coordenador();
+            using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn)) {
+
+                leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    
+
+
+                    while (dr.Read())
+                    {
+                        coordenador.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                        coordenador.Nome = dr["NOME_USUARIO"].ToString();
+                        coordenador.MaiorTitulacao = dr["MAIOR_TITULACAO"].ToString();
+                        coordenador.CPF = dr["CPF"].ToString();
+                    }
+            }
+
+            return (coordenador);
+        }
 
         public  List<Coordenador> BuscarCoordenadores()
         {
@@ -108,5 +137,7 @@ namespace PPC_1.Models
 
             return(coordenadores);
         }
+
+        
     }
 }

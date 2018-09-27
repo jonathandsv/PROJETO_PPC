@@ -26,7 +26,22 @@ function AdicionarReadonly() {
 //document.getElementById("preencheauto").value = x.value;
 //}
 
+//$("#selectCoordenador").change(function () {
+//    $("#preencheauto").val($(this).val());
+//})
+
+
 $("#selectCoordenador").change(function () {
-    $("#preencheauto").val($(this).val());
+    var id = $(this).val();
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCoordenador',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#preencheauto").val(retorno.CPF);
+            $("#preencheauto1").val(retorno.MaiorTitulacao);
+        }
+    })
 })
-    
+

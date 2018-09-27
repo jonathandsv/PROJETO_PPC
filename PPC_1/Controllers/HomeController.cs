@@ -25,6 +25,15 @@ namespace PPC_1.Controllers
             return View();
         }
 
+        public JsonResult BuscarCoordenador(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Coordenador coordenador = new Coordenador();
+            coordenador = pPCDB.BuscarCoordenadores(id);
+
+            return Json(coordenador);
+        }
+
         public ActionResult ConsultarCurso()
         {
             List<Coordenador> coordenadores = new List<Coordenador>();
