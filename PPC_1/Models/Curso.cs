@@ -7,6 +7,7 @@ namespace PPC_1.Models
 {
     public class Curso
     {
+        public int Id { get; set; }
         public string TipoDeCurso { get; set; }
         public string Modalidade { get; set; }
         public string DenominacaoCurso { get; set; }

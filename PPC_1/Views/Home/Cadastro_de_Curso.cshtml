@@ -73,6 +73,7 @@
                         <div class="form-group col-xs-10">
                             <label>Nome</label>
                             <select class="form-control" id="selectCoordenador">
+                                <option value="0">< Selecioneo Coordenador ></option>
                                 @foreach (var item in ViewBag.Lista)
                                 {
                                     <option value="@item.Id">@item.Nome</option>

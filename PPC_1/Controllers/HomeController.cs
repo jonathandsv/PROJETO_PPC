@@ -24,20 +24,13 @@ namespace PPC_1.Controllers
 
             return View();
         }
-
-        public JsonResult BuscarCoordenador(int id)
-        {
-            PPCDB pPCDB = new PPCDB();
-            Coordenador coordenador = new Coordenador();
-            coordenador = pPCDB.BuscarCoordenadores(id);
-
-            return Json(coordenador, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult ConsultarCurso()
         {
-            List<Coordenador> coordenadores = new List<Coordenador>();
-            return View();
+            PPCDB cursos = new PPCDB();
+
+            List<Curso> ListaDecursos = cursos.BuscarCursos();
+
+            return View(ListaDecursos);
         }
 
         public ActionResult CadastroPPC()
@@ -75,6 +68,15 @@ namespace PPC_1.Controllers
             PPCDB pPCDB = new PPCDB();
             curso = pPCDB.InserirCurso(curso);
             return(null);
-        } 
+        }
+
+        public JsonResult BuscarCoordenador(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Coordenador coordenador = new Coordenador();
+            coordenador = pPCDB.BuscarCoordenadores(id);
+
+            return Json(coordenador, JsonRequestBehavior.AllowGet);
+        }
     }
 }

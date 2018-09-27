@@ -4,6 +4,14 @@
     
 };
 
+$("listaDeCursos").change(function () {
+    var id = $("idParaMostrarTabela").val();
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCursos'
+    })
+})
+
 function AdicionarReadonly() {
     $('input').add('readonly');
 }

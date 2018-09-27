@@ -80,6 +80,36 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+
+        public List<Curso> BuscarCursos()
+        {
+            string conexao = ConexaoBanco();
+
+            string stringBuscar = @"SELECT * FROM CURSOS";
+
+            SqlConnection sqlConn = new SqlConnection(conexao);
+
+            sqlConn.Open();
+
+            List<Curso> cursos = new List<Curso>();
+
+            using(SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+            {
+                SqlDataReader dr = leitor.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Curso curso = new Curso();
+                    curso.Id = Convert.ToInt32(dr["ID_CURSO"]);
+                    curso.TipoDeCurso = dr["TIPO_CURSO"].ToString();
+                    curso.DenominacaoCurso = dr["DENOMINACAO_CURSO"].ToString();
+                    cursos.Add(curso);
+                }
+            }
+
+
+            return (cursos);
+        }
         public Coordenador BuscarCoordenadores(int id)
         {
             string conexao = ConexaoBanco();
@@ -138,8 +168,6 @@ namespace PPC_1.Models
             }
 
             return(coordenadores);
-        }
-
-        
+        }        
     }
 }
