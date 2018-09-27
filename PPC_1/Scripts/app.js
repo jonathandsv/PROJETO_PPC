@@ -41,7 +41,11 @@ $("#selectCoordenador").change(function () {
         success: function (retorno) {
             $("#preencheauto").val(retorno.CPF);
             $("#preencheauto1").val(retorno.MaiorTitulacao);
+            $("#preencheautoid").val(retorno.Id);
+        },
+        error: function (e) {
+            console.log(e);
         }
-    })
+    });
 })
 

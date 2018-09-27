@@ -30,7 +30,8 @@ namespace PPC_1.Models
                                                         NUMERO_DE_VAGAS,
                                                         CARGA_HORARIA,
                                                         REGIME_LETIVO,
-                                                        QUANTIDADE_DE_PERIODOS
+                                                        QUANTIDADE_DE_PERIODOS,
+                                                        ID_COORDENADOR
                                                         ) 
                                                         VALUES
                                                         (@TIPO_CURSO,
@@ -42,7 +43,8 @@ namespace PPC_1.Models
                                                         @NUMERO_DE_VAGAS,
                                                         @CARGA_HORARIA,
                                                         @REGIME_LETIVO,
-                                                        @QUANTIDADE_DE_PERIODOS
+                                                        @QUANTIDADE_DE_PERIODOS,
+                                                        @ID_COORDENADOR
                                                         )";
                 string conexao = ConexaoBanco();
 
@@ -63,7 +65,7 @@ namespace PPC_1.Models
                         comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = curso.CargaHorariaDoCurso;
                         comm.Parameters.Add("@REGIME_LETIVO", SqlDbType.VarChar, 50).Value = curso.RegimeLetivo;
                         comm.Parameters.Add("@QUANTIDADE_DE_PERIODOS", SqlDbType.Int).Value = curso.Periodos;
-                        
+                        comm.Parameters.Add("@ID_COORDENADOR", SqlDbType.Int).Value = curso.CoordenadorCurso;
 
                         sqlConn.Open();
                         comm.ExecuteNonQuery();

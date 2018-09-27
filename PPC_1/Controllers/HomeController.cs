@@ -31,7 +31,7 @@ namespace PPC_1.Controllers
             Coordenador coordenador = new Coordenador();
             coordenador = pPCDB.BuscarCoordenadores(id);
 
-            return Json(coordenador);
+            return Json(coordenador, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ConsultarCurso()
