@@ -33,7 +33,7 @@
                             @foreach (var item in Model)
                             {
                             <tr>
-                                <td value="@item.Id" id="idParaMostrarTabela"><a onclick="mostrarTabela()" class="btn btn-primary" id="listaDeCursos">Abrir</a></td>
+                                <td><button idDoCurso="@item.Id" class="btn btn-primary" id="listaDeCursos" >Abrir</button></td>
                                 <td>@item.Id</td>
                                 <td>@item.TipoDeCurso</td>
                                 <td>@item.DenominacaoCurso</td>
@@ -71,46 +71,46 @@
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            <input type="text" class="form-control" placeholder="Tipo ..." />
+                            <input type="text" id="TipoDeCurso" class="form-control" placeholder="Tipo ..." />
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
-                            <input type="text" class="form-control" placeholder="Modalidade ..." />
+                            <input type="text" id="Modalidade" class="form-control" placeholder="Modalidade ..." />
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Denominação do Curso:</label>
-                            <input type="text" class="form-control" />
+                            <input type="text" id="Denominacao" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Habilitação:</label>
-                            <input type="text" class="form-control" placeholder="Habilitação ..." />
+                            <input type="text" id="Habilitacao" class="form-control" placeholder="Habilitação ..." />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Local de Oferta:</label>
-                            <input type="text" class="form-control" />
+                            <input type="text" id="LocalOferta" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Turnos de Funcionamento:</label>
-                            <input type="text" class="form-control" />
+                            <input type="text" id="TurnosDeFuncionamento" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Números de vagas para cada turno:</label>
-                            <input type="number" class="form-control" />
+                            <input type="number" id="NumeroDeVagas" class="form-control" />
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Carga Horária do Curso</label>
-                            <input type="number" class="form-control-static" maxlength="10" />
+                            <input type="number" id="CargaHorariaDoCurso" class="form-control-static" maxlength="10" />
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Estrutura Curricular</h4>
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Regime Letivo:</label>
-                            <input type="text" class="form-control" />
+                            <input type="text" id="RegimeLetivo" class="form-control" />
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Periodos:</label>
-                            <input class="form-control" placeholder="Texto ..." />
+                            <input type="text" id="Periodos" class="form-control"  placeholder="Texto ..." />
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Coordenador do Curso</h4>

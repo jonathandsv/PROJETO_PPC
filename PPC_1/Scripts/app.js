@@ -4,15 +4,36 @@
     
 };
 
-$("listaDeCursos").change(function () {
-    var id = $("idParaMostrarTabela").val();
+$("button").click(function () {
+    var id = $(this).attr('iddocurso');
     $.ajax({
         type: 'GET',
         url: 'BuscarCursos',
         dataType: 'json',
         data: { id: id },
         success: function (retorno) {
+            $("#TipoDeCurso").val(retorno.TipoDeCurso);
+            $("#TipoDeCurso").prop('readonly', 'readonly');
+            $("#Modalidade").val(retorno.Modalidade);
+            $("#Modalidade").prop('readonly', 'readonly');
+            $("#Denominacao").val(retorno.DenominacaoCurso);
+            $("#Denominacao").prop('readonly', 'readonly');
+            $("#Habilitacao").val(retorno.Habilitacao);
+            $("#Habilitacao").prop('readonly', 'readonly');
+            $("#LocalOferta").val(retorno.LocalDeOferta);
+            $("#LocalOferta").prop('readonly', 'readonly');
+            $("#TurnosDeFuncionamento").val(retorno.TurnosDeFuncionamento);
+            $("#TurnosDeFuncionamento").prop('readonly', 'readonly');
+            $("#NumerodeVagas").val(retorno.NumerosDeVagaCadaTurno);
+            $("#NumerodeVagas").prop('readonly', 'readonly');
+            $("#CargaHorariaDoCurso").val(retorno.CargaHorariaDoCurso);
+            $("#CargaHorariaDoCurso").prop('readonly', 'readonly');
+            $("#RegimeLetivo").val(retorno.RegimeLetivo);
+            $("#DenominacaoRegimeLetivo").prop('readonly', 'readonly');
+            $("#Periodos").val(retorno.Periodos);
+            $("#Periodos").prop('readonly', 'readonly');
 
+            mostrarTabela();
         },
         erro: function (e) {
             console.log(e);
