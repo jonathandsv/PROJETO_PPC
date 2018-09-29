@@ -4,7 +4,7 @@
     
 };
 
-$("button").click(function () {
+$(".CarregarCursos").click(function () {
     var id = $(this).attr('iddocurso');
     $.ajax({
         type: 'GET',
@@ -24,12 +24,12 @@ $("button").click(function () {
             $("#LocalOferta").prop('readonly', 'readonly');
             $("#TurnosDeFuncionamento").val(retorno.TurnosDeFuncionamento);
             $("#TurnosDeFuncionamento").prop('readonly', 'readonly');
-            $("#NumerodeVagas").val(retorno.NumerosDeVagaCadaTurno);
-            $("#NumerodeVagas").prop('readonly', 'readonly');
+            $("#NumeroDeVagas").val(retorno.NumerosDeVagasCadaTurno);
+            $("#NumeroDeVagas").prop('readonly', 'readonly');
             $("#CargaHorariaDoCurso").val(retorno.CargaHorariaDoCurso);
             $("#CargaHorariaDoCurso").prop('readonly', 'readonly');
             $("#RegimeLetivo").val(retorno.RegimeLetivo);
-            $("#DenominacaoRegimeLetivo").prop('readonly', 'readonly');
+            $("#RegimeLetivo").prop('readonly', 'readonly');
             $("#Periodos").val(retorno.Periodos);
             $("#Periodos").prop('readonly', 'readonly');
 
