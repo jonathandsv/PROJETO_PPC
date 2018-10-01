@@ -102,18 +102,19 @@ function preencheNomeCoordenador(Nome) {
     $("#selecaoDeCoordenador").append("<option>" + (Nome) + "<option>");
 }
 
-//$("#alterarCadastro").click(function () {
-//    $("#TipoDeCurso").removeAttr('readonly');
-//    $("#Modalidade").removeAttr('readonly');
-//    $("#Denominacao").removeAttr('readonly');
-//    $("#Habilitacao").removeAttr('readonly');
-//    $("#LocalOferta").removeAttr('readonly');
-//    $("#TurnosDeFuncionamento").removeAttr('readonly');
-//    $("#NumeroDeVagas").removeAttr('readonly');
-//    $("#CargaHorariaDoCurso").removeAttr('readonly');
-//    $("#RegimeLetivo").removeAttr('readonly');
-//    $("#Periodos").removeAttr('readonly');
-//});
+$("#alterarCadastro").click(function () {
+    $("#TipoDeCurso").removeAttr('readonly');
+    $("#Modalidade").removeAttr('readonly');
+    $("#Denominacao").removeAttr('readonly');
+    $("#Habilitacao").removeAttr('readonly');
+    $("#LocalOferta").removeAttr('readonly');
+    $("#TurnosDeFuncionamento").removeAttr('readonly');
+    $("#NumeroDeVagas").removeAttr('readonly');
+    $("#CargaHorariaDoCurso").removeAttr('readonly');
+    $("#RegimeLetivo").removeAttr('readonly');
+    $("#Periodos").removeAttr('readonly');
+    $("#selecaoDeCoordenador").removeAttr('disabled');
+});
 
 //teste
 
@@ -130,8 +131,8 @@ function preencheNomeCoordenador(Nome) {
 //    $("#Periodos").remove('readonly');
 //}
 
-function retirarReadonly() {
-    document.getElementById("#TipoDeCurso").removeAttribute("readonly");
-}
+//function retirarReadonly() {
+//    document.getElementById("TipoDeCurso").removeAttribute("readonly");
+//}
 
 //Fim da seção de cursos
