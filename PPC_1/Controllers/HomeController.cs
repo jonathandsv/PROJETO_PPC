@@ -17,20 +17,31 @@ namespace PPC_1.Controllers
 
         public ActionResult Cadastro_de_Curso()
         {
+
+            PreencheViewBagListaCoordenadores();
+            return View();
+        }
+
+        private void PreencheViewBagListaCoordenadores()
+        {
             PPCDB coordenadores = new PPCDB();
 
             List<Coordenador> ListaDeCoodenadores = coordenadores.BuscarCoordenadores();
-            ViewBag.Lista = ListaDeCoodenadores;
 
-            return View();
+            ViewBag.ListaDeCoordenadores = ListaDeCoodenadores;
         }
-        public ActionResult ConsultarCurso()
+
+        private void PreencheViewBagListaCursos()
         {
             PPCDB cursos = new PPCDB();
 
             List<Curso> ListaDecursos = cursos.BuscarCursos();
-
-            return View(ListaDecursos);
+            ViewBag.ListaDeCursos = ListaDecursos;
+        }
+        public ActionResult ConsultarCurso()
+        {
+            PreencheViewBagListaCursos();
+            return View();
         }
 
         public ActionResult CadastroPPC()

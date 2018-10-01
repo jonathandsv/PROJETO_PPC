@@ -144,6 +144,7 @@ namespace PPC_1.Models
                         curso.CargaHorariaDoCurso = Convert.ToInt32(dr["CARGA_HORARIA"]);
                         curso.RegimeLetivo = dr["REGIME_LETIVO"].ToString();
                         curso.Periodos = Convert.ToInt32(dr["QUANTIDADE_DE_PERIODOS"]);
+                        curso.CoordenadorCurso = Convert.ToInt32(dr["ID_COORDENADOR"]);
                     }
                 }
 

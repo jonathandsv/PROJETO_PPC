@@ -74,7 +74,7 @@
                             <label>Nome</label>
                             <select class="form-control" id="selectCoordenador">
                                 <option value="0">< Selecione o Coordenador ></option>
-                                @foreach (var item in ViewBag.Lista)
+                                @foreach (var item in ViewBag.ListaDeCoordenadores)
                                 {
                                     <option value="@item.Id">@item.Nome</option>
                                 }
@@ -86,11 +86,11 @@
                         </div>
                         <div class="form-group col-xs-5">
                             <label>CPF</label>
-                            <input type="number" class="form-control" id="preencheauto" readonly />
+                            <input type="number" class="form-control" id="preencheautoCpf" readonly />
                         </div>
                         <div class="form-group col-xs-7">
                             <label>Titulação</label>
-                            <input type="text" class="form-control" id="preencheauto1" readonly />
+                            <input type="text" class="form-control" id="preencheautoMTitulacao" readonly />
                         </div>
                         <div class="form-group col-xs-12">
                             <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>

@@ -1,4 +1,5 @@
-﻿function mostrarTabela() {
+﻿//inicio da configuração da seção cursos
+function mostrarTabela() {
     $('#tabelaescondida').show();
     $('#tdCursos').hide();
     
@@ -32,18 +33,23 @@ $(".CarregarCursos").click(function () {
             $("#RegimeLetivo").prop('readonly', 'readonly');
             $("#Periodos").val(retorno.Periodos);
             $("#Periodos").prop('readonly', 'readonly');
+            
+            $("#selecaoDeCoordenador").prop('disabled', 'disabled');
+
+            var id = retorno.CoordenadorCurso;
+            buscarCoordenador(id);
 
             mostrarTabela();
         },
         erro: function (e) {
             console.log(e);
         }
+
+        
     });
 })
 
-function AdicionarReadonly() {
-    $('input').add('readonly');
-}
+
 
 //function PreencherDadosCoordenador(CPF) {
 //    $('#preencheauto').val(CPF);
@@ -70,19 +76,62 @@ function AdicionarReadonly() {
 
 $("#selectCoordenador").change(function () {
     var id = $(this).val();
+    buscarCoordenador(id)   
+})
+
+function buscarCoordenador(id) {
     $.ajax({
         type: 'GET',
         url: 'BuscarCoordenador',
         dataType: 'json',
         data: { id: id },
         success: function (retorno) {
-            $("#preencheauto").val(retorno.CPF);
-            $("#preencheauto1").val(retorno.MaiorTitulacao);
+            $("#preencheautoCpf").val(retorno.CPF);
+            $("#preencheautoMTitulacao").val(retorno.MaiorTitulacao);
             $("#preencheautoid").val(retorno.Id);
+            var NomeCoordenador = retorno.Nome;
+            preencheNomeCoordenador(NomeCoordenador);
         },
         error: function (e) {
             console.log(e);
         }
     });
-})
+}
 
+function preencheNomeCoordenador(Nome) {
+    $("#selecaoDeCoordenador").append("<option>" + (Nome) + "<option>");
+}
+
+//$("#alterarCadastro").click(function () {
+//    $("#TipoDeCurso").removeAttr('readonly');
+//    $("#Modalidade").removeAttr('readonly');
+//    $("#Denominacao").removeAttr('readonly');
+//    $("#Habilitacao").removeAttr('readonly');
+//    $("#LocalOferta").removeAttr('readonly');
+//    $("#TurnosDeFuncionamento").removeAttr('readonly');
+//    $("#NumeroDeVagas").removeAttr('readonly');
+//    $("#CargaHorariaDoCurso").removeAttr('readonly');
+//    $("#RegimeLetivo").removeAttr('readonly');
+//    $("#Periodos").removeAttr('readonly');
+//});
+
+//teste
+
+//function retirarReadonly() {
+//    $("#TipoDeCurso").remove('readonly');
+//    $("#Modalidade").remove('readonly');
+//    $("#Denominacao").remove('readonly');
+//    $("#Habilitacao").remove('readonly');
+//    $("#LocalOferta").remove('readonly');
+//    $("#TurnosDeFuncionamento").remove('readonly');
+//    $("#NumeroDeVagas").remove('readonly');
+//    $("#CargaHorariaDoCurso").remove('readonly');
+//    $("#RegimeLetivo").remove('readonly');
+//    $("#Periodos").remove('readonly');
+//}
+
+function retirarReadonly() {
+    document.getElementById("#TipoDeCurso").removeAttribute("readonly");
+}
+
+//Fim da seção de cursos
