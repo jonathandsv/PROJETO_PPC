@@ -33,11 +33,12 @@ $(".CarregarCursos").click(function () {
             $("#RegimeLetivo").prop('readonly', 'readonly');
             $("#Periodos").val(retorno.Periodos);
             $("#Periodos").prop('readonly', 'readonly');
-            
+
+            $("#salvar").prop('disabled', 'disabled');
             $("#selecaoDeCoordenador").prop('disabled', 'disabled');
 
             var id = retorno.CoordenadorCurso;
-            buscarCoordenador(id);
+            buscarCoordenadorIni(id);
 
             mostrarTabela();
         },
@@ -74,12 +75,14 @@ $(".CarregarCursos").click(function () {
 //})
 
 
-$("#selectCoordenador").change(function () {
+$(".selectCoordenador").change(function () {
     var id = $(this).val();
     buscarCoordenador(id)   
 })
 
 function buscarCoordenador(id) {
+    var NomeCoordenador = "";
+    var IdCoordenador = 5;
     $.ajax({
         type: 'GET',
         url: 'BuscarCoordenador',
@@ -89,17 +92,33 @@ function buscarCoordenador(id) {
             $("#preencheautoCpf").val(retorno.CPF);
             $("#preencheautoMTitulacao").val(retorno.MaiorTitulacao);
             $("#preencheautoid").val(retorno.Id);
-            var NomeCoordenador = retorno.Nome;
-            preencheNomeCoordenador(NomeCoordenador);
         },
         error: function (e) {
             console.log(e);
-        }
+        },
     });
 }
 
-function preencheNomeCoordenador(Nome) {
-    $("#selecaoDeCoordenador").append("<option>" + (Nome) + "<option>");
+function buscarCoordenadorIni(id) {
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCoordenador',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#preencheautoCpf").val(retorno.CPF);
+            $("#preencheautoMTitulacao").val(retorno.MaiorTitulacao);
+            $("#preencheautoid").val(retorno.Id);
+            preencheNomeCoordenador(retorno.Nome, retorno.Id);
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    });
+}
+
+function preencheNomeCoordenador(Nome, Id) {
+    $("#selecaoDeCoordenador").append("<option value=" + (Id) + " >" + (Nome) + "</option>");
 }
 
 $("#alterarCadastro").click(function () {
@@ -114,22 +133,29 @@ $("#alterarCadastro").click(function () {
     $("#RegimeLetivo").removeAttr('readonly');
     $("#Periodos").removeAttr('readonly');
     $("#selecaoDeCoordenador").removeAttr('disabled');
+    $("#salvar").removeAttr('disabled');
+   
+    carregarSelecaoDeCoordenador();
 });
 
-//teste
+function carregarSelecaoDeCoordenador() {
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCoordenadores',
+        dataType: 'json',
+        success: function (retorno) {
+            for (var i = 0; i < retorno.length; i++) {
+                $("#selecaoDeCoordenador").append("<option value=" + (retorno[i].Id) + " > " + (retorno[i].Nome) + " </option > ");
+            }
 
-//function retirarReadonly() {
-//    $("#TipoDeCurso").remove('readonly');
-//    $("#Modalidade").remove('readonly');
-//    $("#Denominacao").remove('readonly');
-//    $("#Habilitacao").remove('readonly');
-//    $("#LocalOferta").remove('readonly');
-//    $("#TurnosDeFuncionamento").remove('readonly');
-//    $("#NumeroDeVagas").remove('readonly');
-//    $("#CargaHorariaDoCurso").remove('readonly');
-//    $("#RegimeLetivo").remove('readonly');
-//    $("#Periodos").remove('readonly');
-//}
+        },
+        error: function (e) {
+            console.log(e);
+        }
+
+    });
+}
+
 
 //function retirarReadonly() {
 //    document.getElementById("TipoDeCurso").removeAttribute("readonly");

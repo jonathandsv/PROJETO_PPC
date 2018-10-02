@@ -64,59 +64,59 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <form role="form">
+                <form role="form" action="/Home/AtualizarCurso">
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
-                            <input type="text" id="TipoDeCurso" class="form-control" placeholder="Tipo ..." />
+                            @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", id = "TipoDeCurso", type = "text", placeholder = "Tipo ..." })
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Modalidade:</label>
-                            <input type="text" id="Modalidade" class="form-control" placeholder="Modalidade ..." />
+                            @Html.TextBoxFor(x => x.Modalidade, new { @class = "form-control", id = "Modalidade", type = "text", placeholder = "Modalidade ..." })
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Denominação do Curso:</label>
-                            <input type="text" id="Denominacao" class="form-control" />
+                            @Html.TextBoxFor(x => x.DenominacaoCurso, new { @class = "form-control", id = "Denominacao", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Habilitação:</label>
-                            <input type="text" id="Habilitacao" class="form-control" placeholder="Habilitação ..." />
+                            @Html.TextBoxFor(x => x.Habilitacao, new { @class = "form-control", id = "Habilitacao", type = "text", placehilder = "Habilitação..." })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Local de Oferta:</label>
-                            <input type="text" id="LocalOferta" class="form-control" />
+                            @Html.TextBoxFor(x => x.LocalDeOferta, new { @class = "form-control", id = "LocalOferta", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Turnos de Funcionamento:</label>
-                            <input type="text" id="TurnosDeFuncionamento" class="form-control" />
+                            @Html.TextBoxFor(x => x.TurnosDeFuncionamento, new { @class = "form-control", id = "TurnosDeFuncionamento", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Números de vagas para cada turno:</label>
-                            <input type="number" id="NumeroDeVagas" class="form-control" />
+                            @Html.TextBoxFor(x => x.NumerosDeVagasCadaTurno, new { @class = "form-control", id = "NumeroDeVagas", type = "text" })
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Carga Horária do Curso</label>
-                            <input type="number" id="CargaHorariaDoCurso" class="form-control-static" maxlength="10" />
+                            @Html.TextBoxFor(x => x.CargaHorariaDoCurso, new { @class = "form-control-static", id = "CargaHorariaDoCurso", maxlength = "10", type = "number" })
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Estrutura Curricular</h4>
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Regime Letivo:</label>
-                            <input type="text" id="RegimeLetivo" class="form-control" />
+                            @Html.TextBoxFor(x => x.RegimeLetivo, new { @class = "form-control", id = "RegimeLetivo", type = "text" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Periodos:</label>
-                            <input type="text" id="Periodos" class="form-control"  placeholder="Texto ..." />
+                            @Html.TextBoxFor(x => x.Periodos, new { @class = "form-control", id = "Periodos", type = "text", placeholder = "Texto ..." })
                         </div>
                         <div class="form-group col-xs-12">
                             <h4>Coordenador do Curso</h4>
                         </div>
                         <div class="form-group col-xs-10">
                             <label>Nome</label>
-                            <select class="form-control" id="selecaoDeCoordenador">
-                            </select>
+                            <select class="form-control selectCoordenador" id="selecaoDeCoordenador"></select>
                         </div>
+                        @Html.HiddenFor(x => x.CoordenadorCurso, new { type = "hidden", id = "preencheautoid" })
                         <div class="form-group col-xs-2">
                             <a class="form-control btn btn-info">+ Coordenador</a>
                         </div>
@@ -133,7 +133,7 @@
                             <input type="text" class="form-control" id="preencheautoid" readonly />
                         </div>
                         <div class="form-group col-xs-12">
-                            <a class="btn btn-primary pull-right espaco">Salvar</a>
+                            <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
                             <a class="btn btn-warning pull-right espaco">Cancelar</a>
                             <a class="btn btn-warning pull-right espaco" id="alterarCadastro">Alterar</a>
                             <a href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</a>

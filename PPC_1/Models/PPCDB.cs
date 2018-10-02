@@ -81,6 +81,62 @@ namespace PPC_1.Models
             }
         }
 
+        public Curso atualizarCurso(Curso curso)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string atualizarValores = @"UPDATE CURSOS SET TIPO_CURSO = @TIPO_CURSO,
+                                                      MODALIDADE = @MODALIDADE,
+                                                      DENOMINACAO_CURSO = @DENOMINACAO_CURSO,
+                                                      HABILITACAO = @HABILITACAO,
+                                                      LOCAL_OFERTA = @LOCAL_OFERTA,
+                                                      TURNO = @TURNO,
+                                                      NUMERO_DE_VAGAS = @NUMERO_DE_VAGAS,
+                                                      CARGA_HORARIA = @CARGA_HORARIA,
+                                                      REGIME_LETIVO = @REGIME_LETIVO,
+                                                      QUANTIDADE_DE_PERIODOS = @QUANTIDADE_DE_PERIODOS,
+                                                      ID_COORDENADOR = @ID_COORDENADOR
+                                                      WHERE ID_CURSO = @Id";
+
+                using (SqlConnection SqlConn = new SqlConnection(conexao))
+                {
+
+                    using (SqlCommand comm = new SqlCommand(atualizarValores, SqlConn))
+                    {
+                        comm.Parameters.Add("@Id", SqlDbType.Int).Value = curso.Id;
+                        comm.Parameters.Add("@TIPO_CURSO", SqlDbType.VarChar, 50).Value = curso.TipoDeCurso;
+                        comm.Parameters.Add("@MODALIDADE", SqlDbType.VarChar, 50).Value = curso.Modalidade;
+                        comm.Parameters.Add("@DENOMINACAO_CURSO", SqlDbType.VarChar, 50).Value = curso.DenominacaoCurso;
+                        comm.Parameters.Add("@HABILITACAO", SqlDbType.VarChar, 50).Value = curso.Habilitacao;
+                        comm.Parameters.Add("@LOCAL_OFERTA", SqlDbType.VarChar, 50).Value = curso.LocalDeOferta;
+                        comm.Parameters.Add("@TURNO", SqlDbType.VarChar, 50).Value = curso.TurnosDeFuncionamento;
+                        comm.Parameters.Add("@NUMERO_DE_VAGAS", SqlDbType.Int).Value = curso.NumerosDeVagasCadaTurno;
+                        comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = curso.CargaHorariaDoCurso;
+                        comm.Parameters.Add("@REGIME_LETIVO", SqlDbType.VarChar).Value = curso.RegimeLetivo;
+                        comm.Parameters.Add("@QUANTIDADE_DE_PERIODOS", SqlDbType.Int).Value = curso.Periodos;
+                        comm.Parameters.Add("@ID_COORDENADOR", SqlDbType.Int).Value = curso.Id;
+
+                        SqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        SqlConn.Close();
+
+                    }
+
+                }
+
+
+                return (null);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public List<Curso> BuscarCursos()
         {
             string conexao = ConexaoBanco();

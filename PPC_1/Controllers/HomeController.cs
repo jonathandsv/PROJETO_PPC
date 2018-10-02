@@ -81,6 +81,21 @@ namespace PPC_1.Controllers
             return(null);
         }
 
+        public ActionResult AtualizarCurso(Curso curso)
+        {
+            PPCDB pPCDB = new PPCDB();
+            curso = pPCDB.atualizarCurso(curso);
+            return (null);
+        }
+        
+
+        public JsonResult BuscarCursos(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Curso curso = pPCDB.BuscarCursos(id);
+            return Json(curso, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult BuscarCoordenador(int id)
         {
             PPCDB pPCDB = new PPCDB();
@@ -90,11 +105,13 @@ namespace PPC_1.Controllers
             return Json(coordenador, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult BuscarCursos(int id)
+        public JsonResult BuscarCoordenadores()
         {
             PPCDB pPCDB = new PPCDB();
-            Curso curso = pPCDB.BuscarCursos(id);
-            return Json(curso, JsonRequestBehavior.AllowGet);
+            List<Coordenador> coordenadores = new List<Coordenador>();
+            coordenadores = pPCDB.BuscarCoordenadores();
+
+            return Json(coordenadores, JsonRequestBehavior.AllowGet);
         }
     }
 }
