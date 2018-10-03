@@ -1,4 +1,4 @@
-﻿
+﻿@model PPC_1.Models.Ppc
 @{
     ViewBag.Title = "CadastroPPC";
 }
@@ -27,16 +27,18 @@
                         <div class="box-body">
                             <div class="form-group col-xs-5">
                                 <label>Cursos</label>
-                                <select class="form-control">
-                                    <option>Curso 1</option>
-                                    <option>Curso 1</option>
-                                    <option>Curso 1</option>
-                                    <option>Curso 1</option>
+                                <select class="form-control selectCoordenador">
+                                    <option value="0">< Selecione o Curso ></option>
+                                    @foreach (var item in ViewBag.ListaDeCursos)
+                                    {
+                                        <option value="@item.Id">@item.DenominacaoCurso</option>
+                                    }
                                 </select>
                             </div>
                             <div class="form-group col-xs-6 pull-right">
                                 <label>Perfil Curso:</label>
                                 <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Perfil_Do_Curso, new { @class = "" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Perfil Egresso:</label>

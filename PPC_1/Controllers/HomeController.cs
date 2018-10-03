@@ -46,7 +46,7 @@ namespace PPC_1.Controllers
 
         public ActionResult CadastroPPC()
         {
-
+            PreencheViewBagListaCursos();
             return View();
         }
 
