@@ -33,6 +33,7 @@ $(".CarregarCursos").click(function () {
             $("#RegimeLetivo").prop('readonly', 'readonly');
             $("#Periodos").val(retorno.Periodos);
             $("#Periodos").prop('readonly', 'readonly');
+            $("#Id_Curso").val(retorno.Id);
 
             $("#salvar").prop('disabled', 'disabled');
             $("#selecaoDeCoordenador").prop('disabled', 'disabled');

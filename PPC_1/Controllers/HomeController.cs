@@ -78,16 +78,25 @@ namespace PPC_1.Controllers
         {
             PPCDB pPCDB = new PPCDB();
             curso = pPCDB.InserirCurso(curso);
-            return(null);
+            PreencheViewBagListaCursos();
+            return View("ConsultarCurso");
         }
 
         public ActionResult AtualizarCurso(Curso curso)
         {
             PPCDB pPCDB = new PPCDB();
             curso = pPCDB.atualizarCurso(curso);
-            return (null);
+            PreencheViewBagListaCursos();
+            return View ("ConsultarCurso");
         }
         
+        public ActionResult excluirCurso(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            pPCDB.excluirCurso(id);
+            PreencheViewBagListaCursos();
+            return View("ConsultarCurso");
+        }
 
         public JsonResult BuscarCursos(int id)
         {

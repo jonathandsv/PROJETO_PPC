@@ -116,7 +116,7 @@ namespace PPC_1.Models
                         comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = curso.CargaHorariaDoCurso;
                         comm.Parameters.Add("@REGIME_LETIVO", SqlDbType.VarChar).Value = curso.RegimeLetivo;
                         comm.Parameters.Add("@QUANTIDADE_DE_PERIODOS", SqlDbType.Int).Value = curso.Periodos;
-                        comm.Parameters.Add("@ID_COORDENADOR", SqlDbType.Int).Value = curso.Id;
+                        comm.Parameters.Add("@ID_COORDENADOR", SqlDbType.Int).Value = curso.CoordenadorCurso;
 
                         SqlConn.Open();
                         comm.ExecuteNonQuery();
@@ -207,6 +207,36 @@ namespace PPC_1.Models
 
                 return (curso);
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public int excluirCurso(int id)
+        {
+            int retorno = 0;
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringDeletar = @"DELETE FROM CURSOS WHERE ID_CURSO = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+                using (SqlCommand apagador = new SqlCommand(stringDeletar, sqlConn))
+                {
+                    apagador.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    retorno = apagador.ExecuteNonQuery();
+                    sqlConn.Close();
+                }
+
+
+
+                return (0);
             }
             catch (Exception ex)
             {

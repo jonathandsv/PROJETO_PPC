@@ -38,8 +38,7 @@
                                 <td>@item.TipoDeCurso</td>
                                 <td>@item.DenominacaoCurso</td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
-                                    <a href="#" class="btn btn-warning">Editar</a>
+                                    <a href="/Home/excluirCurso?id=@item.Id" class="btn btn-danger">Excluir</a>
                                 </td>
                             </tr>
                             }
@@ -66,6 +65,7 @@
             <div class="box box-primary">
                 <form role="form" action="/Home/AtualizarCurso">
                     <div class="box-body">
+                        @Html.HiddenFor(x => x.Id, new { id="Id_Curso" })
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
                             @Html.TextBoxFor(x => x.TipoDeCurso, new { @class = "form-control", id = "TipoDeCurso", type = "text", placeholder = "Tipo ..." })
@@ -128,13 +128,9 @@
                             <label>Titulação</label>
                             <input type="text" class="form-control" id="preencheautoMTitulacao" readonly />
                         </div>
-                        <div class="form-group col-xs-5">
-                            <label>Tempo de Dedicação</label>
-                            <input type="text" class="form-control" id="preencheautoid" readonly />
-                        </div>
                         <div class="form-group col-xs-12">
                             <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
-                            <a class="btn btn-warning pull-right espaco">Cancelar</a>
+                            <a href="/Home/ConsultarCurso" class="btn btn-warning pull-right espaco">Cancelar</a>
                             <a class="btn btn-warning pull-right espaco" id="alterarCadastro">Alterar</a>
                             <a href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</a>
                         </div>

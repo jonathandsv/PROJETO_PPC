@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "PPC";
 }
 
@@ -24,46 +25,32 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID PPC</th>
-                                <th>Curso</th>
-                                <th>Perfil do Curso</th>
+                                <th>ID Curso</th>
+                                <th>Tipo do Curso</th>
+                                <th>Denominação</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a onclick="mostrarTabela()" class="btn btn-primary">Abrir</a></td>
-                                <td>Trident</td>
-                                <td>
-                                    Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
-                                    <a href="#" class="btn btn-warning">Editar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="btn btn-primary">Abrir</a></td>
-                                <td>Trident</td>
-                                <td>
-                                    Internet
-                                    Explorer 5.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
-                                    <a href="#" class="btn btn-warning">Editar</a>
-                                </td>
-                            </tr>
+                            @foreach (var item in ViewBag.ListaDeCursos)
+                            {
+                                <tr>
+                                    <td><button idDoCurso="@item.Id" class="btn btn-primary CarregarCursos" id="listaDeCursos">Abrir</button></td>
+                                    <td>@item.Id</td>
+                                    <td>@item.TipoDeCurso</td>
+                                    <td>@item.DenominacaoCurso</td>
+                                    <td>
+                                        <a href="/Home/excluirCurso?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th>ID PPC</th>
-                                <th>Curso</th>
-                                <th>Perfil do Curso</th>
+                                <th>ID Curso</th>
+                                <th>Tipo do Curso</th>
+                                <th>Denominação</th>
                                 <th>Opções</th>
                             </tr>
                         </tfoot>
