@@ -163,3 +163,30 @@ function carregarSelecaoDeCoordenador() {
 //}
 
 //Fim da seção de cursos
+
+//Pagina de PPCs
+
+$(".selectCurso").change(function () {
+    var id = $(this).val();
+    $("#preencheautoidcurso").val(id);
+
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarPpc',
+        dataType: 'json',
+        data: { id: id },
+        sucess: function (retorno) {
+            if (retorno.id == 1) {
+                $("#Perfil_Do_Curso").prop('readonly', 'readonly');
+                $("#Perfil_Do_Curso").val('value');
+            }
+        },
+    })
+})
+
+//$("#salvarppc").click(function () {
+//    $("#modal-info").modal();
+//})
+//$("#modal").click(function () {
+//    $("#modal-info").css("display", "block");
+//})

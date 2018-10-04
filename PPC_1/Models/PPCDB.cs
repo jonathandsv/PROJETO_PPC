@@ -244,6 +244,117 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+
+        public Ppc InserirPpc(Ppc ppc)
+        {
+            try
+            {
+                string inserirValores = @"INSERT INTO PPC (PERFIL_DO_CURSO,
+                                                        PERFIL_DO_EGRESSO, 
+                                                        FORMA_DE_ACESSO,
+                                                        REPRES_GRAF_PERFIL_FOR,
+                                                        SIST_AVAL_PROC_ENS_APREN,
+                                                        SIST_AVAL_PROC_CURSO,
+                                                        TCC,
+                                                        ESTAGIO_CURRICULAR,
+                                                        PRATICA_ATENDIMENTO_PCD,
+                                                        ID_CURSO
+                                                        ) 
+                                                        VALUES
+                                                        (@PERFIL_DO_CURSO,
+                                                        @PERFIL_DO_EGRESSO,
+                                                        @FORMA_DE_ACESSO,
+                                                        @REPRES_GRAF_PERFIL_FOR,
+                                                        @SIST_AVAL_PROC_ENS_APREN,
+                                                        @SIST_AVAL_PROC_CURSO,
+                                                        @TCC,
+                                                        @ESTAGIO_CURRICULAR,
+                                                        @PRATICA_ATENDIMENTO_PCD,
+                                                        @ID_CURSO
+                                                        )";
+                string conexao = ConexaoBanco();
+
+                //SqlConnection sqlConn = new SqlConnection(conexao);
+
+                using (var sqlConn = new SqlConnection(conexao))
+                {
+
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@PERFIL_DO_CURSO", SqlDbType.VarChar, 50).Value = ppc.Perfil_Do_Curso;
+                        comm.Parameters.Add("@PERFIL_DO_EGRESSO", SqlDbType.VarChar, 50).Value = ppc.Perfil_Do_Egresso;
+                        comm.Parameters.Add("@FORMA_DE_ACESSO", SqlDbType.VarChar, 50).Value = ppc.Forma_De_Acesso;
+                        comm.Parameters.Add("@REPRES_GRAF_PERFIL_FOR", SqlDbType.VarChar, 50).Value = ppc.Represetacao_Grafica;
+                        comm.Parameters.Add("@SIST_AVAL_PROC_ENS_APREN", SqlDbType.VarChar, 100).Value = ppc.Sistema_Avaliacao_Ensino_Aprendizagem;
+                        comm.Parameters.Add("@SIST_AVAL_PROC_CURSO", SqlDbType.VarChar, 50).Value = ppc.Sistema_Avaliacao_Curso;
+                        comm.Parameters.Add("@TCC", SqlDbType.VarChar, 100).Value = ppc.TCC;
+                        comm.Parameters.Add("@ESTAGIO_CURRICULAR", SqlDbType.VarChar, 50).Value = ppc.EstagioCurricular;
+                        comm.Parameters.Add("@PRATICA_ATENDIMENTO_PCD", SqlDbType.VarChar, 50).Value = ppc.Pratica_Aten_PCD;
+                        comm.Parameters.Add("@ID_CURSO", SqlDbType.Int).Value = ppc.Id_Curso;
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+
+                return (null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Ppc BuscarPpcs(int id)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM PPC WHERE ID_CURSO = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Ppc ppc = new Ppc();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+
+                        ppc.Id = Convert.ToInt32(dr["ID_PPC"]);
+                        ppc.Perfil_Do_Curso = dr["PERFIL_DO_CURSO"].ToString();
+                        ppc.Perfil_Do_Egresso = dr["PERFIL_DO_EGRESSO"].ToString();
+                        ppc.Forma_De_Acesso = dr["FORMA_DE_ACESSO"].ToString();
+                        ppc.Represetacao_Grafica = dr["REPRES_GRAF_PERFIL_FOR"].ToString();
+                        ppc.Sistema_Avaliacao_Ensino_Aprendizagem = dr["SIST_AVAL_PROC_ENS_APREN"].ToString();
+                        ppc.Sistema_Avaliacao_Curso = dr["SIST_AVAL_PROC_CURSO"].ToString();
+                        ppc.TCC = dr["TCC"].ToString();
+                        ppc.EstagioCurricular = dr["ESTAGIO_CURRICULAR"].ToString();
+                        ppc.Pratica_Aten_PCD = dr["PRATICA_ATENDIMENTO_PCD"].ToString();
+                        ppc.Id_Curso = Convert.ToInt32(dr["ID_CURSO"]);
+
+                        
+
+                    }
+                }
+
+
+                return (ppc);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public Coordenador BuscarCoordenadores(int id)
         {
             string conexao = ConexaoBanco();

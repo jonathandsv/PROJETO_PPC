@@ -52,7 +52,7 @@ namespace PPC_1.Controllers
 
         public ActionResult PPC()
         {
-
+            PreencheViewBagListaCursos();
             return View();
         }
 
@@ -105,6 +105,42 @@ namespace PPC_1.Controllers
             return Json(curso, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult NovoPPC(Ppc ppc)
+        {
+            int idcurso = ppc.Id_Curso;
+            PPCDB pPCDB = new PPCDB();
+            Ppc ppcr = pPCDB.BuscarPpcs(idcurso);
+
+            if (ppc.Id_Curso == ppcr.Id_Curso)
+            {
+                ViewBag.Mensagem = "PPC já cadastrado para o Curso selecionado!";
+                PreencheViewBagListaCursos();
+                return View("CadastroPPC");
+            }
+            else
+            {
+                
+
+            }
+            ppc = pPCDB.InserirPpc(ppc);
+
+
+            return (null);
+        }
+        public JsonResult BuscarPpc(int id)
+        {
+            Ppc retorno = new Ppc();
+           PPCDB pPCDB = new PPCDB();
+            Ppc ppc = new Ppc();
+            ppc = pPCDB.BuscarPpcs(id);
+
+            if (id == ppc.Id_Curso)
+            {
+               retorno.Id = 1;
+            }
+
+            return Json(retorno, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult BuscarCoordenador(int id)
         {
             PPCDB pPCDB = new PPCDB();

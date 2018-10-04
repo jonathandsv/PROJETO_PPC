@@ -23,11 +23,11 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Todos os PPCs</h3>
                     </div>
-                    <form role="form">
+                    <form role="form" action="/Home/NovoPPC">
                         <div class="box-body">
                             <div class="form-group col-xs-5">
                                 <label>Cursos</label>
-                                <select class="form-control selectCoordenador">
+                                <select class="form-control selectCurso">
                                     <option value="0">< Selecione o Curso ></option>
                                     @foreach (var item in ViewBag.ListaDeCursos)
                                     {
@@ -35,50 +35,70 @@
                                     }
                                 </select>
                             </div>
+                            @Html.HiddenFor(x => x.Id_Curso, new { type = "hidden", id = "preencheautoidcurso" })
                             <div class="form-group col-xs-6 pull-right">
                                 <label>Perfil Curso:</label>
-                                <input type="text" class="form-control" />
-                                @Html.TextBoxFor(x => x.Perfil_Do_Curso, new { @class = "" })
+                                @Html.TextBoxFor(x => x.Perfil_Do_Curso, new { @class = "form-control", type = "text", id= "Perfil_Do_Curso" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Perfil Egresso:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Perfil_Do_Egresso, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Forma de Acesso Curso:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Forma_De_Acesso, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Representação Gráfica de um perfil de Formação:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Represetacao_Grafica, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Sistema de Avaliação do Processo Ensino Aprendizagem:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Sistema_Avaliacao_Ensino_Aprendizagem, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-6">
                                 <label>Sistema de Avaliação do Projeto do Curso:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.Sistema_Avaliacao_Curso, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-3">
                                 <label>TCC</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.TCC, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-3">
                                 <label>Estágio Curricular:</label>
-                                <input type="text" class="form-control" />
+                                @Html.TextBoxFor(x => x.EstagioCurricular, new { @class = "form-control", type = "text" })
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Políticas de Atendimento a Pessoas com Deficiências e/ou Mobilidade Reduzida:</label>
-                                <textarea class="form-control" rows="3" placeholder="Texto ..."></textarea>
+                                @Html.TextAreaFor(x => x.Pratica_Aten_PCD, new { @class = "form-control", type = "text", rows = "3", placeholder = "Texto ..." })
                             </div>
                             <div class="form-group col-xs-12">
-                                <button class="btn btn-primary pull-right espaco">Salvar</button>
+                                <button type="submit" class="btn btn-primary pull-right espaco salvarppc">Salvar</button>
                                 <button class="btn btn-warning pull-right">Cancelar</button>
                             </div>
                         </div>
+                        <div class="modal modal-info fade" id="modal-info">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Não Permitido</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>@ViewBag.Messagem</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onclick="/Home/CadastroPPC">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>@ViewBag.Messagem</p>
                     </form>
                 </div>
+                
             </div>
         </div>
     </section>
