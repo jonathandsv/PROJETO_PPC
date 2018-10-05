@@ -35,12 +35,12 @@
                             @foreach (var item in ViewBag.ListaDePpcs)
                             {
                                 <tr>
-                                    <td><button iddoppc="@item.Id" class="btn btn-primary CarregarPPCs" id="listaDeCursos">Abrir</button></td>
+                                    <td><button iddoppc="@item.Id" class="btn btn-primary CarregarPPCs">Abrir</button></td>
                                     <td>@item.Id</td>
                                     <td>@item.PerfilDoCurso</td>
                                     <td>@item.IdCurso</td>
                                     <td>
-                                        <a href="/Home/excluirCurso?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                        <a href="/Home/excluirPpc?id=@item.Id" class="btn btn-danger">Excluir</a>
                                     </td>
                                 </tr>
                             }
