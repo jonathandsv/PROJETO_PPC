@@ -82,8 +82,6 @@ $(".selectCoordenador").change(function () {
 })
 
 function buscarCoordenador(id) {
-    var NomeCoordenador = "";
-    var IdCoordenador = 5;
     $.ajax({
         type: 'GET',
         url: 'BuscarCoordenador',
@@ -175,13 +173,37 @@ $(".selectCurso").change(function () {
         url: 'BuscarPpc',
         dataType: 'json',
         data: { id: id },
-        sucess: function (retorno) {
-            if (retorno.id == 1) {
-                $("#Perfil_Do_Curso").prop('readonly', 'readonly');
-                $("#Perfil_Do_Curso").val('value');
+        success: function (retorno) {
+            if (retorno.Id == 1) {
+                $("#PerfilDoCurso").attr('readonly', 'readonly');
+                $("#PerfilDoEgresso").attr('readonly', 'readonly');
+                $("#FormaDeAcesso").attr('readonly', 'readonly');
+                $("#RepresetacaoGrafica").attr('readonly', 'readonly');
+                $("#SistemaAvaliacaoEnsinoAprendizagem").attr('readonly', 'readonly');
+                $("#SistemaAvaliacaoCurso").attr('readonly', 'readonly');
+                $("#TCC").attr('readonly', 'readonly');
+                $("#EstagioCurricular").attr('readonly', 'readonly');
+                $("#PraticaAtenPCD").attr('readonly', 'readonly');
+                $(".salvarppc").prop('disabled', 'disabled');
+                alert("Curso já escolhido para um PPC anterior! Escolha outro Curso.");
+            }
+            else {
+                $("#PerfilDoCurso").removeAttr('readonly', 'readonly');
+                $("#PerfilDoEgresso").removeAttr('readonly', 'readonly');
+                $("#FormaDeAcesso").removeAttr('readonly', 'readonly');
+                $("#RepresetacaoGrafica").removeAttr('readonly', 'readonly');
+                $("#SistemaAvaliacaoEnsinoAprendizagem").removeAttr('readonly', 'readonly');
+                $("#SistemaAvaliacaoCurso").removeAttr('readonly', 'readonly');
+                $("#TCC").removeAttr('readonly', 'readonly');
+                $("#EstagioCurricular").removeAttr('readonly', 'readonly');
+                $("#PraticaAtenPCD").removeAttr('readonly', 'readonly');
+                $(".salvarppc").removeAttr('disabled');
             }
         },
-    })
+        error: function (e) {
+            console.log(e);
+        },
+    });
 })
 
 //$("#salvarppc").click(function () {
@@ -190,3 +212,61 @@ $(".selectCurso").change(function () {
 //$("#modal").click(function () {
 //    $("#modal-info").css("display", "block");
 //})
+
+$(".CarregarPPCs").click(function () {
+    var id = $(this).attr('iddoppc');
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarPpcT',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#PerfilDoCurso").val(retorno.PerfilDoCurso);
+            $("#PerfilDoCurso").attr('readonly', 'readonly');
+            $("#PerfilDoEgresso").val(retorno.PerfilDoEgresso);
+            $("#PerfilDoEgresso").attr('readonly', 'readonly');
+            $("#FormaDeAcesso").val(retorno.FormaDeAcesso);
+            $("#FormaDeAcesso").attr('readonly', 'readonly');
+            $("#RepresetacaoGrafica").val(retorno.RepresentacaoGrafica);
+            $("#RepresetacaoGrafica").attr('readonly', 'readonly');
+            $("#SistemaAvaliacaoEnsinoAprendizagem").val(retorno.SistemaAvaliacaoEnsinoAprendizagem);
+            $("#SistemaAvaliacaoEnsinoAprendizagem").attr('readonly', 'readonly');
+            $("#SistemaAvaliacaoCurso").val(retorno.SistemaAvaliacaoCurso);
+            $("#SistemaAvaliacaoCurso").attr('readonly', 'readonly');
+            $("#TCC").val(retorno.TCC);
+            $("#TCC").attr('readonly', 'readonly');
+            $("#EstagioCurricular").val(retorno.EstagioCurricular);
+            $("#EstagioCurricular").attr('readonly', 'readonly');
+            $("#PraticaAtenPCD").val(retorno.PraticaAtenPCD);
+            $("#PraticaAtenPCD").attr('readonly', 'readonly');
+
+            
+
+            var id = retorno.IdCurso;
+            buscarCursoIni(id);
+
+            mostrarTabela();
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+
+
+    });
+})
+
+function buscarCursoIni(id) {
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCursos',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#selecaoDeCurso").append("<option value=" + (retorno.Id) + " >" + (retorno.DenominacaoCurso) + "</option>");
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    });
+}
+

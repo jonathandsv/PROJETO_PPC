@@ -8,15 +8,15 @@ namespace PPC_1.Models
     public class Ppc
     {
         public int Id { get; set; }
-        public string Perfil_Do_Curso { get; set; }
-        public string Perfil_Do_Egresso { get; set; }
-        public string Forma_De_Acesso { get; set; }
-        public string Represetacao_Grafica { get; set; }
-        public string Sistema_Avaliacao_Ensino_Aprendizagem { get; set; }
-        public string Sistema_Avaliacao_Curso { get; set; }
+        public string PerfilDoCurso { get; set; }
+        public string PerfilDoEgresso { get; set; }
+        public string FormaDeAcesso { get; set; }
+        public string RepresetacaoGrafica { get; set; }
+        public string SistemaAvaliacaoEnsinoAprendizagem { get; set; }
+        public string SistemaAvaliacaoCurso { get; set; }
         public string TCC { get; set; }
         public string EstagioCurricular { get; set; }
-        public string Pratica_Aten_PCD { get; set; }
-        public int Id_Curso { get; set; }
+        public string PraticaAtenPCD { get; set; }
+        public int IdCurso { get; set; }
     }
 }

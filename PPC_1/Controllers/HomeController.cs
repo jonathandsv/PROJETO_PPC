@@ -38,6 +38,13 @@ namespace PPC_1.Controllers
             List<Curso> ListaDecursos = cursos.BuscarCursos();
             ViewBag.ListaDeCursos = ListaDecursos;
         }
+
+        private void PreencheViewBagListaPPCs()
+        {
+            PPCDB ppcs = new PPCDB();
+            List<Ppc> ListaDePpcs = ppcs.BuscarPpcs();
+            ViewBag.ListaDePpcs = ListaDePpcs;
+        }
         public ActionResult ConsultarCurso()
         {
             PreencheViewBagListaCursos();
@@ -52,7 +59,7 @@ namespace PPC_1.Controllers
 
         public ActionResult PPC()
         {
-            PreencheViewBagListaCursos();
+            PreencheViewBagListaPPCs();
             return View();
         }
 
@@ -107,25 +114,10 @@ namespace PPC_1.Controllers
 
         public ActionResult NovoPPC(Ppc ppc)
         {
-            int idcurso = ppc.Id_Curso;
             PPCDB pPCDB = new PPCDB();
-            Ppc ppcr = pPCDB.BuscarPpcs(idcurso);
-
-            if (ppc.Id_Curso == ppcr.Id_Curso)
-            {
-                ViewBag.Mensagem = "PPC já cadastrado para o Curso selecionado!";
-                PreencheViewBagListaCursos();
-                return View("CadastroPPC");
-            }
-            else
-            {
-                
-
-            }
             ppc = pPCDB.InserirPpc(ppc);
-
-
-            return (null);
+            PreencheViewBagListaCursos();
+            return  View("PPC");
         }
         public JsonResult BuscarPpc(int id)
         {
@@ -133,13 +125,21 @@ namespace PPC_1.Controllers
            PPCDB pPCDB = new PPCDB();
             Ppc ppc = new Ppc();
             ppc = pPCDB.BuscarPpcs(id);
-
-            if (id == ppc.Id_Curso)
+            var ppcid = ppc.IdCurso; 
+            if (id == ppcid)
             {
                retorno.Id = 1;
             }
 
             return Json(retorno, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult BuscarPpcT(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Ppc ppc = new Ppc();
+            ppc = pPCDB.BuscarPpcs(id);
+
+            return Json(ppc, JsonRequestBehavior.AllowGet);
         }
         public JsonResult BuscarCoordenador(int id)
         {

@@ -281,16 +281,16 @@ namespace PPC_1.Models
 
                     using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
                     {
-                        comm.Parameters.Add("@PERFIL_DO_CURSO", SqlDbType.VarChar, 50).Value = ppc.Perfil_Do_Curso;
-                        comm.Parameters.Add("@PERFIL_DO_EGRESSO", SqlDbType.VarChar, 50).Value = ppc.Perfil_Do_Egresso;
-                        comm.Parameters.Add("@FORMA_DE_ACESSO", SqlDbType.VarChar, 50).Value = ppc.Forma_De_Acesso;
-                        comm.Parameters.Add("@REPRES_GRAF_PERFIL_FOR", SqlDbType.VarChar, 50).Value = ppc.Represetacao_Grafica;
-                        comm.Parameters.Add("@SIST_AVAL_PROC_ENS_APREN", SqlDbType.VarChar, 100).Value = ppc.Sistema_Avaliacao_Ensino_Aprendizagem;
-                        comm.Parameters.Add("@SIST_AVAL_PROC_CURSO", SqlDbType.VarChar, 50).Value = ppc.Sistema_Avaliacao_Curso;
+                        comm.Parameters.Add("@PERFIL_DO_CURSO", SqlDbType.VarChar, 50).Value = ppc.PerfilDoCurso;
+                        comm.Parameters.Add("@PERFIL_DO_EGRESSO", SqlDbType.VarChar, 50).Value = ppc.PerfilDoEgresso;
+                        comm.Parameters.Add("@FORMA_DE_ACESSO", SqlDbType.VarChar, 50).Value = ppc.FormaDeAcesso;
+                        comm.Parameters.Add("@REPRES_GRAF_PERFIL_FOR", SqlDbType.VarChar, 50).Value = ppc.RepresetacaoGrafica;
+                        comm.Parameters.Add("@SIST_AVAL_PROC_ENS_APREN", SqlDbType.VarChar, 100).Value = ppc.SistemaAvaliacaoEnsinoAprendizagem;
+                        comm.Parameters.Add("@SIST_AVAL_PROC_CURSO", SqlDbType.VarChar, 50).Value = ppc.SistemaAvaliacaoCurso;
                         comm.Parameters.Add("@TCC", SqlDbType.VarChar, 100).Value = ppc.TCC;
                         comm.Parameters.Add("@ESTAGIO_CURRICULAR", SqlDbType.VarChar, 50).Value = ppc.EstagioCurricular;
-                        comm.Parameters.Add("@PRATICA_ATENDIMENTO_PCD", SqlDbType.VarChar, 50).Value = ppc.Pratica_Aten_PCD;
-                        comm.Parameters.Add("@ID_CURSO", SqlDbType.Int).Value = ppc.Id_Curso;
+                        comm.Parameters.Add("@PRATICA_ATENDIMENTO_PCD", SqlDbType.VarChar, 50).Value = ppc.PraticaAtenPCD;
+                        comm.Parameters.Add("@ID_CURSO", SqlDbType.Int).Value = ppc.IdCurso;
 
                         sqlConn.Open();
                         comm.ExecuteNonQuery();
@@ -329,16 +329,16 @@ namespace PPC_1.Models
                     {
 
                         ppc.Id = Convert.ToInt32(dr["ID_PPC"]);
-                        ppc.Perfil_Do_Curso = dr["PERFIL_DO_CURSO"].ToString();
-                        ppc.Perfil_Do_Egresso = dr["PERFIL_DO_EGRESSO"].ToString();
-                        ppc.Forma_De_Acesso = dr["FORMA_DE_ACESSO"].ToString();
-                        ppc.Represetacao_Grafica = dr["REPRES_GRAF_PERFIL_FOR"].ToString();
-                        ppc.Sistema_Avaliacao_Ensino_Aprendizagem = dr["SIST_AVAL_PROC_ENS_APREN"].ToString();
-                        ppc.Sistema_Avaliacao_Curso = dr["SIST_AVAL_PROC_CURSO"].ToString();
+                        ppc.PerfilDoCurso = dr["PERFIL_DO_CURSO"].ToString();
+                        ppc.PerfilDoEgresso = dr["PERFIL_DO_EGRESSO"].ToString();
+                        ppc.FormaDeAcesso = dr["FORMA_DE_ACESSO"].ToString();
+                        ppc.RepresetacaoGrafica = dr["REPRES_GRAF_PERFIL_FOR"].ToString();
+                        ppc.SistemaAvaliacaoEnsinoAprendizagem = dr["SIST_AVAL_PROC_ENS_APREN"].ToString();
+                        ppc.SistemaAvaliacaoCurso = dr["SIST_AVAL_PROC_CURSO"].ToString();
                         ppc.TCC = dr["TCC"].ToString();
                         ppc.EstagioCurricular = dr["ESTAGIO_CURRICULAR"].ToString();
-                        ppc.Pratica_Aten_PCD = dr["PRATICA_ATENDIMENTO_PCD"].ToString();
-                        ppc.Id_Curso = Convert.ToInt32(dr["ID_CURSO"]);
+                        ppc.PraticaAtenPCD = dr["PRATICA_ATENDIMENTO_PCD"].ToString();
+                        ppc.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
 
                         
 
@@ -347,6 +347,53 @@ namespace PPC_1.Models
 
 
                 return (ppc);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<Ppc> BuscarPpcs()
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM PPC";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                List<Ppc> ppcs = new List<Ppc>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Ppc ppc = new Ppc();
+                        ppc.Id = Convert.ToInt32(dr["ID_PPC"]);
+                        ppc.PerfilDoCurso = dr["PERFIL_DO_CURSO"].ToString();
+                        ppc.PerfilDoEgresso = dr["PERFIL_DO_EGRESSO"].ToString();
+                        ppc.FormaDeAcesso = dr["FORMA_DE_ACESSO"].ToString();
+                        ppc.RepresetacaoGrafica = dr["REPRES_GRAF_PERFIL_FOR"].ToString();
+                        ppc.SistemaAvaliacaoEnsinoAprendizagem = dr["SIST_AVAL_PROC_ENS_APREN"].ToString();
+                        ppc.SistemaAvaliacaoCurso = dr["SIST_AVAL_PROC_CURSO"].ToString();
+                        ppc.TCC = dr["TCC"].ToString();
+                        ppc.EstagioCurricular = dr["ESTAGIO_CURRICULAR"].ToString();
+                        ppc.PraticaAtenPCD = dr["PRATICA_ATENDIMENTO_PCD"].ToString();
+                        ppc.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
+                        ppcs.Add(ppc);
+                    }
+                }
+
+
+                return (ppcs);
 
             }
             catch (Exception ex)

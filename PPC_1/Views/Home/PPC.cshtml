@@ -25,20 +25,20 @@
                         <thead>
                             <tr>
                                 <th></th>
+                                <th>ID PPC</th>
+                                <th>Perfil do Curso</th>
                                 <th>ID Curso</th>
-                                <th>Tipo do Curso</th>
-                                <th>Denominação</th>
-                                <th>Opções</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in ViewBag.ListaDeCursos)
+                            @foreach (var item in ViewBag.ListaDePpcs)
                             {
                                 <tr>
-                                    <td><button idDoCurso="@item.Id" class="btn btn-primary CarregarCursos" id="listaDeCursos">Abrir</button></td>
+                                    <td><button iddoppc="@item.Id" class="btn btn-primary CarregarPPCs" id="listaDeCursos">Abrir</button></td>
                                     <td>@item.Id</td>
-                                    <td>@item.TipoDeCurso</td>
-                                    <td>@item.DenominacaoCurso</td>
+                                    <td>@item.PerfilDoCurso</td>
+                                    <td>@item.IdCurso</td>
                                     <td>
                                         <a href="/Home/excluirCurso?id=@item.Id" class="btn btn-danger">Excluir</a>
                                     </td>
@@ -48,10 +48,10 @@
                         <tfoot>
                             <tr>
                                 <th></th>
+                                <th>ID PPC</th>
+                                <th>Perfil do Curso</th>
                                 <th>ID Curso</th>
-                                <th>Tipo do Curso</th>
-                                <th>Denominação</th>
-                                <th>Opções</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                     </table>
