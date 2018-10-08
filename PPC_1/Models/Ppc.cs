@@ -11,7 +11,7 @@ namespace PPC_1.Models
         public string PerfilDoCurso { get; set; }
         public string PerfilDoEgresso { get; set; }
         public string FormaDeAcesso { get; set; }
-        public string RepresetacaoGrafica { get; set; }
+        public string RepresentacaoGrafica { get; set; }
         public string SistemaAvaliacaoEnsinoAprendizagem { get; set; }
         public string SistemaAvaliacaoCurso { get; set; }
         public string TCC { get; set; }

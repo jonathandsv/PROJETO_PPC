@@ -120,7 +120,7 @@ function preencheNomeCoordenador(Nome, Id) {
     $("#selecaoDeCoordenador").append("<option value=" + (Id) + " >" + (Nome) + "</option>");
 }
 
-$("#alterarCadastro").click(function () {
+$("#alterarCadastroCurso").click(function () {
     $("#TipoDeCurso").removeAttr('readonly');
     $("#Modalidade").removeAttr('readonly');
     $("#Denominacao").removeAttr('readonly');
@@ -239,7 +239,11 @@ $(".CarregarPPCs").click(function () {
             $("#EstagioCurricular").attr('readonly', 'readonly');
             $("#PraticaAtenPCD").val(retorno.PraticaAtenPCD);
             $("#PraticaAtenPCD").attr('readonly', 'readonly');
+            $("#IdPPC").val(retorno.Id);
+            $("#IdCurso").val(retorno.IdCurso);
 
+            $("#salvar").prop('disabled', 'disabled');
+            $("#selecaoDeCurso").prop('disabled', 'disabled');
             
 
             var id = retorno.IdCurso;
@@ -270,3 +274,37 @@ function buscarCursoIni(id) {
     });
 }
 
+$("#alterarCadastroPpc").click(function () {
+    $("#PerfilDoCurso").removeAttr('readonly');
+    $("#PerfilDoEgresso").removeAttr('readonly');
+    $("#FormaDeAcesso").removeAttr('readonly');
+    $("#RepresetacaoGrafica").removeAttr('readonly');
+    $("#SistemaAvaliacaoEnsinoAprendizagem").removeAttr('readonly');
+    $("#SistemaAvaliacaoCurso").removeAttr('readonly');
+    $("#TCC").removeAttr('readonly');
+    $("#EstagioCurricular").removeAttr('readonly');
+    $("#PraticaAtenPCD").removeAttr('readonly');
+    $("#PraticaAtenPCD").removeAttr('readonly');
+    $("#selecaoDeCurso").removeAttr('disabled');
+    $("#salvar").removeAttr('disabled');
+
+    carregarSelecaoDeCurso();
+});
+
+function carregarSelecaoDeCurso() {
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCursosT',
+        dataType: 'json',
+        success: function (retorno) {
+            for (var i = 0; i < retorno.length; i++) {
+                $("#selecaoDeCurso").append("<option value=" + (retorno[i].Id) + " > " + (retorno[i].DenominacaoCurso) + " </option > ");
+            }
+
+        },
+        error: function (e) {
+            console.log(e);
+        }
+
+    });
+}

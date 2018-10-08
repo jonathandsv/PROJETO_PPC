@@ -112,6 +112,13 @@ namespace PPC_1.Controllers
             return Json(curso, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult BuscarCursosT()
+        {
+            PPCDB pPCDB = new PPCDB();
+            List<Curso> cursos = pPCDB.BuscarCursos();
+            return Json(cursos, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult NovoPPC(Ppc ppc)
         {
             PPCDB pPCDB = new PPCDB();
@@ -140,6 +147,14 @@ namespace PPC_1.Controllers
             ppc = pPCDB.BuscarPpcs(id);
 
             return Json(ppc, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult AtualizarPPC(Ppc ppc)
+        {
+            PPCDB pPCDB = new PPCDB();
+            ppc = pPCDB.atualizarPpc(ppc);
+            PreencheViewBagListaCursos();
+            PreencheViewBagListaPPCs();
+            return View("PPC");
         }
         public JsonResult BuscarCoordenador(int id)
         {

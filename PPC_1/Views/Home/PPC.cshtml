@@ -1,4 +1,4 @@
-﻿
+﻿@model PPC_1.Models.Ppc
 @{
     ViewBag.Title = "PPC";
 }
@@ -16,7 +16,7 @@
     </ol>
 </section>
 
-<section  id="tdCursos" class="content">
+<section id="tdCursos" class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -68,57 +68,55 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Todos os PPCs</h3>
                 </div>
-                <form role="form">
+                <form role="form" action="AtualizarPpc">
                     <div class="box-body">
+                        @Html.HiddenFor(x => x.Id, new { id = "IdPPC" })
+                        @Html.HiddenFor(x => x.IdCurso, new { id = "IdCurso" })
                         <div class="form-group col-xs-5">
                             <label>Cursos</label>
-                            <select class="form-control">
-                                <option>Curso 1</option>
-                                <option>Curso 1</option>
-                                <option>Curso 1</option>
-                                <option>Curso 1</option>
-                            </select>
+                            <select class="form-control" id="selecaoDeCurso"></select>
                         </div>
                         <div class="form-group col-xs-6 pull-right">
                             <label>Perfil Curso:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.PerfilDoCurso, new { @class = "form-control", type = "text", id = "PerfilDoCurso" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Perfil Egresso:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.PerfilDoEgresso, new { @class = "form-control", type = "text", id = "PerfilDoEgresso" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Forma de Acesso Curso:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.FormaDeAcesso, new { @class = "form-control", type = "text", id = "FormaDeAcesso" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Representação Gráfica de um perfil de Formação:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.RepresentacaoGrafica, new { @class = "form-control", type = "text", id = "RepresetacaoGrafica" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Sistema de Avaliação do Processo Ensino Aprendizagem:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.SistemaAvaliacaoEnsinoAprendizagem, new { @class = "form-control", type = "text", id = "SistemaAvaliacaoEnsinoAprendizagem" })
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Sistema de Avaliação do Projeto do Curso:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.SistemaAvaliacaoCurso, new { @class = "form-control", type = "text", id = "SistemaAvaliacaoCurso" })
                         </div>
                         <div class="form-group col-xs-3">
                             <label>Trabalho de Conclusão de Curso</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.TCC, new { @class = "form-control", type = "text", id = "TCC" })
                         </div>
                         <div class="form-group col-xs-3">
                             <label>Estágio Curricular:</label>
-                            <input type="text" class="form-control" />
+                            @Html.TextBoxFor(x => x.EstagioCurricular, new { @class = "form-control", type = "text", id = "EstagioCurricular" })
                         </div>
                         <div class="form-group col-xs-12">
                             <label>Políticas de Atendimento a Pessoas com Deficiências e/ou Mobilidade Reduzida:</label>
-                            <textarea class="form-control" rows="3" placeholder="Texto ..."></textarea>
+                            @Html.TextAreaFor(x => x.PraticaAtenPCD, new { @class = "form-control", type = "text", rows = "3", placeholder = "Texto ...", id = "PraticaAtenPCD" })
                         </div>
                         <div class="form-group col-xs-12">
-                            <button class="btn btn-primary pull-right espaco">Salvar</button>
-                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
-                            <button href="/Home/PPC" class="btn btn-info pull-right espaco">Voltar</button>
+                            <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
+                            <a class="btn btn-warning pull-right espaco" id="alterarCadastroPpc">Alterar</a>
+                            <a href="/Home/PPC" class="btn btn-warning pull-right espaco">Cancelar</a>
+                            <a href="/Home/PPC" class="btn btn-info pull-right espaco">Voltar</a>
                         </div>
                     </div>
                 </form>
