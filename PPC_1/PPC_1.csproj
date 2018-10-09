@@ -234,6 +234,7 @@
     <Content Include="Views\Home\CadastroProfessor.cshtml" />
     <Content Include="Views\Home\CadastroDisciplina.cshtml" />
     <Content Include="Views\Home\ConsultarProfessor.cshtml" />
+    <Content Include="Views\Home\ConsultarDisciplina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

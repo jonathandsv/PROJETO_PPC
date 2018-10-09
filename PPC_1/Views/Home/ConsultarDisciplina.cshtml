@@ -1,0 +1,92 @@
+﻿@model PPC_1.Models.Disciplina
+@{
+    ViewBag.Title = "ConsultarDisciplina";
+}
+
+<section class="content-header">
+    <h1>
+        Cursos
+        <small>Listas de todas as Disciplinas cadastradas</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Disciplina</a></li>
+        <li class="active">Todas as Disciplinas</li>
+    </ol>
+</section>
+<section id="tdCursos" class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID Disciplina</th>
+                                <th>Nome</th>
+                                <th>Curso</th>
+                                <th>Opções</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListaDeDisciplinas)
+                            {
+                                <tr>
+                                    <td><button iddadisciplina="@item.Id" class="btn btn-primary CarregarDisciplinas">Abrir</button></td>
+                                    <td>@item.Id</td>
+                                    <td>@item.Nome</td>
+                                    <td>@item.IdCurso</td>
+                                    <td>
+                                        <a href="/Home/excluirDisciplina?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>ID Disciplina</th>
+                                <th>Nome</th>
+                                <th>Curso</th>
+                                <th>Opções</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tabelaescondida" class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <form role="form" action="/Home/AtualizarDisciplina">
+                    <div class="box-body">
+                        @Html.HiddenFor(x => x.Id, new { id = "Id_Disciplina" })
+                        <div class="form-group col-xs-12">
+                            <label>Selecione um Curso</label>
+                            @Html.HiddenFor(x => x.IdCurso, new { id = "preencheautoidcurso" })
+                            <select class="form-control" id="selecaoDeCurso"></select>
+                            <label>Nome da Disciplina</label>
+                            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", type = "text", id = "Nome"})
+                            <label>Semestre</label>
+                            @Html.TextBoxFor(x => x.Semestre, new { @class = "form-control", type = "number", id = "Semestre"})
+                            <label>Carga Horária</label>
+                            @Html.TextBoxFor(x => x.CargaHoraria, new { @class = "form-control", type = "number", id = "CargaHoraria"})
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
+                            <a class=" btn btn-warning pull-right espaco" id="alterarCadastroDisciplina">Alterar</a>
+                            <a href="" class="btn btn-warning pull-right espaco">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

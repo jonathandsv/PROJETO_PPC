@@ -308,3 +308,49 @@ function carregarSelecaoDeCurso() {
 
     });
 }
+
+// Fim seção PPC
+
+//Pagina de Disciplinas
+
+$(".CarregarDisciplinas").click(function () {
+    var id = $(this).attr('iddadisciplina');
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarDisciplinas',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#Nome").val(retorno.Nome);
+            $("#Nome").attr('readonly', 'readonly');
+            $("#Semestre").val(retorno.Semestre);
+            $("#Semestre").attr('readonly', 'readonly');
+            $("#CargaHoraria").val(retorno.CargaHoraria);
+            $("#CargaHoraria").attr('readonly', 'readonly');
+
+            $("#salvar").prop('disabled', 'disabled');
+            $("#selecaoDeCurso").prop('disabled', 'disabled');
+
+
+            var id = retorno.IdCurso;
+            buscarCursoIni(id);
+
+            mostrarTabela();
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+
+
+    });
+})
+
+$("#alterarCadastroDisciplina").click(function () {
+    $("#Nome").removeAttr('readonly');
+    $("#Semestre").removeAttr('readonly');
+    $("#CargaHoraria").removeAttr('readonly');
+    $("#selecaoDeCurso").removeAttr('disabled');
+    $("#salvar").removeAttr('disabled');
+
+    carregarSelecaoDeCurso();
+});

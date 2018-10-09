@@ -1,4 +1,4 @@
-﻿
+﻿@model PPC_1.Models.Disciplina
 @{
     ViewBag.Title = "CadastroDisciplina";
 }
@@ -20,32 +20,32 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Cadastrar Disciplina</h3>
                 </div>
-                <form role="form">
+                <form role="form" method="post" action="NovaDisciplina">
                     <div class="box-body">
                         <div class="form-group col-xs-12">
                             <label>Selecione um Curso</label>
-
+                            @Html.HiddenFor(x => x.IdCurso, new { id = "preencheautoidcurso" })
+                            <select class="form-control selectCurso">
+                                <option value="0">< Selecione o Curso ></option>
+                                @foreach (var item in ViewBag.ListaDeCursos)
+                                {
+                                    <option value="@item.Id">@item.DenominacaoCurso</option>
+                                }
+                            </select>
                             <label>Nome da Disciplina</label>
-                            <input type="text" class="form-control" />
-
-                            <label>Descrição</label>
-                            <input type="text" class="form-control" placeholder="Teórica ou prática" />
-
+                            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", type = "text"})
                             <label>Semestre</label>
-                            <input type="text" class="form-control" />
-
+                            @Html.TextBoxFor(x => x.Semestre, new { @class = "form-control", type = "number"})
                             <label>Carga Horária</label>
-                            <input type="text" class="form-control" placeholder="Valores: 30, 60, 90, 120" />
-
+                            @Html.TextBoxFor(x => x.CargaHoraria, new { @class = "form-control", type = "number"})
                         </div>
                         <div class="form-group col-xs-12">
-                            <button class="btn btn-primary pull-right espaco">Salvar</button>
-                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
+                            <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>
+                            <a href="" class="btn btn-warning pull-right espaco">Cancelar</a>
                         </div>
                     </div>
                 </form>
             </div>
-           
         </div>
     </div>
 </section>

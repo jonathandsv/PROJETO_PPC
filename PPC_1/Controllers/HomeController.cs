@@ -45,6 +45,13 @@ namespace PPC_1.Controllers
             List<Ppc> ListaDePpcs = ppcs.BuscarPpcs();
             ViewBag.ListaDePpcs = ListaDePpcs;
         }
+
+        private void PreencheViewBagListaDisciplinas()
+        {
+            PPCDB disciplinas = new PPCDB();
+            List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinas();
+            ViewBag.ListaDeDisciplinas = ListaDeDisciplinas;
+        }
         public ActionResult ConsultarCurso()
         {
             PreencheViewBagListaCursos();
@@ -76,6 +83,14 @@ namespace PPC_1.Controllers
 
         public ActionResult CadastroDisciplina()
         {
+            PreencheViewBagListaCursos();
+            return View();
+        }
+
+        public ActionResult ConsultarDisciplina()
+        {
+            PreencheViewBagListaCursos();
+            PreencheViewBagListaDisciplinas();
             return View();
         }
 
@@ -172,6 +187,33 @@ namespace PPC_1.Controllers
             coordenadores = pPCDB.BuscarCoordenadores();
 
             return Json(coordenadores, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult NovaDisciplina(Disciplina dis)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Disciplina disciplina = pPCDB.InserirDisciplina(dis);
+
+            PreencheViewBagListaCursos();
+            PreencheViewBagListaDisciplinas();
+            return View("ConsultarDisciplina");
+        }
+
+        public JsonResult BuscarDisciplinas(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Disciplina disciplina = new Disciplina();
+            disciplina = pPCDB.BuscarDisciplinas(id);
+
+            return Json(disciplina, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AtualizarDisciplina(Ppc disciplina)
+        {
+            PPCDB pPCDB = new PPCDB();
+            disciplina = pPCDB.atualizarDisciplina(disciplina);
+            PreencheViewBagListaCursos();
+            return View("ConsultarDisciplina");
         }
     }
 }
