@@ -354,3 +354,65 @@ $("#alterarCadastroDisciplina").click(function () {
 
     carregarSelecaoDeCurso();
 });
+
+
+// Fim da Página de Disciplinas
+
+// Página de Matriz Curricular
+
+$(".BuscarDiscVinculadas").change(function () {
+    var id = $(this).val();
+    $("#preechedados").val(id);
+    //var qlimpar = $("#tabelaDeDisciplinas").find("tbody").find("tr").length;
+    $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
+    BuscarVinculoDisciplinaCurso(id);
+})
+
+function BuscarVinculoDisciplinaCurso(id) {
+    $.ajax({
+        type: 'POST',
+        url: 'BuscarDisciplinaVinculadaCurso',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            var comparacao = retorno.length;
+            if (comparacao > 0) {
+                for (var i = 0; i < retorno.length; i++) {
+                    $("#tabelaDeDisciplinas").find("tbody").append("<tr class = " + "disciplinaCarregada" + " ><th>" + (retorno[i].Nome) + "</tr></th>");
+                }
+            }
+            else {
+                alert("Curso ainda não possui disciplinas vinculadas!");
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    });
+}
+var iddadisciplina = 0;
+var iddocurso = 0;
+
+$(".selecaoDisciplina").change(function () {
+    iddadisciplina = $(this).val();
+    iddocurso = $("#preechedados").val();
+});
+
+$("#adicionarDisciplina").click(function () {
+    $.ajax({
+        type: 'POST',
+        url: 'NovaDisciplinaMatriz',
+        dataType: 'json',
+        data: {
+            idDisciplina: iddadisciplina,
+            idCurso: iddocurso
+        },
+        success: function (retorno) {
+            $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
+            BuscarVinculoDisciplinaCurso(iddocurso);
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    });
+});

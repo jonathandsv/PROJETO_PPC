@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "MatrizCurricular";
+}
+
+<section class="content-header">
+    <h1>
+        Matriz Curricular 
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Matriz Curricular</a></li>
+        <li class="active">Todas as Matrizes</li>
+    </ol>
+</section>
+
+<section id="tdCursos" class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <input type="hidden" id="preechedados" />
+                    <label>Cursos-</label>
+                    <br />
+                    <br />
+                    <small>-Escolha um curso para mostrar a lista de disciplinas vinculadas.</small>
+                    <select class="form-control BuscarDiscVinculadas">
+                        <option value="0">< Selecione o Curso ></option>
+                        @foreach (var item in ViewBag.ListaDeCursos)
+                        {
+                            <option value="@item.Id">@item.DenominacaoCurso</option>
+                        }
+                    </select>
+                    <br />
+                    <br />
+                    <div class="box box-primary">
+                        <table class="table table-bordered table-striped" id="tabelaDeDisciplinas">
+                            <thead>
+                                <tr>
+                                    <th id="NomeDoCurso">Disciplinas do Curso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="col-xs-3">
+                        <button class="btn btn-info form-control" id="adicionarDisciplina">+ Adicionar</button>
+                    </div>
+                    <div class="col-xs-9">
+                        <select class="form-control selecaoDisciplina">
+                            <option value="0">< Selecione uma disciplina ></option>
+                            @foreach (var item in ViewBag.ListaDeDisciplinas)
+                            {
+                                <option value="@item.Id">@item.Nome</option>
+                            }
+                        </select>
+                    </div>
+                    <small>Para Adicionar uma nova disciplina escolha a disciplina abaixo e click em Adicionar</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

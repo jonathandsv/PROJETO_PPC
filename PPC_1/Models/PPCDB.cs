@@ -671,6 +671,46 @@ namespace PPC_1.Models
             }
         }
 
+        public List<Disciplina> BuscarDisciplinasVinculadas(int id)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM DISCIPLINAS WHERE ID_CURSO = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                List<Disciplina> disciplinas = new List<Disciplina>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Disciplina disciplina = new Disciplina();
+                        disciplina.Id = Convert.ToInt32(dr["ID_DISCIPLINA"]);
+                        disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
+                        disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
+                        disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
+                        disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
+                        disciplinas.Add(disciplina);
+                    }
+                }
+
+                return (disciplinas);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
     }
 }

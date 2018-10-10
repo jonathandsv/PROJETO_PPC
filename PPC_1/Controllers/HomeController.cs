@@ -94,6 +94,13 @@ namespace PPC_1.Controllers
             return View();
         }
 
+        public ActionResult MatrizCurricular()
+        {
+            PreencheViewBagListaDisciplinas();
+            PreencheViewBagListaCursos();
+            return View();
+        }
+
         //Fim da chamada de páginas 
 
         public ActionResult NovoCurso(Curso curso)
@@ -199,6 +206,16 @@ namespace PPC_1.Controllers
             return View("ConsultarDisciplina");
         }
 
+        public  JsonResult NovaDisciplinaMatriz(int idDisciplina, int idCurso)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Disciplina disciplina = pPCDB.BuscarDisciplinas(idDisciplina);
+            disciplina.IdCurso = idCurso;
+
+            Disciplina disciplina1 = pPCDB.InserirDisciplina(disciplina);
+            return Json(disciplina1);
+        }
+
         public JsonResult BuscarDisciplinas(int id)
         {
             PPCDB pPCDB = new PPCDB();
@@ -214,6 +231,13 @@ namespace PPC_1.Controllers
             disciplina = pPCDB.atualizarDisciplina(disciplina);
             PreencheViewBagListaCursos();
             return View("ConsultarDisciplina");
+        }
+
+        public JsonResult BuscarDisciplinaVinculadaCurso(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            List<Disciplina> disciplinas = pPCDB.BuscarDisciplinasVinculadas(id);
+            return Json(disciplinas);
         }
     }
 }
