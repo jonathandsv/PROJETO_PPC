@@ -1,5 +1,5 @@
-Adicições ao banco 
-Adição de coluna ID_CURSO na tabela ppc
+AdiciÃ§Ãµes ao banco 
+AdiÃ§Ã£o de coluna ID_CURSO na tabela ppc
 
 select * from PPC
 
@@ -7,3 +7,5 @@ INSERT INTO PPC (PERFIL_DO_CURSO, PERFIL_DO_EGRESSO, FORMA_DE_ACESSO, REPRES_GRA
 VALUES ('TECNICO', 'TECNICO', 'EAD', 'REPRESENTADO', 'TESTE', 'DESENVOVER UM SISTEMA PPC', 'A PARTIR DO 4 SEMESTRE', 'SIM')
 
 update PPC set ID_CURSO = 5 where ID_PPC = 1
+
+AdiÃ§Ã£o do autoincremente para a coluna id_disciplina e null para a coluna id_curso, tudo da tabela disciplina
