@@ -208,7 +208,7 @@ namespace PPC_1.Controllers
             return Json(disciplina, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AtualizarDisciplina(Ppc disciplina)
+        public ActionResult AtualizarDisciplina(Disciplina disciplina)
         {
             PPCDB pPCDB = new PPCDB();
             disciplina = pPCDB.atualizarDisciplina(disciplina);
