@@ -408,8 +408,14 @@ $("#adicionarDisciplina").click(function () {
             idCurso: iddocurso
         },
         success: function (retorno) {
-            $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
-            BuscarVinculoDisciplinaCurso(iddocurso);
+            if (retorno == true) {
+                $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
+                BuscarVinculoDisciplinaCurso(iddocurso);
+            }
+            else {
+                alert("Disciplina já vinculada ao curso selecionado!");
+            }
+            
         },
         error: function (e) {
             console.log(e);

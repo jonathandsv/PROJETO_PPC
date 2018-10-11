@@ -52,6 +52,28 @@ namespace PPC_1.Controllers
             List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinas();
             ViewBag.ListaDeDisciplinas = ListaDeDisciplinas;
         }
+
+        //Desenvolver método para filtrar as disciplinas 
+        //private void PreencheViewBagListaDisciplinasFiltradas()
+        //{
+        //    PPCDB disciplinas = new PPCDB();
+        //    List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinas();
+        //    List<Disciplina> ListaDeDisciplinas1 = new List<Disciplina>();
+        //    int i = 0;
+        //    List<string> NomesDeDisciplinas = new List<string>();
+        //    NomesDeDisciplinas.Add("teste");
+        //    foreach (var item in ListaDeDisciplinas)
+        //    {
+        //        bool comparar = NomesDeDisciplinas.SequenceEqual(ListaDeDisciplinas[i].Nome);
+        //        if (NomesDeDisciplinas.Any != ListaDeDisciplinas[i].Nome )
+        //        {
+        //            ListaDeDisciplinas1.Add(item);
+        //            NomeDaDisciplina.Add(ListaDeDisciplinas[i].Nome);
+        //        }
+        //        i++;
+        //    }
+        //    ViewBag.ListaDeDisciplinas = ListaDeDisciplinas1;
+        //}
         public ActionResult ConsultarCurso()
         {
             PreencheViewBagListaCursos();
@@ -148,6 +170,14 @@ namespace PPC_1.Controllers
             PreencheViewBagListaCursos();
             return  View("PPC");
         }
+
+        public ActionResult excluirPPC(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            pPCDB.excluirPPC(id);
+            PreencheViewBagListaPPCs();
+            return View("PPC");
+        }
         public JsonResult BuscarPpc(int id)
         {
             Ppc retorno = new Ppc();
@@ -206,14 +236,27 @@ namespace PPC_1.Controllers
             return View("ConsultarDisciplina");
         }
 
+        public ActionResult excluirDisciplina(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            pPCDB.excluirDisciplina(id);
+            PreencheViewBagListaCursos();
+            PreencheViewBagListaDisciplinas();
+            return View("ConsultarDisciplina");
+        }
+
         public  JsonResult NovaDisciplinaMatriz(int idDisciplina, int idCurso)
         {
             PPCDB pPCDB = new PPCDB();
             Disciplina disciplina = pPCDB.BuscarDisciplinas(idDisciplina);
-            disciplina.IdCurso = idCurso;
-
-            Disciplina disciplina1 = pPCDB.InserirDisciplina(disciplina);
-            return Json(disciplina1);
+            bool retorno = false;
+            if (disciplina.IdCurso != idCurso)
+            {
+                disciplina.IdCurso = idCurso;
+                pPCDB.InserirDisciplina(disciplina);
+                retorno = true;
+            }
+            return Json(retorno);
         }
 
         public JsonResult BuscarDisciplinas(int id)

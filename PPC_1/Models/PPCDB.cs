@@ -456,6 +456,36 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+
+        public int excluirPPC(int id)
+        {
+            int retorno = 0;
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringDeletar = @"DELETE FROM PPC WHERE ID_PPC = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+                using (SqlCommand apagador = new SqlCommand(stringDeletar, sqlConn))
+                {
+                    apagador.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    retorno = apagador.ExecuteNonQuery();
+                    sqlConn.Close();
+                }
+
+
+
+                return (0);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public Coordenador BuscarCoordenadores(int id)
         {
             string conexao = ConexaoBanco();
@@ -663,6 +693,36 @@ namespace PPC_1.Models
 
                 return (null);
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public int excluirDisciplina(int id)
+        {
+            int retorno = 0;
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringDeletar = @"DELETE FROM DISCIPLINAS WHERE ID_DISCIPLINA = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+                using (SqlCommand apagador = new SqlCommand(stringDeletar, sqlConn))
+                {
+                    apagador.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    retorno = apagador.ExecuteNonQuery();
+                    sqlConn.Close();
+                }
+
+
+
+                return (0);
             }
             catch (Exception ex)
             {
