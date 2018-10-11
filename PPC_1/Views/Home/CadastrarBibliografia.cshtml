@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "CadastrarBibliografia";
+}
+
+<section class="content-header">
+    <h1>
+        Bibliografia
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Bibliografia</a></li>
+        <li class="active">Nova Bibliografia</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Cadastrar Bibliografia</h3>
+                </div>
+                <form role="form" action="/Home/NovoBibliografia" method="post">
+                    <div class="box-body">
+                        <div class="form-group col-xs-6">
+                            <label>Curso</label>
+                            <select class="form-control">
+                                <option>< Selecione um Curso ></option>
+                                @foreach (var item in ViewBag.ListaDeCursos)
+                                {
+                                    <option value="@item.Id">@item.DenominacaoCurso</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Disciplina</label>
+                            <select class="form-control">
+                                <option>< Selecione uma Disciplina ></option>
+                                @foreach (var item in ViewBag.ListaDeDisciplinas)
+                                {
+                                    <option value="@item.Id">@item.Nome</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <h4>Referencia Bibliografica</h4>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Título</label>
+                            <input type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Autor</label>
+                            <input type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>ISBN</label>
+                            <input type="number" class="form-control"/>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>Ano</label>
+                            <input type="date" class="form-control"/>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Editora</label>
+                            <input type="text" class="form-control"/>
+                        </div>
+                        <button class="btn btn-primary">Cadastrar</button> 
+                        <button class="btn btn-warning">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+

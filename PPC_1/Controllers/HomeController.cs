@@ -123,6 +123,13 @@ namespace PPC_1.Controllers
             return View();
         }
 
+        public ActionResult CadastrarBibliografia()
+        {
+            PreencheViewBagListaCursos();
+            PreencheViewBagListaDisciplinas();
+            return View();
+        }
+
         //Fim da chamada de páginas 
 
         public ActionResult NovoCurso(Curso curso)
