@@ -1,4 +1,4 @@
-Adicições ao banco 
+﻿Adicições ao banco 
 Adição de coluna ID_CURSO na tabela ppc
 
 select * from PPC
@@ -9,3 +9,6 @@ VALUES ('TECNICO', 'TECNICO', 'EAD', 'REPRESENTADO', 'TESTE', 'DESENVOVER UM SIS
 update PPC set ID_CURSO = 5 where ID_PPC = 1
 
 Adição do autoincremente para a coluna id_disciplina e null para a coluna id_curso, tudo da tabela disciplina
+
+Adição de novo relacionamento entre as tabelas de CURSOS E DISCIPLINAS. CURSOS_DISCIPLINAS  com as seguintes colunas: ID, ID_CURSO(FK DE ID_CURSO), ID_DISCIPLINA(FK DE ID_DISCIPLINA)
+

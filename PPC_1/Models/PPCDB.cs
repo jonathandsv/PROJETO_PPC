@@ -578,6 +578,32 @@ namespace PPC_1.Models
             }
         }
 
+        public List<Disciplina> BuscarDisciplinasFiltradas()
+        {
+            string conexao = ConexaoBanco();
+
+            string stringBuscar = @"SELECT DISTINCT NOME_DISCIPLINA FROM DISCIPLINAS";
+
+            SqlConnection sqlConn = new SqlConnection(conexao);
+
+            sqlConn.Open();
+
+            List<Disciplina> disciplinas = new List<Disciplina>();
+
+            using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+            {
+                SqlDataReader dr = leitor.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Disciplina disciplina = new Disciplina();
+                    disciplina.Nome= dr["NOME_DISCIPLINA"].ToString();
+                    disciplinas.Add(disciplina);
+                }
+            }
+            return (disciplinas);
+        }
+
         public List<Disciplina> BuscarDisciplinas()
         {
             try
@@ -607,7 +633,6 @@ namespace PPC_1.Models
                         disciplinas.Add(disciplina);
                     }
                 }
-
 
                 return (disciplinas);
 
@@ -737,7 +762,9 @@ namespace PPC_1.Models
             {
                 string conexao = ConexaoBanco();
 
-                string stringBuscar = @"SELECT * FROM DISCIPLINAS WHERE ID_CURSO = @id";
+                string stringBuscar = @"SELECT * FROM CURSO_DISCIPLINAS WHERE ID_CURSO = @id";
+
+                string stringBuscar2 = @"SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = @idDisciplina";
 
                 SqlConnection sqlConn = new SqlConnection(conexao);
 
@@ -745,10 +772,14 @@ namespace PPC_1.Models
 
                 List<Disciplina> disciplinas = new List<Disciplina>();
 
+
+
                 using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
                 {
+
                     leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     SqlDataReader dr = leitor.ExecuteReader();
+
 
                     while (dr.Read())
                     {
@@ -761,6 +792,7 @@ namespace PPC_1.Models
                         disciplinas.Add(disciplina);
                     }
                 }
+
 
                 return (disciplinas);
             }

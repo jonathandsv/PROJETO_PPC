@@ -53,27 +53,12 @@ namespace PPC_1.Controllers
             ViewBag.ListaDeDisciplinas = ListaDeDisciplinas;
         }
 
-        //Desenvolver método para filtrar as disciplinas 
-        //private void PreencheViewBagListaDisciplinasFiltradas()
-        //{
-        //    PPCDB disciplinas = new PPCDB();
-        //    List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinas();
-        //    List<Disciplina> ListaDeDisciplinas1 = new List<Disciplina>();
-        //    int i = 0;
-        //    List<string> NomesDeDisciplinas = new List<string>();
-        //    NomesDeDisciplinas.Add("teste");
-        //    foreach (var item in ListaDeDisciplinas)
-        //    {
-        //        bool comparar = NomesDeDisciplinas.SequenceEqual(ListaDeDisciplinas[i].Nome);
-        //        if (NomesDeDisciplinas.Any != ListaDeDisciplinas[i].Nome )
-        //        {
-        //            ListaDeDisciplinas1.Add(item);
-        //            NomeDaDisciplina.Add(ListaDeDisciplinas[i].Nome);
-        //        }
-        //        i++;
-        //    }
-        //    ViewBag.ListaDeDisciplinas = ListaDeDisciplinas1;
-        //}
+        private void PreencheViewBagListaDisciplinasFiltradas()
+        {
+            PPCDB disciplinas = new PPCDB();
+            List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinasFiltradas();
+            ViewBag.ListaDeDisciplinasF = ListaDeDisciplinas;
+        }
         public ActionResult ConsultarCurso()
         {
             PreencheViewBagListaCursos();
@@ -118,7 +103,7 @@ namespace PPC_1.Controllers
 
         public ActionResult MatrizCurricular()
         {
-            PreencheViewBagListaDisciplinas();
+            PreencheViewBagListaDisciplinasFiltradas();
             PreencheViewBagListaCursos();
             return View();
         }
