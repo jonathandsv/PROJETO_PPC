@@ -362,18 +362,22 @@ $("#alterarCadastroDisciplina").click(function () {
 
 $(".BuscarDiscVinculadas").change(function () {
     var id = $(this).val();
+    var idD = 0
     $("#preechedados").val(id);
     //var qlimpar = $("#tabelaDeDisciplinas").find("tbody").find("tr").length;
     $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
-    BuscarVinculoDisciplinaCurso(id);
+    BuscarVinculoDisciplinaCurso(id, idD);
 })
 
-function BuscarVinculoDisciplinaCurso(id) {
+function BuscarVinculoDisciplinaCurso(idC, idD) {
     $.ajax({
         type: 'POST',
         url: 'BuscarDisciplinaVinculadaCurso',
         dataType: 'json',
-        data: { id: id },
+        data: {
+            idC: idC,
+            idD: idD
+        },
         success: function (retorno) {
             var comparacao = retorno.length;
             if (comparacao > 0) {
@@ -410,7 +414,8 @@ $("#adicionarDisciplina").click(function () {
         success: function (retorno) {
             if (retorno == true) {
                 $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
-                BuscarVinculoDisciplinaCurso(iddocurso);
+                var idD = 0
+                BuscarVinculoDisciplinaCurso(iddocurso, idD);
             }
             else {
                 alert("Disciplina já vinculada ao curso selecionado!");

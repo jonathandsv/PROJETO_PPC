@@ -578,30 +578,69 @@ namespace PPC_1.Models
             }
         }
 
+        public CursoDisciplina VincularDisciplinaCurso(CursoDisciplina disciplina)
+        {
+            try
+            {
+                string inserirValores = @"INSERT INTO CURSOS_DISCIPLINAS (ID_CURSO, ID_DISCIPLINA) VALUES (@ID_CURSO, @ID_DISCIPLINA)";
+
+                string conexao = ConexaoBanco();
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@ID_CURSO", SqlDbType.Int).Value = disciplina.IdCurso;
+                        comm.Parameters.Add("@ID_DISCIPLINA", SqlDbType.Int).Value = disciplina.IdDisciplina;
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+                return (null);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public List<Disciplina> BuscarDisciplinasFiltradas()
         {
-            string conexao = ConexaoBanco();
-
-            string stringBuscar = @"SELECT DISTINCT NOME_DISCIPLINA FROM DISCIPLINAS";
-
-            SqlConnection sqlConn = new SqlConnection(conexao);
-
-            sqlConn.Open();
-
-            List<Disciplina> disciplinas = new List<Disciplina>();
-
-            using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+            try
             {
-                SqlDataReader dr = leitor.ExecuteReader();
+                string conexao = ConexaoBanco();
 
-                while (dr.Read())
+                //string stringBuscar = @"SELECT DISTINCT NOME_DISCIPLINA FROM DISCIPLINAS";
+                string stringBuscar = @"SELECT * FROM DISCIPLINAS";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                List<Disciplina> disciplinas = new List<Disciplina>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
                 {
-                    Disciplina disciplina = new Disciplina();
-                    disciplina.Nome= dr["NOME_DISCIPLINA"].ToString();
-                    disciplinas.Add(disciplina);
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Disciplina disciplina = new Disciplina();
+                        disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
+                        disciplina.Id = Convert.ToInt32(dr["ID_DISCIPLINA"]);
+                        disciplinas.Add(disciplina);
+                    }
                 }
+                return (disciplinas);
             }
-            return (disciplinas);
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Disciplina> BuscarDisciplinas()
@@ -756,44 +795,86 @@ namespace PPC_1.Models
             }
         }
 
-        public List<Disciplina> BuscarDisciplinasVinculadas(int id)
+        public List<CursoDisciplina> BuscarDisciplinasVinculadas(int idCurso, int idDisciplina)
         {
             try
             {
                 string conexao = ConexaoBanco();
 
-                string stringBuscar = @"SELECT * FROM CURSO_DISCIPLINAS WHERE ID_CURSO = @id";
+                string stringBuscar = @"SELECT * FROM CURSOS_DISCIPLINAS WHERE ID_CURSO = @IdCurso AND ID_DISCIPLINA = @IdDisciplina";
 
-                string stringBuscar2 = @"SELECT * FROM DISCIPLINA WHERE ID_DISCIPLINA = @idDisciplina";
+                if (idDisciplina == 0)
+                {
+                    stringBuscar = @"SELECT * FROM CURSOS_DISCIPLINAS WHERE ID_CURSO = @IdCurso";
+                }
 
                 SqlConnection sqlConn = new SqlConnection(conexao);
 
-                sqlConn.Open();
+                List<CursoDisciplina> cursodisciplinas = new List<CursoDisciplina>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@IdCurso", SqlDbType.Int).Value = idCurso;
+                    leitor.Parameters.Add("@IdDisciplina", SqlDbType.Int).Value = idDisciplina;
+
+                    sqlConn.Open();
+
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        CursoDisciplina cursoDisciplina = new CursoDisciplina();
+                        cursoDisciplina.Id = Convert.ToInt32(dr["ID"]);
+                        cursoDisciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
+                        cursoDisciplina.IdDisciplina = Convert.ToInt32(dr["ID_DISCIPLINA"]);
+                        cursodisciplinas.Add(cursoDisciplina);
+                    }
+                    sqlConn.Close();
+                }
+                return (cursodisciplinas);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<Disciplina> BuscarPropriedadesDasDisciplinasVinculadas(List<CursoDisciplina> cursodisciplinas)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM DISCIPLINAS WHERE ID_DISCIPLINA = @idDisciplina";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
 
                 List<Disciplina> disciplinas = new List<Disciplina>();
 
 
-
-                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                for (int i = 0; i < cursodisciplinas.Count; i++)
                 {
-
-                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                    SqlDataReader dr = leitor.ExecuteReader();
-
-
-                    while (dr.Read())
+                    using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
                     {
-                        Disciplina disciplina = new Disciplina();
-                        disciplina.Id = Convert.ToInt32(dr["ID_DISCIPLINA"]);
-                        disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
-                        disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
-                        disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
-                        disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
-                        disciplinas.Add(disciplina);
+                        leitor.Parameters.Add("@idDisciplina", SqlDbType.Int).Value = cursodisciplinas[i].IdDisciplina;
+                        sqlConn.Open();
+                        SqlDataReader dr = leitor.ExecuteReader();
+
+                        while (dr.Read())
+                        {
+                            Disciplina disciplina = new Disciplina();
+                            disciplina.Id = Convert.ToInt32(dr["ID_DISCIPLINA"]);
+                            disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
+                            disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
+                            disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
+                            disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
+                            disciplinas.Add(disciplina);
+
+                        }
+                        sqlConn.Close();
                     }
                 }
-
-
                 return (disciplinas);
             }
             catch (Exception ex)

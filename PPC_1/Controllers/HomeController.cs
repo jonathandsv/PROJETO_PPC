@@ -240,14 +240,38 @@ namespace PPC_1.Controllers
         public  JsonResult NovaDisciplinaMatriz(int idDisciplina, int idCurso)
         {
             PPCDB pPCDB = new PPCDB();
-            Disciplina disciplina = pPCDB.BuscarDisciplinas(idDisciplina);
+            List<CursoDisciplina> disciplinas = pPCDB.BuscarDisciplinasVinculadas(idDisciplina, idCurso);
+            
+
             bool retorno = false;
-            if (disciplina.IdCurso != idCurso)
+            int tamanho = disciplinas.Count;
+            if (tamanho == 0)
             {
-                disciplina.IdCurso = idCurso;
-                pPCDB.InserirDisciplina(disciplina);
+                CursoDisciplina cursoDisciplina1 = new CursoDisciplina();
+                cursoDisciplina1.IdDisciplina = idDisciplina;
+                cursoDisciplina1.IdCurso = idCurso;
+                CursoDisciplina cursoDisciplina = pPCDB.VincularDisciplinaCurso(cursoDisciplina1);
+
                 retorno = true;
             }
+
+            //for (int i = 0; i < disciplinas.Count; i++)
+            //{
+            //    if (disciplinas[i].IdCurso != idCurso)
+            //    {
+
+            //    }
+
+            //}
+
+            //bool retorno = false;
+            //if (disciplina.IdCurso != idCurso)
+            //{
+            //    disciplina.IdCurso = idCurso;
+            //    pPCDB.InserirDisciplina(disciplina);
+            //    retorno = true;
+            //}
+
             return Json(retorno);
         }
 
@@ -268,10 +292,13 @@ namespace PPC_1.Controllers
             return View("ConsultarDisciplina");
         }
 
-        public JsonResult BuscarDisciplinaVinculadaCurso(int id)
+        public JsonResult BuscarDisciplinaVinculadaCurso(int idC, int idD)
         {
             PPCDB pPCDB = new PPCDB();
-            List<Disciplina> disciplinas = pPCDB.BuscarDisciplinasVinculadas(id);
+            List<CursoDisciplina> cursodisciplinas = pPCDB.BuscarDisciplinasVinculadas(idC, idD);
+            //precisa chamar os outro método para saber o nome da disciplina
+            List<Disciplina> disciplinas = pPCDB.BuscarPropriedadesDasDisciplinasVinculadas(cursodisciplinas);
+
             return Json(disciplinas);
         }
     }

@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Models\Coordenador.cs" />
     <Compile Include="Models\Curso.cs" />
+    <Compile Include="Models\CursoDisciplina.cs" />
     <Compile Include="Models\Disciplina.cs" />
     <Compile Include="Models\Ppc.cs" />
     <Compile Include="Models\PPCDB.cs" />
