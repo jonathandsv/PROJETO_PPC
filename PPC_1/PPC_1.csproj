@@ -153,6 +153,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Coordenador.cs" />
+    <Compile Include="Models\Cronograma.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\CursoDisciplina.cs" />
     <Compile Include="Models\Disciplina.cs" />
@@ -238,6 +239,8 @@
     <Content Include="Views\Home\ConsultarDisciplina.cshtml" />
     <Content Include="Views\Home\MatrizCurricular.cshtml" />
     <Content Include="Views\Home\CadastrarBibliografia.cshtml" />
+    <Content Include="Views\Home\CadastrarCronograma.cshtml" />
+    <Content Include="Views\Home\ConsultarCronograma.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

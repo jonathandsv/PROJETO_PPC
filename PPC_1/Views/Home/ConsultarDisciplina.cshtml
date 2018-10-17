@@ -5,7 +5,7 @@
 
 <section class="content-header">
     <h1>
-        Cursos
+        Disciplinas
         <small>Listas de todas as Disciplinas cadastradas</small>
     </h1>
     <ol class="breadcrumb">
@@ -64,9 +64,9 @@
                     <div class="box-body">
                         @Html.HiddenFor(x => x.Id, new { id = "Id_Disciplina" })
                         <div class="form-group col-xs-12">
-                            <label>Selecione um Curso</label>
+                            @*<label>Selecione um Curso</label>
                             @Html.HiddenFor(x => x.IdCurso, new { id = "preencheautoidcurso" })
-                            <select class="form-control" id="selecaoDeCurso"></select>
+                            <select class="form-control" id="selecaoDeCurso"></select>*@
                             <label>Nome da Disciplina</label>
                             @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", type = "text", id = "Nome"})
                             <label>Semestre</label>

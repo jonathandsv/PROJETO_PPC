@@ -68,6 +68,18 @@ namespace PPC_1
             );
 
             routes.MapRoute(
+                name: "CadastarCronograma",
+                url: "CadastrarCronograma",
+                defaults: new { controller = "Home", action = "CadastrarCronograma", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "ConsultarCronograma",
+                url: "ConsultarCronograma",
+                defaults: new { controller = "Home", action = "ConsultarCronograma", id = UrlParameter.Optional }
+            );
+            
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

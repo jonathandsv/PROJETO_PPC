@@ -1,0 +1,84 @@
+﻿@model PPC_1.Models.Cronograma
+@{
+    ViewBag.Title = "ConsultarCronograma";
+}
+
+<section class="content-header">
+    <h1>
+        Cronograma de Atividades
+        <small>Listas de todos os cronogramas de atividades cadastrados</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Cronogramas de Atividades</a></li>
+        <li class="active">Todos os Cronogramas</li>
+    </ol>
+</section>
+<section id="tdCursos" class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>ID Cronograma</th>
+                                <th>Número da Aula</th>
+                                <th>Descrição</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.ListaDeCronogramas)
+                            {
+                                <tr>
+                                    <td><button iddocronograma="@item.Id" class="btn btn-primary CarregarCronograma">Abrir</button></td>
+                                    <td>@item.Id</td>
+                                    <td>Aula @item.NAula</td>
+                                    <td>@item.Descricao</td>
+                                    <td>
+                                        <a href="/Home/excluirCronograma?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>ID Cronograma</th>
+                                <th>Número da Aula</th>
+                                <th>Descrição</th>
+                                <th>Opções</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="tabelaescondida" class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <form role="form" action="/Home/AtualizarCronograma">
+                    <div class="box-body">
+                        <div class="form-group col-xs-12">
+                            <label>Número da Aula</label>
+                            @Html.TextBoxFor(x => x.NAula, new { @class = "form-control", type = "number" })
+                            <label>Descrição</label>
+                            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", type = "text" })
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>
+                            <a href="" class="btn btn-warning pull-right espaco">Cancelar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
