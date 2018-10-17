@@ -427,3 +427,39 @@ $("#adicionarDisciplina").click(function () {
         },
     });
 });
+
+//Fim das páginas de matriz curricular 
+
+//Página de Cronogramas de atividades 
+
+
+$(".CarregarCronograma").click(function () {
+    var id = $(this).attr('iddocronograma');
+    $.ajax({
+        type: 'GET',
+        url: 'BuscarCronograma',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#NAula").val(retorno.NAula);
+            $("#NAula").attr('readonly', 'readonly');
+            $("#Descricao").val(retorno.Descricao);
+            $("#Descricao").attr('readonly', 'readonly');
+
+            $("#salvar").prop('disabled', 'disabled');
+
+            mostrarTabela();
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
+})
+
+$("#alterarCadastroCronograma").click(function () {
+    $("#NAula").removeAttr('readonly');
+    $("#Descricao").removeAttr('readonly');
+    $("#salvar").removeAttr('disabled');
+
+});
+

@@ -329,5 +329,14 @@ namespace PPC_1.Controllers
 
             return View("ConsultarCronograma");
         }
+
+        public JsonResult BuscarCronograma(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Cronograma cronograma = new Cronograma();
+            cronograma = pPCDB.BuscarCronograma(id);
+
+            return Json(cronograma, JsonRequestBehavior.AllowGet);
+        }
     }
 }

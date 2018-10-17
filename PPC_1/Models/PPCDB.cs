@@ -949,6 +949,43 @@ namespace PPC_1.Models
             }
         }
 
+        public Cronograma BuscarCronograma(int id)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM CRONOGRAMAS_ATIVIDADES WHERE ID_CRONOGRAMA = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Cronograma cronograma = new Cronograma();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        cronograma.Id = Convert.ToInt32(dr["ID_CRONOGRAMA"]);
+                        cronograma.NAula = Convert.ToInt32(dr["N_AULA"]);
+                        cronograma.Descricao = dr["DESCRICAO"].ToString();
+
+                    }
+                }
+
+                return (cronograma);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         //fim
     }
 }
