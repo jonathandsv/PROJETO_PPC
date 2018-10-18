@@ -986,6 +986,74 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+
+        public int excluirCronograma(int id)
+        {
+            int retorno = 0;
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringDeletar = @"DELETE FROM CRONOGRAMAS_ATIVIDADES WHERE ID_CRONOGRAMA = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+                using (SqlCommand apagador = new SqlCommand(stringDeletar, sqlConn))
+                {
+                    apagador.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    retorno = apagador.ExecuteNonQuery();
+                    sqlConn.Close();
+                }
+
+
+
+                return (0);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Cronograma atualizarCronograma(Cronograma cronograma)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string atualizarValores = @"UPDATE CRONOGRAMAS_ATIVIDADES SET N_AULA = @N_AULA,
+                                                      DESCRICAO = @DESCRICAO
+                                                      WHERE ID_CRONOGRAMA = @Id";
+
+                using (SqlConnection SqlConn = new SqlConnection(conexao))
+                {
+
+                    using (SqlCommand comm = new SqlCommand(atualizarValores, SqlConn))
+                    {
+                        comm.Parameters.Add("@Id", SqlDbType.Int).Value = cronograma.Id;
+                        comm.Parameters.Add("@N_AULA", SqlDbType.Int).Value = cronograma.NAula;
+                        comm.Parameters.Add("@DESCRICAO", SqlDbType.VarChar, 100).Value = cronograma.Descricao;
+                        
+                        SqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        SqlConn.Close();
+
+                    }
+
+                }
+
+
+                return (null);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         //fim
     }
 }

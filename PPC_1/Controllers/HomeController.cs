@@ -326,6 +326,7 @@ namespace PPC_1.Controllers
         {
             PPCDB pPCDB = new PPCDB();
             Cronograma InserirCronograma = pPCDB.InserirCronograma(cronograma);
+            PreencheViewBagListaCronogramas();
 
             return View("ConsultarCronograma");
         }
@@ -337,6 +338,22 @@ namespace PPC_1.Controllers
             cronograma = pPCDB.BuscarCronograma(id);
 
             return Json(cronograma, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult excluirCronograma(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            pPCDB.excluirCronograma(id);
+            PreencheViewBagListaCronogramas();
+            return View("ConsultarCronograma");
+        }
+
+        public ActionResult AtualizarCronograma(Cronograma cronograma)
+        {
+            PPCDB pPCDB = new PPCDB();
+            cronograma = pPCDB.atualizarCronograma(cronograma);
+            PreencheViewBagListaCronogramas();
+            return View("ConsultarCronograma");
         }
     }
 }

@@ -441,6 +441,7 @@ $(".CarregarCronograma").click(function () {
         dataType: 'json',
         data: { id: id },
         success: function (retorno) {
+            $("#IdCronograma").val(retorno.Id);
             $("#NAula").val(retorno.NAula);
             $("#NAula").attr('readonly', 'readonly');
             $("#Descricao").val(retorno.Descricao);

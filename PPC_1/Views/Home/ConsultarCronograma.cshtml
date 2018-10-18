@@ -65,6 +65,7 @@
             <div class="box box-primary">
                 <form role="form" action="/Home/AtualizarCronograma">
                     <div class="box-body">
+                        @Html.HiddenFor(x => x.Id, new { id = "IdCronograma" })
                         <div class="form-group col-xs-12">
                             <label>Número da Aula</label>
                             @Html.TextBoxFor(x => x.NAula, new { @class = "form-control", type = "number", id = "NAula" })
@@ -74,7 +75,7 @@
                         <div class="form-group col-xs-12">
                             <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
                             <a class=" btn btn-warning pull-right espaco" id="alterarCadastroCronograma">Alterar</a>
-                            <a href="" class="btn btn-warning pull-right espaco">Cancelar</a>
+                            <a href="/Home/ConsultarCronograma" class="btn btn-warning pull-right espaco">Cancelar</a>
                         </div>
                     </div>
                 </form>
