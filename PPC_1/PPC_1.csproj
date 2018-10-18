@@ -157,6 +157,7 @@
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\CursoDisciplina.cs" />
     <Compile Include="Models\Disciplina.cs" />
+    <Compile Include="Models\Livro.cs" />
     <Compile Include="Models\Ppc.cs" />
     <Compile Include="Models\PPCDB.cs" />
     <Compile Include="Models\Professor.cs" />
