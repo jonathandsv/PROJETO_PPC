@@ -550,8 +550,8 @@ namespace PPC_1.Models
         {
             try
             {
-                string inserirValores = @"INSERT INTO DISCIPLINAS (NOME_DISCIPLINA, CARGA_HORARIA, QUANTIDADE_SEMESTRES, ID_CURSO) 
-                                                     VALUES (@NOME_DISCIPLINA, @CARGA_HORARIA, @QUANTIDADE_SEMESTRES, @ID_CURSO)";
+                string inserirValores = @"INSERT INTO DISCIPLINAS (NOME_DISCIPLINA, CARGA_HORARIA, QUANTIDADE_SEMESTRES) 
+                                                     VALUES (@NOME_DISCIPLINA, @CARGA_HORARIA, @QUANTIDADE_SEMESTRES)";
 
                 string conexao = ConexaoBanco();
 
@@ -562,7 +562,6 @@ namespace PPC_1.Models
                         comm.Parameters.Add("@NOME_DISCIPLINA", SqlDbType.VarChar, 50).Value = disciplina.Nome;
                         comm.Parameters.Add("@CARGA_HORARIA", SqlDbType.Int).Value = disciplina.CargaHoraria;
                         comm.Parameters.Add("@QUANTIDADE_SEMESTRES", SqlDbType.Int).Value = disciplina.Semestre;
-                        comm.Parameters.Add("@ID_CURSO", SqlDbType.Int).Value = disciplina.IdCurso;
 
                         sqlConn.Open();
                         comm.ExecuteNonQuery();
@@ -668,7 +667,6 @@ namespace PPC_1.Models
                         disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
                         disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
                         disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
-                        disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
                         disciplinas.Add(disciplina);
                     }
                 }
@@ -708,7 +706,6 @@ namespace PPC_1.Models
                         disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
                         disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
                         disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
-                        disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
                     }
                 }
 
@@ -868,7 +865,6 @@ namespace PPC_1.Models
                             disciplina.Nome = dr["NOME_DISCIPLINA"].ToString();
                             disciplina.CargaHoraria = Convert.ToInt32(dr["CARGA_HORARIA"]);
                             disciplina.Semestre = Convert.ToInt32(dr["QUANTIDADE_SEMESTRES"]);
-                            disciplina.IdCurso = Convert.ToInt32(dr["ID_CURSO"]);
                             disciplinas.Add(disciplina);
 
                         }
@@ -884,6 +880,112 @@ namespace PPC_1.Models
             }
         }
 
+        public Cronograma InserirCronograma(Cronograma cronograma)
+        {
+            try
+            {
+                string inserirValores = @"INSERT INTO CRONOGRAMAS_ATIVIDADES (N_AULA, DESCRICAO) 
+                                                                    VALUES (@N_AULA, @DESCRICAO)";
 
+                string conexao = ConexaoBanco();
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@N_AULA", SqlDbType.Int).Value = cronograma.NAula;
+                        comm.Parameters.Add("@DESCRICAO", SqlDbType.VarChar).Value = cronograma.Descricao;
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+                return (null);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<Cronograma> BuscarCronogramas()
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM CRONOGRAMAS_ATIVIDADES";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                List<Cronograma> cronogramas = new List<Cronograma>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Cronograma cronograma = new Cronograma();
+                        cronograma.Id = Convert.ToInt32(dr["ID_CRONOGRAMA"]);
+                        cronograma.NAula = Convert.ToInt32(dr["N_AULA"]);
+                        cronograma.Descricao = dr["DESCRICAO"].ToString();
+                        cronogramas.Add(cronograma);
+                       
+                    }
+                }
+
+                return (cronogramas);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Cronograma BuscarCronograma(int id)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM CRONOGRAMAS_ATIVIDADES WHERE ID_CRONOGRAMA = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Cronograma cronograma = new Cronograma();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        cronograma.Id = Convert.ToInt32(dr["ID_CRONOGRAMA"]);
+                        cronograma.NAula = Convert.ToInt32(dr["N_AULA"]);
+                        cronograma.Descricao = dr["DESCRICAO"].ToString();
+
+                    }
+                }
+
+                return (cronograma);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        //fim
     }
 }

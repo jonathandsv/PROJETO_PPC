@@ -53,6 +53,13 @@ namespace PPC_1.Controllers
             ViewBag.ListaDeDisciplinas = ListaDeDisciplinas;
         }
 
+        private void PreencheViewBagListaCronogramas()
+        {
+            PPCDB cronograma = new PPCDB();
+            List<Cronograma> ListaDeCronogramas = cronograma.BuscarCronogramas();
+            ViewBag.ListaDeCronogramas = ListaDeCronogramas;
+        }
+
         private void PreencheViewBagListaDisciplinasFiltradas()
         {
             PPCDB disciplinas = new PPCDB();
@@ -112,6 +119,19 @@ namespace PPC_1.Controllers
         {
             PreencheViewBagListaCursos();
             PreencheViewBagListaDisciplinas();
+            return View();
+        }
+
+        public ActionResult CadastrarCronograma()
+        {
+
+            return View();
+        }
+
+        public ActionResult ConsultarCronograma()
+        {
+            PreencheViewBagListaCronogramas();
+
             return View();
         }
 
@@ -300,6 +320,23 @@ namespace PPC_1.Controllers
             List<Disciplina> disciplinas = pPCDB.BuscarPropriedadesDasDisciplinasVinculadas(cursodisciplinas);
 
             return Json(disciplinas);
+        }
+
+        public ActionResult NovoCronograma(Cronograma cronograma)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Cronograma InserirCronograma = pPCDB.InserirCronograma(cronograma);
+
+            return View("ConsultarCronograma");
+        }
+
+        public JsonResult BuscarCronograma(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+            Cronograma cronograma = new Cronograma();
+            cronograma = pPCDB.BuscarCronograma(id);
+
+            return Json(cronograma, JsonRequestBehavior.AllowGet);
         }
     }
 }

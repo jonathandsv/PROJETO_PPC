@@ -1,17 +1,17 @@
-﻿@model PPC_1.Models.Disciplina
+﻿@model PPC_1.Models.Cronograma
 @{
-    ViewBag.Title = "ConsultarDisciplina";
+    ViewBag.Title = "ConsultarCronograma";
 }
 
 <section class="content-header">
     <h1>
-        Disciplinas
-        <small>Listas de todas as Disciplinas cadastradas</small>
+        Cronograma de Atividades
+        <small>Listas de todos os cronogramas de atividades cadastrados</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Disciplina</a></li>
-        <li class="active">Todas as Disciplinas</li>
+        <li><a href="#">Cronogramas de Atividades</a></li>
+        <li class="active">Todos os Cronogramas</li>
     </ol>
 </section>
 <section id="tdCursos" class="content">
@@ -23,20 +23,22 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID Disciplina</th>
-                                <th>Nome</th>
+                                <th>ID Cronograma</th>
+                                <th>Número da Aula</th>
+                                <th>Descrição</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in ViewBag.ListaDeDisciplinas)
+                            @foreach (var item in ViewBag.ListaDeCronogramas)
                             {
                                 <tr>
-                                    <td><button iddadisciplina="@item.Id" class="btn btn-primary CarregarDisciplinas">Abrir</button></td>
+                                    <td><button iddocronograma="@item.Id" class="btn btn-primary CarregarCronograma">Abrir</button></td>
                                     <td>@item.Id</td>
-                                    <td>@item.Nome</td>
+                                    <td>Aula @item.NAula</td>
+                                    <td>@item.Descricao</td>
                                     <td>
-                                        <a href="/Home/excluirDisciplina?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                        <a href="/Home/excluirCronograma?id=@item.Id" class="btn btn-danger">Excluir</a>
                                     </td>
                                 </tr>
                             }
@@ -44,8 +46,9 @@
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th>ID Disciplina</th>
-                                <th>Nome</th>
+                                <th>ID Cronograma</th>
+                                <th>Número da Aula</th>
+                                <th>Descrição</th>
                                 <th>Opções</th>
                             </tr>
                         </tfoot>
@@ -60,23 +63,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <form role="form" action="/Home/AtualizarDisciplina">
+                <form role="form" action="/Home/AtualizarCronograma">
                     <div class="box-body">
-                        @Html.HiddenFor(x => x.Id, new { id = "Id_Disciplina" })
                         <div class="form-group col-xs-12">
-                            @*<label>Selecione um Curso</label>
-                            @Html.HiddenFor(x => x.IdCurso, new { id = "preencheautoidcurso" })
-                            <select class="form-control" id="selecaoDeCurso"></select>*@
-                            <label>Nome da Disciplina</label>
-                            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", type = "text", id = "Nome"})
-                            <label>Semestre</label>
-                            @Html.TextBoxFor(x => x.Semestre, new { @class = "form-control", type = "number", id = "Semestre"})
-                            <label>Carga Horária</label>
-                            @Html.TextBoxFor(x => x.CargaHoraria, new { @class = "form-control", type = "number", id = "CargaHoraria"})
+                            <label>Número da Aula</label>
+                            @Html.TextBoxFor(x => x.NAula, new { @class = "form-control", type = "number", id = "NAula" })
+                            <label>Descrição</label>
+                            @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", type = "text", id = "Descricao" })
                         </div>
                         <div class="form-group col-xs-12">
                             <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
-                            <a class=" btn btn-warning pull-right espaco" id="alterarCadastroDisciplina">Alterar</a>
+                            <a class=" btn btn-warning pull-right espaco" id="alterarCadastroCronograma">Alterar</a>
                             <a href="" class="btn btn-warning pull-right espaco">Cancelar</a>
                         </div>
                     </div>
@@ -85,3 +82,4 @@
         </div>
     </div>
 </section>
+
