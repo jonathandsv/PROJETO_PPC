@@ -464,3 +464,26 @@ $("#alterarCadastroCronograma").click(function () {
 
 });
 
+// Fim do Cronograma de Atividades 
+
+$(".salvarProf").click(function () {
+    var comando = $(this).attr('idcomando');
+    if (comando == 1) {
+        CadastrarProfessorAtuacaoIesDadosPessoais();
+    }
+    if (comando == 2) {
+        CadastrarProfessorAtuacaoIesGeral();
+    }
+    if (comando == 3) {
+        CadastrarProfessorAtuacaoIesAtuacaoProfissional();
+    }
+    if (comando == 4) {
+        CadastrarProfessorAtuacaoIesPublicacoes();
+    }
+})
+
+function CadastrarProfessorAtuacaoIesDadosPessoais() {
+    var professor { };
+    
+};
+
