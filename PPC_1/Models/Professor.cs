@@ -7,6 +7,8 @@ namespace PPC_1.Models
 {
     public class Professor
     {
-         
+        public int id { get; set; }
+        public string Nome { get; set; }
+        public int CPF { get; set; }
     }
 }
