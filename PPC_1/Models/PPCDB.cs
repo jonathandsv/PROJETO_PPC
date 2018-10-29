@@ -1054,6 +1054,82 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+
+        public Professor InserirProfessor(Professor professor)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string inserirValores = @"INSERT INTO USUARIOS (NOME_USUARIO, CPF, MAIOR_TITULACAO, AREA_FORMACAO, CURRICULO, DATA_ATUALIZACAO_CURRICULO) 
+                                                                    VALUES (@NOME_USUARIO, @CPF, @MAIOR_TITULACAO @AREA_FORMACAO, @CURRICULO, @DATA_ATUALIZACAO_CURRICULO)";
+
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@NOME_USUARIO", SqlDbType.VarChar).Value = professor.Nome;
+                        comm.Parameters.Add("@CPF", SqlDbType.Int).Value = professor.CPF;
+                        comm.Parameters.Add("@MAIOR_TITULACAO", SqlDbType.VarChar).Value = professor.MaiorTitulacao;
+                        comm.Parameters.Add("@AREA_FORMACAO", SqlDbType.VarChar).Value = professor.AreaFormacao;
+                        comm.Parameters.Add("@CURRICULO", SqlDbType.VarChar).Value = professor.CurriculoLattos;
+                        comm.Parameters.Add("@DATA_ATUALIZACAO_CURRICULO", SqlDbType.VarChar).Value = professor.DataAtualizacao;
+
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+                return (null);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Professor BuscarProfessorNome(String Nome)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM CRONOGRAMAS_ATIVIDADES WHERE ID_CRONOGRAMA = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Cronograma cronograma = new Cronograma();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        cronograma.Id = Convert.ToInt32(dr["ID_CRONOGRAMA"]);
+                        cronograma.NAula = Convert.ToInt32(dr["N_AULA"]);
+                        cronograma.Descricao = dr["DESCRICAO"].ToString();
+
+                    }
+                }
+
+                return (cronograma);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
         //fim
     }
 }

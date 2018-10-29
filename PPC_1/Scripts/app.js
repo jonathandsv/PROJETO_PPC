@@ -483,8 +483,110 @@ $(".salvarProf").click(function () {
 })
 
 function CadastrarProfessorAtuacaoIesDadosPessoais() {
-    var professor { };
-    
-    
+    var professor = {};
+    professor.Nome = $("#Nome").val();
+    professor.CPF = $("#CPF").val();
+    professor.MaiorTitulacao = $("#MaiorTitulacao").val();
+    professor.AreaFormacao = $("#AreaFormacao").val();
+    professor.CurriculoLattos = $("#CurriculoLattos").val();
+    professor.DataAtualizacao = $("#DataAtualizacao").val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'CadastrarProfessorAtuacaoIesDadosPessoais',
+        dataType: 'json',
+        data: { professor: JSON.stringify(professor) },
+        success: function () {
+
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
 };
+
+function CadastrarProfessorAtuacaoIesGeral() {
+    var professor = {};
+    professor.Id = $("#IdProfessor").val();
+    professor.Matricula = $("#Matricula").val();
+    professor.DaraAdmissao = $("#DataAdmissao").val();
+    professor.HorasNde = $("#HorasNde").val();
+    professor.OrientacaoTcc = $("#OrientacaoTcc").val();
+    professor.AtividadesExtraClasseNoCurso = $("#AtividadesExtraClasseNoCurso").val();
+    professor.AtividadesExtraClasseOutrosCursos = $("#AtividadesExtraClasseOutrosCursos").val();
+    professor.CoordenacaoCurso = $("#CoordenacaoCurso").val();
+    professor.CoordenacaoOutrosCursos = $("#CoordenacaoOutrosCursos").val();
+    professor.QtdeHorasCurso = $("#QtdeHorasCurso").val();
+    professor.QtdeHorasOutrosCusos = $("#QtdeHorasOutrosCursos").val();
+    professor.Pesquisa = $("#Pesquisa").val();
+    professor.IdDisciplina = $("#IdDisciplina").val();
+    professor.IdDisciplinaOutrosCursos = $("#IdDisciplinaOutrosCursos").val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'CadastrarProfessorAtuacaoIesAtuacaoProfissional',
+        dataType: 'json',
+        data: { professor: JSON.stringify(professor) },
+        success: function () {
+
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
+
+}
+
+function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
+    var professor = {};
+    professor.MembroNde = $("#MembroNde").val();
+    professor.MembroColegiado = $("#MembroColegiado").val();
+    professor.DocenteFormacao = $("#DocenteFormacao").val();
+    professor.TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
+    professor.TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
+    professor.ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
+    professor.TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
+    professor.QtdeParticipacoesEventos = $("#QtdeParticipacoesEventos").val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'CadastrarProfessorAtuacaoIesAtuacaoProfissional',
+        dataType: 'json',
+        data: { professor: JSON.stringify(professor) },
+        success: function () {
+
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
+}
+
+function CadastrarProfessorAtuacaoIesPublicacoes() {
+    var professor = {};
+    professor.ArtigosPublicadosPeriodosCientificosNaArea = $("#ArtigosPublicadosPeriodosCientificosNaArea").val();
+    professor.ArtigosPublicadosPeriodosCientificosOutrasAreas = $("#ArtigosPublicadosPeriodosCientificosOutrasAreas").val();
+    professor.LivrosPublicadosNaArea = $("#LivrosPrublicadosNaArea").val();
+    professor.LivrosPublicadosEmOutrasAreas = $("#LivrosPublicadosEmOutrasAreas").val();
+    professor.TrabalhosCompletosPublicadosAnuaisNaArea = $("#TrabalhosCompletosPublicadosAnuaisNaArea").val();
+    professor.TrabalhosResumosPublicadosAnuaisNaArea = $("#TrabalhosResumosPublicadosAnuaisNaArea").val();
+    professor.PropriedadeintelectualDepositado = $("#PropriedadeintelectualDepositado").val();
+    professor.PropriedadeIntelectualRegistrado = $("#PropriedadeIntelectualRegistrado").val();
+    professor.TraducaoDeLivrosCapitulosArtigosPublicados = $("#TraducaoDeLivrosCapitulosArtigosPublicados").val();
+    professor.ProjetosProducoesTecnicosArtisticosCulturais = $("#ProjetosProducoesTecnicosArtisticosCulturais").val();
+    professor.ProducaoDidaticoPedagogicoRelevante = $("#ProducaoDidaticoPedagogicoRelevante").val();
+
+    $.ajax({
+        type: 'POST',
+        url: 'CadastrarProfessorAtuacaoIesPublicacoes',
+        dataType: 'json';
+        data: { professor: JSON.stringify(professor) },
+        success: function (e) {
+
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+    });
+}
 

@@ -355,5 +355,24 @@ namespace PPC_1.Controllers
             PreencheViewBagListaCronogramas();
             return View("ConsultarCronograma");
         }
+
+        public JsonResult CadastrarProfessorAtuacaoIesDadosPessoais(Professor professor)
+        {
+            PPCDB pPCDB = new PPCDB();
+
+            string nome = professor.Nome;
+
+            Professor professorB = new Professor();
+
+            professorB = pPCDB.BuscarProfessorNome(nome);
+
+            if (professorB.Nome == null)
+            {
+                professor = pPCDB.InserirProfessor(professor);
+            }
+
+            return (null);
+
+        }
     }
 }
