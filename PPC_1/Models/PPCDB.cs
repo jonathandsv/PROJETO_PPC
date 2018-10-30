@@ -1091,35 +1091,34 @@ namespace PPC_1.Models
             }
         }
 
-        public Professor BuscarProfessorNome(String Nome)
+        public Professor BuscarUsarioNome(String Nome)
         {
             try
             {
                 string conexao = ConexaoBanco();
 
-                string stringBuscar = @"SELECT * FROM CRONOGRAMAS_ATIVIDADES WHERE ID_CRONOGRAMA = @id";
+                string stringBuscar = @"SELECT * FROM USUARIOS WHERE NOME_USUARIO = @NOME";
 
                 SqlConnection sqlConn = new SqlConnection(conexao);
 
                 sqlConn.Open();
 
-                Cronograma cronograma = new Cronograma();
+                Professor professor = new Professor();
 
                 using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
                 {
-                    leitor.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    leitor.Parameters.Add("@NOME", SqlDbType.VarChar).Value = Nome;
                     SqlDataReader dr = leitor.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        cronograma.Id = Convert.ToInt32(dr["ID_CRONOGRAMA"]);
-                        cronograma.NAula = Convert.ToInt32(dr["N_AULA"]);
-                        cronograma.Descricao = dr["DESCRICAO"].ToString();
-
+                        professor.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                        professor.Nome = dr["NOME_USUARIO"].ToString();
+                        professor.CPF = Convert.ToInt32(dr["CPF"]);
                     }
                 }
 
-                return (cronograma);
+                return (professor);
 
             }
             catch (Exception ex)

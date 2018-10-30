@@ -496,9 +496,11 @@ function CadastrarProfessorAtuacaoIesDadosPessoais() {
         url: 'CadastrarProfessorAtuacaoIesDadosPessoais',
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
-        success: function () {
-
-        },
+        success: function (retorno) {
+            $("#idProf").attr('iddoprofessor', retorno.id);
+            alert("Professor Cadastrado com sucesso! Continue o Cadastro na aba seguinte, caso não continue poderá mais tarde acessar" +
+                "Todos os Professores e escolher o que gostaria de alterar!");
+        }, 
         erro: function (e) {
             console.log(e);
         }
@@ -579,7 +581,7 @@ function CadastrarProfessorAtuacaoIesPublicacoes() {
     $.ajax({
         type: 'POST',
         url: 'CadastrarProfessorAtuacaoIesPublicacoes',
-        dataType: 'json';
+        dataType: 'json',
         data: { professor: JSON.stringify(professor) },
         success: function (e) {
 

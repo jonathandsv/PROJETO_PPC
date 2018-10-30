@@ -356,22 +356,24 @@ namespace PPC_1.Controllers
             return View("ConsultarCronograma");
         }
 
-        public JsonResult CadastrarProfessorAtuacaoIesDadosPessoais(Professor professor)
+        public JsonResult CadastrarProfessorAtuacaoIesDadosPessoais(string professor)
         {
             PPCDB pPCDB = new PPCDB();
+
+            string nomeConvertido = JsonConvert.DeserializeObject<Professor>(professor);
 
             string nome = professor.Nome;
 
             Professor professorB = new Professor();
 
-            professorB = pPCDB.BuscarProfessorNome(nome);
+            professorB = pPCDB.BuscarUsarioNome(nome);
 
             if (professorB.Nome == null)
             {
-                professor = pPCDB.InserirProfessor(professor);
+                professorB = pPCDB.InserirProfessor(professor);
             }
 
-            return (null);
+            return Json(professorB);
 
         }
     }
