@@ -1061,8 +1061,8 @@ namespace PPC_1.Models
             {
                 string conexao = ConexaoBanco();
 
-                string inserirValores = @"INSERT INTO USUARIOS (NOME_USUARIO, CPF, MAIOR_TITULACAO, AREA_FORMACAO, CURRICULO, DATA_ATUALIZACAO_CURRICULO) 
-                                                                    VALUES (@NOME_USUARIO, @CPF, @MAIOR_TITULACAO @AREA_FORMACAO, @CURRICULO, @DATA_ATUALIZACAO_CURRICULO)";
+                string inserirValores = @"INSERT INTO USUARIOS (NOME_USUARIO, CPF, MAIOR_TITULACAO, AREA_FORMACAO, CURRICULO, DATA_ATUALIZACAO_CURRICULO, ID_PERFIL, SENHA) 
+                                                                    VALUES (@NOME_USUARIO, @CPF, @MAIOR_TITULACAO, @AREA_FORMACAO, @CURRICULO, @DATA_ATUALIZACAO_CURRICULO, @ID_PERFIL, @SENHA)";
 
 
                 using (SqlConnection sqlConn = new SqlConnection(conexao))
@@ -1070,11 +1070,13 @@ namespace PPC_1.Models
                     using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
                     {
                         comm.Parameters.Add("@NOME_USUARIO", SqlDbType.VarChar).Value = professor.Nome;
-                        comm.Parameters.Add("@CPF", SqlDbType.Int).Value = professor.CPF;
+                        comm.Parameters.Add("@CPF", SqlDbType.VarChar).Value = professor.CPF;
                         comm.Parameters.Add("@MAIOR_TITULACAO", SqlDbType.VarChar).Value = professor.MaiorTitulacao;
                         comm.Parameters.Add("@AREA_FORMACAO", SqlDbType.VarChar).Value = professor.AreaFormacao;
                         comm.Parameters.Add("@CURRICULO", SqlDbType.VarChar).Value = professor.CurriculoLattos;
                         comm.Parameters.Add("@DATA_ATUALIZACAO_CURRICULO", SqlDbType.VarChar).Value = professor.DataAtualizacao;
+                        comm.Parameters.Add("@ID_PERFIL", SqlDbType.Int).Value = 2;
+                        comm.Parameters.Add("@SENHA", SqlDbType.VarChar).Value = 1234567;
 
 
                         sqlConn.Open();
@@ -1114,7 +1116,7 @@ namespace PPC_1.Models
                     {
                         professor.Id = Convert.ToInt32(dr["ID_USUARIO"]);
                         professor.Nome = dr["NOME_USUARIO"].ToString();
-                        professor.CPF = Convert.ToInt32(dr["CPF"]);
+                        professor.CPF = dr["CPF"].ToString();
                     }
                 }
 

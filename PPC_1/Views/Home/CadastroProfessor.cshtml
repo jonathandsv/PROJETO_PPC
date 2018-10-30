@@ -44,7 +44,7 @@
                                                     </div>
                                                     <div class="form-group col-xs-6">
                                                         <label>Área de Formação</label>
-                                                        <input type="text" class="form-control" id="AreaDeFormacao" placeholder="Área de Formação" />
+                                                        <input type="text" class="form-control" id="AreaFormacao" placeholder="Área de Formação" />
                                                     </div>
                                                     <div class="form-group col-xs-8">
                                                         <label>Curriculo Lattos (link)</label>
@@ -140,39 +140,66 @@
                                                             <div class="form-group col-xs-12">
                                                                 <div class="form-group col-xs-6">
                                                                     <h4>Disciplinas ministradas no Curso *</h4>
-                                                                    <table class="table table-striped">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <td>Disciplina</td>
-                                                                                <td>Carga Horária</td>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td><button class="btn btn-primary btn-sm">Adicionar</button>    Disciplina</td>
-                                                                                <td>120 horas</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
+
+
+                                                                    <div class="box box-primary">
+                                                                        <table class="table table-bordered table-striped" id="tabelaDeDisciplinas">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th id="NomeDoCurso"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <br />
+                                                                    <br />
+                                                                    <div class="col-xs-3">
+                                                                        <button class="btn btn-info form-control" id="adicionarDisciplina">+ Adicionar</button>
+                                                                    </div>
+                                                                    <div class="col-xs-9">
+                                                                        <select class="form-control selecaoDisciplina">
+                                                                            <option value="0">< Selecione uma disciplina ></option>
+                                                                            @foreach (var item in ViewBag.ListaDeDisciplinasF)
+                                                                            {
+                                                                                <option value="@item.Id">@item.Nome</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+
+
+
+
+
                                                                 </div>
                                                                 <div class="form-group col-xs-6">
                                                                     <h4>Disciplinas ministradas em outros Cursos da IES</h4>
-                                                                    <table class="table table-striped">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <td>Disciplina</td>
-                                                                                <td>Carga Horária</td>
 
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td><button class="btn btn-primary btn-sm espaco">Adicionar</button>    Disciplina</td>
-                                                                                <td>120 horas</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
+                                                                    <div class="box box-primary">
+                                                                        <table class="table table-bordered table-striped" id="tabelaDeDisciplinas">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th id="NomeDoCurso"></th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <br />
+                                                                    <br />
+                                                                    <div class="col-xs-3">
+                                                                        <button class="btn btn-info form-control" id="adicionarDisciplinaProfessor">+ Adicionar</button>
+                                                                    </div>
+                                                                    <div class="col-xs-9">
+                                                                        <select class="form-control selecaoDisciplina">
+                                                                            <option value="0">< Selecione uma disciplina ></option>
+                                                                            @foreach (var item in ViewBag.ListaDeDisciplinasF)
+                                                                            {
+                                                                                <option value="@item.Id">@item.Nome</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+
                                                                     <!--Desenvolver em js uma funcão que faça a linha da tabela mudar de cor quando tiver sido escolhido o curso-->
                                                                 </div>
                                                                 <div class="form-group col-xs-12">

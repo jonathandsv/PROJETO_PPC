@@ -497,9 +497,9 @@ function CadastrarProfessorAtuacaoIesDadosPessoais() {
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
         success: function (retorno) {
-            $("#idProf").attr('iddoprofessor', retorno.id);
-            alert("Professor Cadastrado com sucesso! Continue o Cadastro na aba seguinte, caso não continue poderá mais tarde acessar" +
-                "Todos os Professores e escolher o que gostaria de alterar!");
+                $("#idProf").val(retorno.Id);
+                alert("Cadastro inicial concluido com sucesso! Acesse a aba de Atuação na IES e complete o cadastro do professor," +
+                    "caso saia dessa página agora terá que acessar: Professor-Todos os professores-Editar, para continuar com o cadastro do professor");
         }, 
         erro: function (e) {
             console.log(e);
@@ -589,6 +589,61 @@ function CadastrarProfessorAtuacaoIesPublicacoes() {
         erro: function (e) {
             console.log(e);
         }
+    });
+}
+
+var iddoprofessor = 0;
+
+$("#adicionarDisciplinaProfessor").click(function () {
+    iddoprofessor = $("#idProf").val();
+    $.ajax({
+        type: 'POST',
+        url: 'NovaDisciplinaProfessor',
+        dataType: 'json',
+        data: {
+            idDisciplina: iddadisciplina,
+            idProfessor: iddoprofessor
+        },
+        success: function (retorno) {
+            if (retorno == true) {
+                $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
+                var idD = 0
+                BuscarVinculoDisciplinaProfessor(iddocurso, idD);
+            }
+            else {
+                alert("Disciplina já vinculada ao curso selecionado!");
+            }
+
+        },
+        error: function (e) {
+            console.log(e);
+        },
+    });
+});
+
+function BuscarVinculoDisciplinaProfessor(idC, idD) {
+    $.ajax({
+        type: 'POST',
+        url: 'BuscarDisciplinaVinculadaProfessor',
+        dataType: 'json',
+        data: {
+            idC: idC,
+            idD: idD
+        },
+        success: function (retorno) {
+            var comparacao = retorno.length;
+            if (comparacao > 0) {
+                for (var i = 0; i < retorno.length; i++) {
+                    $("#tabelaDeDisciplinas").find("tbody").append("<tr class = " + "disciplinaCarregada" + " ><th>" + (retorno[i].Nome) + "</tr></th>");
+                }
+            }
+            else {
+                alert("Curso ainda não possui disciplinas vinculadas!");
+            }
+        },
+        error: function (e) {
+            console.log(e);
+        },
     });
 }
 

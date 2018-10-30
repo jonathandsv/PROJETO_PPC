@@ -9,7 +9,7 @@ namespace PPC_1.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int CPF { get; set; }
+        public string CPF { get; set; }
         public string MaiorTitulacao { get; set; }
         public string AreaFormacao { get; set; }
         public string CurriculoLattos { get; set; }
@@ -30,10 +30,10 @@ namespace PPC_1.Models
         public bool MembroNde { get; set; }
         public bool MembroColegiado { get; set; }
         public bool DocenteFormacao { get; set; }
-        public int TempoDeVinculoIniterrupto { get; set; }
-        public int TempoMagisterioSuperior { get; set; }
-        public int ExperienciaEmCursoADistacia { get; set; }
-        public int TempoExperienciaProfissional { get; set; }
+        public bool TempoDeVinculoIniterrupto { get; set; }
+        public bool TempoMagisterioSuperior { get; set; }
+        public bool ExperienciaEmCursoADistacia { get; set; }
+        public bool TempoExperienciaProfissional { get; set; }
         public int QtdeParticipacoesEventos { get; set; }
         public int ArtigosPublicadosPeriodosCientikficosNaArea { get; set; }
         public int ArtigosPublicadosPeriodosCientificosOutrasAreas { get; set; }

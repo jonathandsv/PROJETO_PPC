@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using PPC_1.Models;
 
 namespace PPC_1.Controllers
@@ -86,7 +87,7 @@ namespace PPC_1.Controllers
 
         public ActionResult CadastroProfessor()
         {
-
+            PreencheViewBagListaDisciplinasFiltradas();
             return View();
         }
 
@@ -360,20 +361,24 @@ namespace PPC_1.Controllers
         {
             PPCDB pPCDB = new PPCDB();
 
-            string nomeConvertido = JsonConvert.DeserializeObject<Professor>(professor);
+            var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
 
-            string nome = professor.Nome;
+            string nome = ProfessorConvertido.Nome;
 
             Professor professorB = new Professor();
 
             professorB = pPCDB.BuscarUsarioNome(nome);
 
+            Professor professorRetorno = new Professor();
+
             if (professorB.Nome == null)
             {
-                professorB = pPCDB.InserirProfessor(professor);
+                professorB = pPCDB.InserirProfessor(ProfessorConvertido);
             }
 
-            return Json(professorB);
+            professorRetorno = pPCDB.BuscarUsarioNome(ProfessorConvertido.Nome);
+
+            return Json(professorRetorno);
 
         }
     }
