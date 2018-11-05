@@ -367,7 +367,7 @@ namespace PPC_1.Controllers
 
             Professor professorB = new Professor();
 
-            professorB = pPCDB.BuscarUsarioNome(nome);
+            professorB = pPCDB.BuscarUsuarioNome(nome);
 
             Professor professorRetorno = new Professor();
 
@@ -376,10 +376,24 @@ namespace PPC_1.Controllers
                 professorB = pPCDB.InserirProfessor(ProfessorConvertido);
             }
 
-            professorRetorno = pPCDB.BuscarUsarioNome(ProfessorConvertido.Nome);
+            professorRetorno = pPCDB.BuscarUsuarioNome(ProfessorConvertido.Nome);
 
             return Json(professorRetorno);
 
+        }
+
+        public JsonResult CadastrarProfessorAtuacaoIesGeral(string professor)
+        {
+            PPCDB pPCDB = new PPCDB();
+
+            var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
+
+            Professor professorB = new Professor();
+
+            professorB = pPCDB.InserirProfessorIesAtuacaoGeral(ProfessorConvertido);
+
+
+            return null;
         }
     }
 }

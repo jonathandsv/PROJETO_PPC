@@ -1093,7 +1093,7 @@ namespace PPC_1.Models
             }
         }
 
-        public Professor BuscarUsarioNome(String Nome)
+        public Professor BuscarUsuarioNome(string Nome)
         {
             try
             {
@@ -1122,6 +1122,67 @@ namespace PPC_1.Models
 
                 return (professor);
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Professor InserirProfessorIesAtuacaoGeral(Professor professor)
+        {
+
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string inserirValores = @"INSERT INTO ATUACAO_IES_GERAL (MATRICULA, 
+                                                                        DATA_ADMISSAO, 
+                                                                        HORAS_NDE,      
+                                                                        ORIENTACAO_TCC, 
+                                                                        ATIVIDADE_EXTRA_CLASSE_CURSO,   
+                                                                        COORDENACAO_CURSO, 
+                                                                        COORDENACAO_OUTROS_CURSOS, 
+                                                                        QTDE_HORAS_CURSO,
+                                                                        QTDE_HORAS_OUTROS_CURSOS,
+                                                                        PESQUISA,
+                                                                        ID_USUARIO) 
+                                                                    VALUES (@MATRICULA, 
+                                                                            @DATA_ADMISSAO, 
+                                                                            @HORAS_NDE, 
+                                                                            @ORIENTACAO_TCC, 
+                                                                            @ATIVIDADE_EXTRA_CLASSE_CURSO, 
+                                                                            @COORDENACAO_CURSO, 
+                                                                            @COORDENACAO_OUTROS_CURSOS, 
+                                                                            @QTDE_HORAS_CURSO,
+                                                                            @QTDE_HORAS_OUTROS_CURSOS,
+                                                                            @PESQUISA,
+                                                                            @ID_USUARIO)";
+
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@MATRICULA", SqlDbType.Int).Value = professor.Matricula;
+                        comm.Parameters.Add("@DATA_ADMISSAO", SqlDbType.DateTime).Value = professor.DataAdmissao;
+                        comm.Parameters.Add("@HORAS_NDE", SqlDbType.Int).Value = professor.MaiorTitulacao;
+                        comm.Parameters.Add("@ORIENTACAO_TCC", SqlDbType.Int).Value = professor.AreaFormacao;
+                        comm.Parameters.Add("@ATIVIDADE_EXTRA_CLASSE_CURSO", SqlDbType.Int).Value = professor.CurriculoLattos;
+                        comm.Parameters.Add("@COORDENACAO_CURSO", SqlDbType.Int).Value = professor.DataAtualizacao;
+                        comm.Parameters.Add("@COORDENACAO_OUTROS_CURSOS", SqlDbType.Int).Value = 2;
+                        comm.Parameters.Add("@QTDE_HORAS_CURSO", SqlDbType.Int).Value = 1234567;
+                        comm.Parameters.Add("@PESQUISA", SqlDbType.Int).Value = 1234567;
+                        comm.Parameters.Add("@ID_USUARIO", SqlDbType.Int).Value = 1234567;
+
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+                return (null);
             }
             catch (Exception ex)
             {

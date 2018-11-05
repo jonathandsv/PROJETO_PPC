@@ -466,6 +466,9 @@ $("#alterarCadastroCronograma").click(function () {
 
 // Fim do Cronograma de Atividades 
 
+
+// Página de professores 
+
 $(".salvarProf").click(function () {
     var comando = $(this).attr('idcomando');
     if (comando == 1) {
@@ -480,7 +483,7 @@ $(".salvarProf").click(function () {
     if (comando == 4) {
         CadastrarProfessorAtuacaoIesPublicacoes();
     }
-})
+});
 
 function CadastrarProfessorAtuacaoIesDadosPessoais() {
     var professor = {};
@@ -526,11 +529,11 @@ function CadastrarProfessorAtuacaoIesGeral() {
 
     $.ajax({
         type: 'POST',
-        url: 'CadastrarProfessorAtuacaoIesAtuacaoProfissional',
+        url: 'CadastrarProfessorAtuacaoIesGeral',
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
         success: function () {
-
+            alert("Salvo! Passe para a aba de Atuação Profissional");
         },
         erro: function (e) {
             console.log(e);
@@ -592,6 +595,10 @@ function CadastrarProfessorAtuacaoIesPublicacoes() {
     });
 }
 
+
+
+//parte de adicionar disciplina ao professor, precisa ser feito alguns ajustes 
+//em nomes de variaveis e verificar na lista de requisitos a necessidade de vincular disciplinas à professor
 var iddoprofessor = 0;
 
 $("#adicionarDisciplinaProfessor").click(function () {
@@ -607,11 +614,11 @@ $("#adicionarDisciplinaProfessor").click(function () {
         success: function (retorno) {
             if (retorno == true) {
                 $("#tabelaDeDisciplinas").find("tbody").find("tr").remove(".disciplinaCarregada");
-                var idD = 0
-                BuscarVinculoDisciplinaProfessor(iddocurso, idD);
+                var idD = 0;
+                BuscarVinculoDisciplinaProfessor(iddoprofessor, idD);
             }
             else {
-                alert("Disciplina já vinculada ao curso selecionado!");
+                alert("Disciplina já vinculada ao Professor!");
             }
 
         },
