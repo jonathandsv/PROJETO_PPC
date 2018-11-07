@@ -1167,14 +1167,15 @@ namespace PPC_1.Models
                     {
                         comm.Parameters.Add("@MATRICULA", SqlDbType.Int).Value = professor.Matricula;
                         comm.Parameters.Add("@DATA_ADMISSAO", SqlDbType.DateTime).Value = professor.DataAdmissao;
-                        comm.Parameters.Add("@HORAS_NDE", SqlDbType.Int).Value = professor.MaiorTitulacao;
-                        comm.Parameters.Add("@ORIENTACAO_TCC", SqlDbType.Int).Value = professor.AreaFormacao;
-                        comm.Parameters.Add("@ATIVIDADE_EXTRA_CLASSE_CURSO", SqlDbType.Int).Value = professor.CurriculoLattos;
-                        comm.Parameters.Add("@COORDENACAO_CURSO", SqlDbType.Int).Value = professor.DataAtualizacao;
-                        comm.Parameters.Add("@COORDENACAO_OUTROS_CURSOS", SqlDbType.Int).Value = 2;
-                        comm.Parameters.Add("@QTDE_HORAS_CURSO", SqlDbType.Int).Value = 1234567;
-                        comm.Parameters.Add("@PESQUISA", SqlDbType.Int).Value = 1234567;
-                        comm.Parameters.Add("@ID_USUARIO", SqlDbType.Int).Value = 1234567;
+                        comm.Parameters.Add("@HORAS_NDE", SqlDbType.Int).Value = professor.HorasNde;
+                        comm.Parameters.Add("@ORIENTACAO_TCC", SqlDbType.Int).Value = professor.OrientacaoTcc;
+                        comm.Parameters.Add("@ATIVIDADE_EXTRA_CLASSE_CURSO", SqlDbType.Int).Value = professor.AtividadesExtraClasseNoCurso;
+                        comm.Parameters.Add("@COORDENACAO_CURSO", SqlDbType.Int).Value = professor.CoordenacaoCurso;
+                        comm.Parameters.Add("@COORDENACAO_OUTROS_CURSOS", SqlDbType.Int).Value = professor.CoordenacaoOutrosCursos;
+                        comm.Parameters.Add("@QTDE_HORAS_CURSO", SqlDbType.Int).Value = professor.QtdeHorasCurso;
+                        comm.Parameters.Add("@QTDE_HORAS_OUTROS_CURSOS", SqlDbType.Int).Value = professor.QtdeHorasOutrosCursos;
+                        comm.Parameters.Add("@PESQUISA", SqlDbType.Int).Value = professor.Pesquisa;
+                        comm.Parameters.Add("@ID_USUARIO", SqlDbType.Int).Value = professor.Id;
 
 
                         sqlConn.Open();

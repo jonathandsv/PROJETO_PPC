@@ -512,9 +512,9 @@ function CadastrarProfessorAtuacaoIesDadosPessoais() {
 
 function CadastrarProfessorAtuacaoIesGeral() {
     var professor = {};
-    professor.Id = $("#IdProfessor").val();
+    professor.Id = $("#idProf").val();
     professor.Matricula = $("#Matricula").val();
-    professor.DaraAdmissao = $("#DataAdmissao").val();
+    professor.DataAdmissao = $("#DataAdmissao").val();
     professor.HorasNde = $("#HorasNde").val();
     professor.OrientacaoTcc = $("#OrientacaoTcc").val();
     professor.AtividadesExtraClasseNoCurso = $("#AtividadesExtraClasseNoCurso").val();
