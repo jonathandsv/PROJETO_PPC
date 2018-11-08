@@ -543,14 +543,25 @@ function CadastrarProfessorAtuacaoIesGeral() {
 }
 
 function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
+    hoje = new Date();
+
+    var TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
+    TempoDeVinculoIniterrupto = formatardata(TempoDeVinculoIniterrupto);
+    var TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
+    TempoMagisterioSuperior = formatardata(TempoMagisterioSuperior);
+    var ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
+    ExperienciaEmCursoADistacia = formatardata(ExperienciaEmCursoADistacia);
+    var TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
+    TempoExperienciaProfissional = formatardata(TempoExperienciaProfissional);
+
     var professor = {};
     professor.MembroNde = $("#MembroNde").val();
     professor.MembroColegiado = $("#MembroColegiado").val();
     professor.DocenteFormacao = $("#DocenteFormacao").val();
-    professor.TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
-    professor.TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
-    professor.ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
-    professor.TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
+    professor.TempoDeVinculoIniterrupto = TempoDeVinculoIniterrupto;
+    professor.TempoMagisterioSuperior = TempoMagisterioSuperior;
+    professor.ExperienciaEmCursoADistacia = ExperienciaEmCursoADistacia;
+    professor.TempoExperienciaProfissional = TempoExperienciaProfissional;
     professor.QtdeParticipacoesEventos = $("#QtdeParticipacoesEventos").val();
 
     $.ajax({
@@ -565,6 +576,14 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
             console.log(e);
         }
     });
+}
+
+function formatardata(string) {
+    var ano = string.slice(0, 4);
+    var mes = string.slice(5, 7);
+    var dia = string.slice(8);
+    var dataCerta = dia.concat("/", mes, "/", ano);
+    return dataCerta;
 }
 
 function CadastrarProfessorAtuacaoIesPublicacoes() {

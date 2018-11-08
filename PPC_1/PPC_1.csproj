@@ -197,6 +197,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
