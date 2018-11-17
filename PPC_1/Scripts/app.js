@@ -543,7 +543,6 @@ function CadastrarProfessorAtuacaoIesGeral() {
 }
 
 function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
-    hoje = new Date();
 
     var TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
     TempoDeVinculoIniterrupto = formatardata(TempoDeVinculoIniterrupto);
@@ -580,36 +579,42 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
 
 $(".calculardiferenca").change(function () {
     var data1 = $(this).val();
+    var arrdata1 = data1.split("/");
+    data1formatada = arrdata1[1] + "-" + arrdata1[0] + "-" + arrdata1[2];
+    data1 = new Date(data1formatada);
     var campodediferenca = $(this).attr('total');
     data1moment = moment(data1, "DD/MM/YYYY");
 
     //var diferenca = dataAtual(data1);
 
     var hoje = new Date();
-    hoje = hoje.getDate() + "/" + (hoje.getMonth() + 1) + "/" + hoje.getFullYear();
-    hoje = moment(hoje, "DD/MM/YYYY");
+    hojemoment = hoje.getDate() + "/" + (hoje.getMonth() + 1) + "/" + hoje.getFullYear();
+    hojemoment = moment(hojemoment, "DD/MM/YYYY");
     var diaoumes = 0;
     var diferenca = 0;
-    if (data1moment >= hoje) {
-        if (parseInt(data1["_i"].slice(3, 5)) == parseInt(hoje["_i"].slice(3, 5)) && parseInt(data1["_i"].slice(6)) == parseInt(hoje["_i"].slice(6))) {
-            diferenca = data1.diff(hoje, 'day');
+    if (data1.getDate() + (data1.getMonth() + 1) + data1.getFullYear() <= hoje.getDate() + (hoje.getMonth() + 1) + hoje.getFullYear()) {
+        if (data1.getMonth() == hoje.getMonth() && data1.getFullYear() == hoje.getFullYear()) {
+            diferenca = data1moment.diff(hojemoment, 'day');
             diaoumes = 1;
+            $("#total" + campodediferenca).val(diferenca + " Dias atras");
+
         }
         else {
-            diferenca = data1.diff(hoje, 'month');
+            diferenca = data1moment.diff(hojemoment, 'month');
             diaoumes = 2;
+            $("#total" + campodediferenca).val(diferenca + " Meses atras");
         }
     }
     else {
-        alert("Data incorreta inserida");
+        alert("Data inicial maior que a data Atual! Por favor adicione outra data.");
     }
 
-    if (diaoumes == 1) {
-        $("#total" + campodediferenca).val(diferenca + "Dias atras");
-    }
-    else {
-        $("#total" + campodediferenca).val(diferenca + "Meses atras");
-    }
+    //if (diaoumes == 1) {
+    //    $("#total" + campodediferenca).val(diferenca + " Dias atras");
+    //}
+    //else {
+    //    $("#total" + campodediferenca).val(diferenca + " Meses atras");
+    //}
     //if (Math.sign(diferenca) == -1) {
     //    $("#total" + campodediferenca).val(diferenca + "Dias atras");
     //}
