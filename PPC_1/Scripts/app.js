@@ -578,13 +578,76 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
     });
 }
 
-function formatardata(string) {
-    var ano = string.slice(0, 4);
-    var mes = string.slice(5, 7);
-    var dia = string.slice(8);
-    var dataCerta = dia.concat("/", mes, "/", ano);
-    return dataCerta;
-}
+$(".calculardiferenca").change(function () {
+    var data1 = $(this).val();
+    var campodediferenca = $(this).attr('total');
+    data1moment = moment(data1, "DD/MM/YYYY");
+
+    //var diferenca = dataAtual(data1);
+
+    var hoje = new Date();
+    hoje = hoje.getDate() + "/" + (hoje.getMonth() + 1) + "/" + hoje.getFullYear();
+    hoje = moment(hoje, "DD/MM/YYYY");
+    var diaoumes = 0;
+    var diferenca = 0;
+    if (data1moment >= hoje) {
+        if (parseInt(data1["_i"].slice(3, 5)) == parseInt(hoje["_i"].slice(3, 5)) && parseInt(data1["_i"].slice(6)) == parseInt(hoje["_i"].slice(6))) {
+            diferenca = data1.diff(hoje, 'day');
+            diaoumes = 1;
+        }
+        else {
+            diferenca = data1.diff(hoje, 'month');
+            diaoumes = 2;
+        }
+    }
+    else {
+        alert("Data incorreta inserida");
+    }
+
+    if (diaoumes == 1) {
+        $("#total" + campodediferenca).val(diferenca + "Dias atras");
+    }
+    else {
+        $("#total" + campodediferenca).val(diferenca + "Meses atras");
+    }
+    //if (Math.sign(diferenca) == -1) {
+    //    $("#total" + campodediferenca).val(diferenca + "Dias atras");
+    //}
+});
+
+//function dataAtual(data1) {
+//    var hoje = new Date();
+//    hoje = hoje.getDate() + "/" + (data2.getMonth() + 1) + "/" + data2.getFullYear();
+//    hoje = moment(hoje, "DD/MM/YYYY");
+//    var diaoumes = 0;
+//    var diferenca = 0;
+//    if (data1 >= hoje) {
+//        if (parseInt(data1["_i"].slice(3, 5)) == parseInt(hoje["_i"].slice(3, 5)) && parseInt(data1["_i"].slice(6)) == parseInt(hoje["_i"].slice(6))) {
+//            diferenca = data1.diff(hoje, 'day');
+//            diaoumes = 1;    
+//        }
+//        else {
+//            diferenca = data1.diff(hoje, 'month');
+//            diaoumes = 2;
+//        }
+//    }
+//    else {
+//        alert("Data incorreta inserida");
+//    }
+//    return diferenca, diaoumes;
+//}
+
+
+
+
+// Teste de formatação para calculo de data 
+//function formatardata(string) {
+//    var ano = string.slice(0, 4);
+//    var mes = string.slice(5, 7);
+//    var dia = string.slice(8);
+//    var dataCerta = dia.concat("/", mes, "/", ano);
+//    return dataCerta;
+//}
 
 function CadastrarProfessorAtuacaoIesPublicacoes() {
     var professor = {};
