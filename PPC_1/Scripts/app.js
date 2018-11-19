@@ -569,7 +569,7 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
         success: function () {
-
+            alert("Salvo com sucesso! passe para a aba de Publicações");
         },
         erro: function (e) {
             console.log(e);

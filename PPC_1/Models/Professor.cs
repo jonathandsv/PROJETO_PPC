@@ -35,7 +35,7 @@ namespace PPC_1.Models
         public int ExperienciaEmCursoADistacia { get; set; }
         public int TempoExperienciaProfissional { get; set; }
         public int QtdeParticipacoesEventos { get; set; }
-        public int ArtigosPublicadosPeriodosCientikficosNaArea { get; set; }
+        public int ArtigosPublicadosPeriodosCientificosNaArea { get; set; }
         public int ArtigosPublicadosPeriodosCientificosOutrasAreas { get; set; }
         public int LivrosPublicadosNaArea { get; set; }
         public int LivrosPublicadosEmOutrasAreas { get; set; }
