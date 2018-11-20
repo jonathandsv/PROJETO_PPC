@@ -27,7 +27,7 @@
                     <div class="tab-pane active" id="tab1">
                                 <input type="hidden" id="idProf" />
                                 <div class="box-body">
-                                    <div class="form-group col-xs-12">
+                                    
                                         <div class="box box-primary">
                                                 <div class="box-body">
                                                     <div class="form-group col-xs-8">
@@ -59,7 +59,7 @@
                                                     </div>
                                                 </div>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             
                         </div>
@@ -72,7 +72,7 @@
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tab2_1">
-                                    <form role="form">
+                                    
                                         <div class="box-body">
                                             <div class="form-group col-xs-12">
                                                 <div class="box box-primary">
@@ -211,10 +211,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="tab-pane" id="tab2_2">
-                                    <form role="form">
+                                    
                                         <div class="box-body">
                                             <div class="form-group col-xs-12">
                                                 <div class="box box-primary">
@@ -255,6 +255,7 @@
                                                                 <div class="form-group col-xs-3">
                                                                     <label>Tempo Total</label>
                                                                     <input type="text" id="total1" class="form-control" readonly />
+                                                                    <input type="hidden" id="hiddentotal1" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group col-xs-6 borda">
@@ -276,7 +277,7 @@
                                                                 </div>
                                                                 <div class="form-group col-xs-3">
                                                                     <label>Data Inicial</label>
-                                                                    <input type="date" id="ExperienciaCursoDistancia" total="3" class="form-control calculardiferenca" />
+                                                                    <input type="datetime" id="ExperienciaCursoDistancia" total="3" class="form-control calculardiferenca" />
                                                                 </div>
                                                                 <div class="form-group col-xs-3">
                                                                     <label>Tempo Total</label>
@@ -289,7 +290,7 @@
                                                                 </div>
                                                                 <div class="form-group col-xs-3">
                                                                     <label>Data Inicial</label>
-                                                                    <input type="date" id="TempoExperienciaProfissional" total="4" class="form-control calculardiferenca" />
+                                                                    <input type="datetime" id="TempoExperienciaProfissional" total="4" class="form-control calculardiferenca" />
                                                                 </div>
                                                                 <div class="form-group col-xs-3">
                                                                     <label>Tempo Total</label>
@@ -301,29 +302,12 @@
                                                             <h4>Participação em Eventos</h4>
                                                         </div>
                                                         <div class="form-group col-xs-12">
-                                                            <input type="number" id="quantidade" class="form-group-lg col-xs-2" />
+                                                            <input type="number" id="QtdeParticipacoesEventos" class="form-group-lg col-xs-2" />
                                                             <label>Quantidade</label>
                                                         </div>
                                                         <div class="form-group col-xs-12 borda">
                                                             <h4 class="centro">Anexar Comprovantes: </h4>
-                                                            <table class="table table-condensed">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td>Itens</td>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>Item one</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Item two</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>Item tree</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
+                                                            <input type="file" id="arquivo" multiple/>
                                                         </div>
                                                         <div class="form-group col-xs-12">
                                                             <button class="btn btn-primary pull-right salvarProf" idcomando="3">Salvar</button>
@@ -332,10 +316,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="tab-pane" id="tab2_3">
-                                    <form role="form">
+                                    
                                         <div class="box-body">
                                             <div class="form-group col-xs-12">
                                                 <div class="box box-primary">
@@ -437,7 +421,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>

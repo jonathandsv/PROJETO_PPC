@@ -487,6 +487,7 @@ $(".salvarProf").click(function () {
 
 function CadastrarProfessorAtuacaoIesDadosPessoais() {
     var professor = {};
+    professor.Id = $("#idProf").val();
     professor.Nome = $("#Nome").val();
     professor.CPF = $("#CPF").val();
     professor.MaiorTitulacao = $("#MaiorTitulacao").val();
@@ -544,23 +545,23 @@ function CadastrarProfessorAtuacaoIesGeral() {
 
 function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
 
-    var TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
-    TempoDeVinculoIniterrupto = formatardata(TempoDeVinculoIniterrupto);
-    var TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
-    TempoMagisterioSuperior = formatardata(TempoMagisterioSuperior);
-    var ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
-    ExperienciaEmCursoADistacia = formatardata(ExperienciaEmCursoADistacia);
-    var TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
-    TempoExperienciaProfissional = formatardata(TempoExperienciaProfissional);
+    //var TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
+    //TempoDeVinculoIniterrupto = formatardata(TempoDeVinculoIniterrupto);
+    //var TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
+    //TempoMagisterioSuperior = formatardata(TempoMagisterioSuperior);
+    //var ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
+    //ExperienciaEmCursoADistacia = formatardata(ExperienciaEmCursoADistacia);
+    //var TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
+    //TempoExperienciaProfissional = formatardata(TempoExperienciaProfissional);
 
     var professor = {};
     professor.MembroNde = $("#MembroNde").val();
     professor.MembroColegiado = $("#MembroColegiado").val();
     professor.DocenteFormacao = $("#DocenteFormacao").val();
-    professor.TempoDeVinculoIniterrupto = TempoDeVinculoIniterrupto;
-    professor.TempoMagisterioSuperior = TempoMagisterioSuperior;
-    professor.ExperienciaEmCursoADistacia = ExperienciaEmCursoADistacia;
-    professor.TempoExperienciaProfissional = TempoExperienciaProfissional;
+    professor.TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();;
+    professor.TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
+    professor.ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();;
+    professor.TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
     professor.QtdeParticipacoesEventos = $("#QtdeParticipacoesEventos").val();
 
     $.ajax({
@@ -569,7 +570,7 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
         success: function () {
-
+            alert("Cadastro realizado");
         },
         erro: function (e) {
             console.log(e);
@@ -590,14 +591,12 @@ $(".calculardiferenca").change(function () {
     var hoje = new Date();
     hojemoment = hoje.getDate() + "/" + (hoje.getMonth() + 1) + "/" + hoje.getFullYear();
     hojemoment = moment(hojemoment, "DD/MM/YYYY");
-    var diaoumes = 0;
     var diferenca = 0;
     if (data1.getDate() + (data1.getMonth() + 1) + data1.getFullYear() <= hoje.getDate() + (hoje.getMonth() + 1) + hoje.getFullYear()) {
         if (data1.getMonth() == hoje.getMonth() && data1.getFullYear() == hoje.getFullYear()) {
             diferenca = data1moment.diff(hojemoment, 'day');
             diaoumes = 1;
             $("#total" + campodediferenca).val(diferenca + " Dias atras");
-
         }
         else {
             diferenca = data1moment.diff(hojemoment, 'month');
