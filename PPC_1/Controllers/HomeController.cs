@@ -401,11 +401,9 @@ namespace PPC_1.Controllers
             PPCDB pPCDB = new PPCDB();
 
             var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
+            Professor professorB = new Professor();
 
-
-
-
-
+            professorB = pPCDB.InserirProfessorIesAtuacaoProfissional(ProfessorConvertido);
             return (null);
         }
 

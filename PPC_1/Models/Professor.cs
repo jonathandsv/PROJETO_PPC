@@ -30,10 +30,10 @@ namespace PPC_1.Models
         public bool MembroNde { get; set; }
         public bool MembroColegiado { get; set; }
         public bool DocenteFormacao { get; set; }
-        public int TempoDeVinculoIniterrupto { get; set; }
-        public int TempoMagisterioSuperior { get; set; }
-        public int ExperienciaEmCursoADistacia { get; set; }
-        public int TempoExperienciaProfissional { get; set; }
+        public string TempoDeVinculoIniterrupto { get; set; }
+        public string TempoMagisterioSuperior { get; set; }
+        public string ExperienciaEmCursoADistacia { get; set; }
+        public string TempoExperienciaProfissional { get; set; }
         public int QtdeParticipacoesEventos { get; set; }
         public int ArtigosPublicadosPeriodosCientificosNaArea { get; set; }
         public int ArtigosPublicadosPeriodosCientificosOutrasAreas { get; set; }

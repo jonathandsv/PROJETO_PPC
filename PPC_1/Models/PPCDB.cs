@@ -1192,13 +1192,68 @@ namespace PPC_1.Models
             }
         }
 
+        public Professor InserirProfessorIesAtuacaoProfissional(Professor professor)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string inserirValores = @"INSERT INTO ATUACAO_PROFISSIONAL (MEMBRO_NDE, 
+                                                                        MEMBRO_COLEGIADO, 
+                                                                        DOCENTE_FORMACAO,      
+                                                                        TEMPO_VINCULO, 
+                                                                        TEMPO_MAGISTERIO_SUPERIOR,
+                                                                        TEMPO_EXPERIENCIA_CURSO_DISTANCIA,   
+                                                                        TEMPO_EXPERIENCIA_PROFISSIONAL, 
+                                                                        PARTICIPACAO_EVENTOS, 
+                                                                        ID_USUARIO) 
+                                                                    VALUES (@MEMBRO_NDE, 
+                                                                            @MEMBRO_COLEGIADO, 
+                                                                            @DOCENTE_FORMACAO, 
+                                                                            @TEMPO_VINCULO,
+                                                                            @TEMPO_MAGISTERIO_SUPERIOR,
+                                                                            @TEMPO_EXPERIENCIA_CURSO_DISTANCIA, 
+                                                                            @TEMPO_EXPERIENCIA_PROFISSIONAL, 
+                                                                            @PARTICIPACAO_EVENTOS, 
+                                                                            @ID_USUARIO)";
+
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@MEMBRO_NDE", SqlDbType.Bit).Value = professor.MembroNde;
+                        comm.Parameters.Add("@MEMBRO_COLEGIADO", SqlDbType.Bit).Value = professor.MembroColegiado;
+                        comm.Parameters.Add("@DOCENTE_FORMACAO", SqlDbType.Bit).Value = professor.DocenteFormacao;
+                        comm.Parameters.Add("@TEMPO_VINCULO", SqlDbType.VarChar).Value = professor.TempoDeVinculoIniterrupto;
+                        comm.Parameters.Add("@TEMPO_MAGISTERIO_SUPERIOR", SqlDbType.VarChar).Value = professor.TempoMagisterioSuperior;
+                        comm.Parameters.Add("@TEMPO_EXPERIENCIA_CURSO_DISTANCIA", SqlDbType.VarChar).Value = professor.ExperienciaEmCursoADistacia;
+                        comm.Parameters.Add("@TEMPO_EXPERIENCIA_PROFISSIONAL", SqlDbType.VarChar).Value = professor.TempoExperienciaProfissional;
+                        comm.Parameters.Add("@PARTICIPACAO_EVENTOS", SqlDbType.Int).Value = professor.QtdeParticipacoesEventos;
+                        comm.Parameters.Add("@ID_USUARIO", SqlDbType.Int).Value = professor.Id;
+
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return (null);
+        }
+
         public Professor InserirProfessorIesPublicacoes(Professor professor)
         {
             try
             {
                 string conexao = ConexaoBanco();
 
-                string inserirValores = @"INSERT INTO ATUACAO_IES_GERAL (ARTIGOS_PUB_AREA, 
+                string inserirValores = @"INSERT INTO PUBLICACOES_PROF (ARTIGOS_PUB_AREA, 
                                                                         ARTIGOS_PUB_OUTRAS_AREAS, 
                                                                         LIVROS_PUB_AREA,      
                                                                         LIVROS_PUB_OUTRAS_AREAS, 
@@ -1247,6 +1302,7 @@ namespace PPC_1.Models
                         sqlConn.Close();
                     }
                 }
+            }
             catch (Exception ex)
             {
 

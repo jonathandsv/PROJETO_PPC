@@ -22,7 +22,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Cadastrar Cursos</h3>
                 </div>
-                <form role="form" action="/Home/NovoCurso" method="post">
+                <form role="form" action="/Home/NovoCurso" method="post" name="novocurso">
                     <div class="box-body">
                         <div class="form-group col-xs-6">
                             <label>Tipo do Curso</label>
@@ -82,20 +82,16 @@
                         </div>
                         @Html.HiddenFor(x => x.CoordenadorCurso, new { type = "hidden", id = "preencheautoid"})
                         <div class="form-group col-xs-2">
-                            <button class="form-control btn btn-info">+ Coordenador</button>
+                            <button class="form-control btn btn-info" disabled>+ Coordenador</button>
                         </div>
                         <div class="form-group col-xs-5">
                             <label>CPF</label>
                             <input type="number" class="form-control" id="preencheautoCpf" readonly />
                         </div>
-                        <div class="form-group col-xs-7">
-                            <label>Titulação</label>
-                            <input type="text" class="form-control" id="preencheautoMTitulacao" readonly />
-                        </div>
                         <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-primary pull-right espaco">Salvar</button>
-                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
-                            <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
+                            <button type="submit" class="btn btn-primary pull-right espaco" name="salvar">Salvar</button>
+                            <button class="btn btn-warning pull-right espaco" name="cancelar">Cancelar</button>
+                            <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco" name="voltar">Voltar</button>
                         </div>
                     </div>
                 </form>
