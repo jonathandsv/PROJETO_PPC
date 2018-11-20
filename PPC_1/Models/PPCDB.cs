@@ -1192,6 +1192,69 @@ namespace PPC_1.Models
             }
         }
 
+        public Professor InserirProfessorIesPublicacoes(Professor professor)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string inserirValores = @"INSERT INTO ATUACAO_IES_GERAL (ARTIGOS_PUB_AREA, 
+                                                                        ARTIGOS_PUB_OUTRAS_AREAS, 
+                                                                        LIVROS_PUB_AREA,      
+                                                                        LIVROS_PUB_OUTRAS_AREAS, 
+                                                                        TRABALHOS_PUB_COMPLETOS,   
+                                                                        TRABALHOS_PUB_RESUMOS, 
+                                                                        PROPRIEDADE_INTELECTUAL_DEPOSITADO, 
+                                                                        PROPRIEDADE_INTELECTUAL_REGISTRADO,
+                                                                        TRADUCOES_LIVROS,
+                                                                        PROJETOS_TECNICOS_ARTISTICOS,
+                                                                        PRODUCAO_DIDATICO_PEDAGOGICO,
+                                                                        ID_USUARIO) 
+                                                                    VALUES (@ARTIGOS_PUB_AREA, 
+                                                                            @ARTIGOS_PUB_OUTRAS_AREAS, 
+                                                                            @LIVROS_PUB_AREA, 
+                                                                            @LIVROS_PUB_OUTRAS_AREAS, 
+                                                                            @TRABALHOS_PUB_COMPLETOS, 
+                                                                            @TRABALHOS_PUB_RESUMOS, 
+                                                                            @PROPRIEDADE_INTELECTUAL_DEPOSITADO, 
+                                                                            @PROPRIEDADE_INTELECTUAL_REGISTRADO,
+                                                                            @TRADUCOES_LIVROS,
+                                                                            @PROJETOS_TECNICOS_ARTISTICOS,
+                                                                            @PRODUCAO_DIDATICO_PEDAGOGICO,
+                                                                            @ID_USUARIO)";
+
+
+                using (SqlConnection sqlConn = new SqlConnection(conexao))
+                {
+                    using (SqlCommand comm = new SqlCommand(inserirValores, sqlConn))
+                    {
+                        comm.Parameters.Add("@ARTIGOS_PUB_AREA", SqlDbType.Int).Value = professor.ArtigosPublicadosPeriodosCientificosNaArea;
+                        comm.Parameters.Add("@ARTIGOS_PUB_OUTRAS_AREAS", SqlDbType.Int).Value = professor.ArtigosPublicadosPeriodosCientificosOutrasAreas;
+                        comm.Parameters.Add("@LIVROS_PUB_AREA", SqlDbType.Int).Value = professor.LivrosPublicadosNaArea;
+                        comm.Parameters.Add("@LIVROS_PUB_OUTRAS_AREAS", SqlDbType.Int).Value = professor.LivrosPublicadosEmOutrasAreas;
+                        comm.Parameters.Add("@TRABALHOS_PUB_COMPLETOS", SqlDbType.Int).Value = professor.TrabalhosCompletosPublicadosAnuaisNaArea;
+                        comm.Parameters.Add("@TRABALHOS_PUB_RESUMOS", SqlDbType.Int).Value = professor.TrabalhosResumosPublicadosAnuaisNaArea;
+                        comm.Parameters.Add("@PROPRIEDADE_INTELECTUAL_DEPOSITADO", SqlDbType.Int).Value = professor.PropriedadeintelectualDepositado;
+                        comm.Parameters.Add("@PROPRIEDADE_INTELECTUAL_REGISTRADO", SqlDbType.Int).Value = professor.PropriedadeIntelectualRegistrado;
+                        comm.Parameters.Add("@TRADUCOES_LIVROS", SqlDbType.Int).Value = professor.TraducaoDeLivrosCapitulosArtigosPublicados;
+                        comm.Parameters.Add("@PROJETOS_TECNICOS_ARTISTICOS", SqlDbType.Int).Value = professor.ProjetosProducoesTecnicosArtisticosCulturais;
+                        comm.Parameters.Add("@PRODUCAO_DIDATICO_PEDAGOGICO", SqlDbType.Int).Value = professor.ProducaoDidaticoPedagogicoRelevante;
+                        comm.Parameters.Add("@ID_USUARIO", SqlDbType.Int).Value = professor.Id;
+
+
+                        sqlConn.Open();
+                        comm.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return (null);
+        }
+
 
         //fim
     }

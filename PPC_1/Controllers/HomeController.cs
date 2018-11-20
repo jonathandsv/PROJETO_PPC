@@ -408,5 +408,18 @@ namespace PPC_1.Controllers
 
             return (null);
         }
+
+        public JsonResult CadastrarProfessorAtuacaoIesPublicacoes(string professor)
+        {
+            PPCDB pPCDB = new PPCDB();
+
+            var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
+
+            Professor professorB = new Professor();
+
+            professorB = pPCDB.InserirProfessorIesPublicacoes(ProfessorConvertido);
+
+            return (null);
+        }
     }
 }
