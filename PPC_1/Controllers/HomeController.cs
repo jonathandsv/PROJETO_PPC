@@ -13,7 +13,14 @@ namespace PPC_1.Controllers
         //Chamada de páginas
         public ActionResult Index()
         {
-            return View();
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult Cadastro_de_Curso()
@@ -136,8 +143,36 @@ namespace PPC_1.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
         //Fim da chamada de páginas 
+        [HttpPost]
+        public ActionResult Login(Usuario usuario)
+        {
+            PPCDB pPCDB = new PPCDB();
 
+            if (usuario != null)
+            {
+                var v = pPCDB.GetUsuario(usuario.Nome);
+                if (v.Nome == usuario.Nome && v.Senha == usuario.Senha)
+                {
+                    Session["usuarioLogadoID"] = v.Id.ToString();
+                    Session["nomeUsuarioLogado"] = v.Nome.ToString();
+                    return RedirectToAction("Index");
+                }
+            }
+            return View(usuario);
+        }
+
+        public ActionResult Logoff()
+        {
+            Session.Remove("usuarioLogadoID");
+            Session.Remove("nomeUsuarioLogado");
+
+            return RedirectToAction("Login");
+        }
         public ActionResult NovoCurso(Curso curso)
         {
             PPCDB pPCDB = new PPCDB();

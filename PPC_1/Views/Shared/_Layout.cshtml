@@ -53,15 +53,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-circle text-success"></i>
-                                <span class="hidden-xs">Coordenador</span>
+                                <span class="hidden-xs">@Session["nomeUsuarioLogado"]</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="~/Content/img/CO.PNG" class="img-circle" alt="User Image">
+                                    <img src="~/Content/img/perfiluser.jpg" class="img-circle" alt="User Image">
 
                                     <p>
-                                        Coordenador 
+                                        @Session["nomeUsuarioLogado"]
                                     </p>
                                 </li>
                                 <li class="user-footer">
@@ -69,7 +69,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                        <a href="/Home/Logoff" class="btn btn-default btn-flat">Sair</a>
                                     </div>
                                 </li>
                             </ul>
@@ -86,25 +86,13 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="~/Content/img/CO.PNG" class="img-circle" alt="User Image">
+                        <img src="~/Content/img/perfiluser.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Coordenador</p>
+                        <p>@Session["nomeUsuarioLogado"]</p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Pesquisar...">
-                        <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU DE NAVEGAÇÃO</li>

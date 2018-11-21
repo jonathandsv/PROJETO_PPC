@@ -1311,6 +1311,53 @@ namespace PPC_1.Models
             return (null);
         }
 
+        public Usuario GetUsuario(string nome)
+        {
+            try
+            {
+                try
+                {
+                    string conexao = ConexaoBanco();
+
+                    string stringBuscar = @"SELECT * FROM USUARIOS WHERE NOME_USUARIO = @NOME";
+
+                    SqlConnection sqlConn = new SqlConnection(conexao);
+
+                    sqlConn.Open();
+
+                    Usuario usuario = new Usuario();
+
+                    using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                    {
+                        leitor.Parameters.Add("@NOME", SqlDbType.VarChar).Value = nome;
+                        SqlDataReader dr = leitor.ExecuteReader();
+
+                        while (dr.Read())
+                        {
+                            usuario.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                            usuario.Nome = dr["NOME_USUARIO"].ToString();
+                            usuario.CPF = dr["CPF"].ToString();
+                            usuario.IdPerfil = Convert.ToInt32(dr["ID_PERFIL"]);
+                            usuario.Senha = dr["SENHA"].ToString();
+                        }
+                    }
+
+                    return (usuario);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
         //fim
     }
