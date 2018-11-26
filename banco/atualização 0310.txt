@@ -12,3 +12,9 @@ Adição do autoincremente para a coluna id_disciplina e null para a coluna id_c
 
 Adição de novo relacionamento entre as tabelas de CURSOS E DISCIPLINAS. CURSOS_DISCIPLINAS  com as seguintes colunas: ID, ID_CURSO(FK DE ID_CURSO), ID_DISCIPLINA(FK DE ID_DISCIPLINA)
 
+
+______________________________________________________________________________
+
+ATUALIZAÇÕES 26/11
+
+INCLUINDO COLUNA DE ID_USUARIO NAS TABELAS ATUACAO, MUDANDO VALOR DE TEMPO VINCULO E AFINS PARA VARCHAR 50
