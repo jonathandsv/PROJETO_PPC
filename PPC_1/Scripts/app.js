@@ -487,7 +487,6 @@ $(".salvarProf").click(function () {
 
 function CadastrarProfessorAtuacaoIesDadosPessoais() {
     var professor = {};
-    professor.Id = $("#idProf").val();
     professor.Nome = $("#Nome").val();
     professor.CPF = $("#CPF").val();
     professor.MaiorTitulacao = $("#MaiorTitulacao").val();
@@ -555,12 +554,13 @@ function CadastrarProfessorAtuacaoIesAtuacaoProfissional() {
     //TempoExperienciaProfissional = formatardata(TempoExperienciaProfissional);
 
     var professor = {};
-    professor.MembroNde = $("#MembroNde").val();
-    professor.MembroColegiado = $("#MembroColegiado").val();
-    professor.DocenteFormacao = $("#DocenteFormacao").val();
-    professor.TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();;
-    professor.TempoMagisterioSuperior = $("#TempoMagisterioSuperior").val();
-    professor.ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();;
+    professor.Id = $("#idProf").val();
+    professor.MembroNde = $("#MembroNde").prop('checked');
+    professor.MembroColegiado = $("#MembroColegiado").prop('checked');
+    professor.DocenteFormacao = $("#DocenteFormacao").prop('checked');
+    professor.TempoDeVinculoIniterrupto = $("#TempoDeVinculoIniterrupto").val();
+    professor.TempoMagisterioSuperior = $("#TempoExperienciaMagisterioSuperior").val();
+    professor.ExperienciaEmCursoADistacia = $("#ExperienciaEmCursoADistacia").val();
     professor.TempoExperienciaProfissional = $("#TempoExperienciaProfissional").val();
     professor.QtdeParticipacoesEventos = $("#QtdeParticipacoesEventos").val();
 
@@ -655,6 +655,7 @@ $(".calculardiferenca").change(function () {
 
 function CadastrarProfessorAtuacaoIesPublicacoes() {
     var professor = {};
+    professor.Id = $("#idProf").val();
     professor.ArtigosPublicadosPeriodosCientificosNaArea = $("#ArtigosPublicadosPeriodosCientificosNaArea").val();
     professor.ArtigosPublicadosPeriodosCientificosOutrasAreas = $("#ArtigosPublicadosPeriodosCientificosOutrasAreas").val();
     professor.LivrosPublicadosNaArea = $("#LivrosPrublicadosNaArea").val();
@@ -672,8 +673,8 @@ function CadastrarProfessorAtuacaoIesPublicacoes() {
         url: 'CadastrarProfessorAtuacaoIesPublicacoes',
         dataType: 'json',
         data: { professor: JSON.stringify(professor) },
-        success: function (e) {
-
+        success: function () {
+            alert("Cadastro de Finalizado com sucesso!");
         },
         erro: function (e) {
             console.log(e);
@@ -739,4 +740,50 @@ function BuscarVinculoDisciplinaProfessor(idC, idD) {
         },
     });
 }
+
+$(".CarregarProfessor").click(function () {
+    var id = $(this).attr('iddoprofessor');
+    $.ajax({
+        type: 'POST',
+        url: 'GetProfessor',
+        dataType: 'json',
+        data: { id: id },
+        success: function (retorno) {
+            $("#TipoDeCurso").val(retorno.TipoDeCurso);
+            $("#TipoDeCurso").prop('readonly', 'readonly');
+            $("#Modalidade").val(retorno.Modalidade);
+            $("#Modalidade").prop('readonly', 'readonly');
+            $("#Denominacao").val(retorno.DenominacaoCurso);
+            $("#Denominacao").prop('readonly', 'readonly');
+            $("#Habilitacao").val(retorno.Habilitacao);
+            $("#Habilitacao").prop('readonly', 'readonly');
+            $("#LocalOferta").val(retorno.LocalDeOferta);
+            $("#LocalOferta").prop('readonly', 'readonly');
+            $("#TurnosDeFuncionamento").val(retorno.TurnosDeFuncionamento);
+            $("#TurnosDeFuncionamento").prop('readonly', 'readonly');
+            $("#NumeroDeVagas").val(retorno.NumerosDeVagasCadaTurno);
+            $("#NumeroDeVagas").prop('readonly', 'readonly');
+            $("#CargaHorariaDoCurso").val(retorno.CargaHorariaDoCurso);
+            $("#CargaHorariaDoCurso").prop('readonly', 'readonly');
+            $("#RegimeLetivo").val(retorno.RegimeLetivo);
+            $("#RegimeLetivo").prop('readonly', 'readonly');
+            $("#Periodos").val(retorno.Periodos);
+            $("#Periodos").prop('readonly', 'readonly');
+            $("#Id_Curso").val(retorno.Id);
+
+            $("#salvar").prop('disabled', 'disabled');
+            $("#selecaoDeCoordenador").prop('disabled', 'disabled');
+
+            var id = retorno.CoordenadorCurso;
+            buscarCoordenadorIni(id);
+
+            mostrarTabela();
+        },
+        erro: function (e) {
+            console.log(e);
+        }
+
+
+    });
+})
 

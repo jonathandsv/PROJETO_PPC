@@ -1202,7 +1202,7 @@ namespace PPC_1.Models
                                                                         MEMBRO_COLEGIADO, 
                                                                         DOCENTE_FORMACAO,      
                                                                         TEMPO_VINCULO, 
-                                                                        TEMPO_MAGISTERIO_SUPERIOR,
+                                                                        TEMPO_MAGISTERIO,
                                                                         TEMPO_EXPERIENCIA_CURSO_DISTANCIA,   
                                                                         TEMPO_EXPERIENCIA_PROFISSIONAL, 
                                                                         PARTICIPACAO_EVENTOS, 
@@ -1211,7 +1211,7 @@ namespace PPC_1.Models
                                                                             @MEMBRO_COLEGIADO, 
                                                                             @DOCENTE_FORMACAO, 
                                                                             @TEMPO_VINCULO,
-                                                                            @TEMPO_MAGISTERIO_SUPERIOR,
+                                                                            @TEMPO_MAGISTERIO,
                                                                             @TEMPO_EXPERIENCIA_CURSO_DISTANCIA, 
                                                                             @TEMPO_EXPERIENCIA_PROFISSIONAL, 
                                                                             @PARTICIPACAO_EVENTOS, 
@@ -1226,7 +1226,7 @@ namespace PPC_1.Models
                         comm.Parameters.Add("@MEMBRO_COLEGIADO", SqlDbType.Bit).Value = professor.MembroColegiado;
                         comm.Parameters.Add("@DOCENTE_FORMACAO", SqlDbType.Bit).Value = professor.DocenteFormacao;
                         comm.Parameters.Add("@TEMPO_VINCULO", SqlDbType.VarChar).Value = professor.TempoDeVinculoIniterrupto;
-                        comm.Parameters.Add("@TEMPO_MAGISTERIO_SUPERIOR", SqlDbType.VarChar).Value = professor.TempoMagisterioSuperior;
+                        comm.Parameters.Add("@TEMPO_MAGISTERIO", SqlDbType.VarChar).Value = professor.TempoMagisterioSuperior;
                         comm.Parameters.Add("@TEMPO_EXPERIENCIA_CURSO_DISTANCIA", SqlDbType.VarChar).Value = professor.ExperienciaEmCursoADistacia;
                         comm.Parameters.Add("@TEMPO_EXPERIENCIA_PROFISSIONAL", SqlDbType.VarChar).Value = professor.TempoExperienciaProfissional;
                         comm.Parameters.Add("@PARTICIPACAO_EVENTOS", SqlDbType.Int).Value = professor.QtdeParticipacoesEventos;
@@ -1315,41 +1315,172 @@ namespace PPC_1.Models
         {
             try
             {
-                try
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM USUARIOS WHERE NOME_USUARIO = @NOME";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Usuario usuario = new Usuario();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
                 {
-                    string conexao = ConexaoBanco();
+                    leitor.Parameters.Add("@NOME", SqlDbType.VarChar).Value = nome;
+                    SqlDataReader dr = leitor.ExecuteReader();
 
-                    string stringBuscar = @"SELECT * FROM USUARIOS WHERE NOME_USUARIO = @NOME";
-
-                    SqlConnection sqlConn = new SqlConnection(conexao);
-
-                    sqlConn.Open();
-
-                    Usuario usuario = new Usuario();
-
-                    using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                    while (dr.Read())
                     {
-                        leitor.Parameters.Add("@NOME", SqlDbType.VarChar).Value = nome;
-                        SqlDataReader dr = leitor.ExecuteReader();
+                        usuario.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                        usuario.Nome = dr["NOME_USUARIO"].ToString();
+                        usuario.CPF = dr["CPF"].ToString();
+                        usuario.IdPerfil = Convert.ToInt32(dr["ID_PERFIL"]);
+                        usuario.Senha = dr["SENHA"].ToString();
+                    }
+                }
 
-                        while (dr.Read())
-                        {
-                            usuario.Id = Convert.ToInt32(dr["ID_USUARIO"]);
-                            usuario.Nome = dr["NOME_USUARIO"].ToString();
-                            usuario.CPF = dr["CPF"].ToString();
-                            usuario.IdPerfil = Convert.ToInt32(dr["ID_PERFIL"]);
-                            usuario.Senha = dr["SENHA"].ToString();
-                        }
+                return (usuario);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<Professor> GetProfessores()
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM USUARIOS WHERE ID_PERFIL = 2";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                List<Professor> professores = new List<Professor>();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Professor professor = new Professor();
+                        professor.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                        professor.Nome = dr["NOME_USUARIO"].ToString();
+                        professor.CPF = dr["CPF"].ToString();
+                        professores.Add(professor);
+                    }
+                }
+
+                return (professores);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public Professor GetProfessor(int id)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM USUARIOS WHERE ID_USUARIO = @ID";
+                string stringBuscarIesGeral = @"SELECT * FROM ATUACAO_IES_GERAL WHERE ID_USUARIO = @ID_USUARIO";
+                string stringBuscarAtuacaoProfissional = @"SELECT * FROM ATUACAO_PROFISSIONAL WHERE ID_USUARIO = @ID_USUARIO";
+                string stringBuscarPublicacoesProf = @"SELECT * FROM PUBLICACOES_PROF WHERE ID_USUARIO = @ID_USUARIO";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Professor professor = new Professor();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@ID", SqlDbType.VarChar).Value = id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        professor.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                        professor.Nome = dr["NOME_USUARIO"].ToString();
+                        professor.CPF = dr["CPF"].ToString();
+                        professor.MaiorTitulacao = dr["MAIOR_TITULACAO"].ToString();
+                        professor.AreaFormacao = dr["AREA_FORMACAO"].ToString();
+                        professor.CurriculoLattos = dr["CURRICULO"].ToString();
+                        professor.DataAtualizacao = Convert.ToDateTime(dr["DATA_ATUALIZACAO_CURRICULO"]);
                     }
 
-                    return (usuario);
-
                 }
-                catch (Exception ex)
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscarIesGeral, sqlConn))
                 {
+                    leitor.Parameters.Add("@ID_USUARIO", SqlDbType.VarChar).Value = professor.Id;
+                    SqlDataReader dr = leitor.ExecuteReader();
 
-                    throw ex;
+                    while (dr.Read())
+                    {
+                        professor.Matricula = Convert.ToInt32(dr["MATRICULA"]);
+                        professor.DataAdmissao = Convert.ToDateTime(dr["DATA_ADMISSAO"]);
+                        professor.HorasNde = Convert.ToInt32(dr["HORAS_NDE"]);
+                        professor.OrientacaoTcc = Convert.ToInt32(dr["ORIENTACAO_TCC"]);
+                        professor.AtividadesExtraClasseNoCurso = Convert.ToInt32(dr["ATIVIDADE_EXTRA_CLASSE_CURSO"]);
+                        professor.CoordenacaoCurso = Convert.ToInt32(dr["COORDENACAO_CURSO"]);
+                        professor.CoordenacaoOutrosCursos = Convert.ToInt32(dr["COORDENACAO_OUTROS_CURSOS"]);
+                        professor.QtdeHorasCurso = Convert.ToInt32(dr["QTDE_HORAS_CURSO"]);
+                        professor.QtdeHorasOutrosCursos = Convert.ToInt32(dr["QTDE_HORAS_OUTROS_CURSOS"]);
+                        professor.Pesquisa = Convert.ToInt32(dr["PESQUISA"]);
+                    }
                 }
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscarAtuacaoProfissional, sqlConn))
+                {
+                    leitor.Parameters.Add("@ID_USUARIO", SqlDbType.VarChar).Value = professor.Id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        professor.MembroColegiado = Convert.ToBoolean(dr["MEMBRO_COLEGIADO"]);
+                        professor.DocenteFormacao = Convert.ToBoolean(dr["DOCENTE_FORMACAO"]);
+                        professor.TempoDeVinculoIniterrupto = dr["TEMPO_VINCULO"].ToString();
+                        professor.TempoMagisterioSuperior = dr["TEMPO_MAGISTERIO"].ToString();
+                        professor.ExperienciaEmCursoADistacia = dr["TEMPO_EXPERIENCIA_CURSO_DISTANCIA"].ToString();
+                        professor.TempoExperienciaProfissional = dr["TEMPO_EXPERIENCIA_PROFISSIONAL"].ToString();
+                        professor.QtdeParticipacoesEventos = Convert.ToInt32(dr["PARTICIPACAO_EVENTOS"]);
+                    }
+                }
+
+                using(SqlCommand leitor = new SqlCommand(stringBuscarPublicacoesProf, sqlConn))
+                {
+                    leitor.Parameters.Add("@ID_USUARIO", SqlDbType.VarChar).Value = professor.Id;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        professor.ArtigosPublicadosPeriodosCientificosNaArea = Convert.ToInt32(dr["ARTIGOS_PUB_AREA"]);
+                        professor.ArtigosPublicadosPeriodosCientificosOutrasAreas = Convert.ToInt32(dr["ARTIGOS_PUB_OUTRAS_AREAS"]);
+                        professor.LivrosPublicadosNaArea = Convert.ToInt32(dr["LIVROS_PUB_OUTRAS_AREAS"]);
+                        professor.TrabalhosCompletosPublicadosAnuaisNaArea = Convert.ToInt32(dr["TRABALHOS_PUB_COMPLETOS"]);
+                        professor.TrabalhosResumosPublicadosAnuaisNaArea = Convert.ToInt32(dr["TRABALHOS_PUB_RESUMOS"]);
+                        professor.PropriedadeintelectualDepositado = Convert.ToInt32(dr["PROPRIEDADE_INTELECTUAL_DEPOSITADO"]);
+                        professor.PropriedadeIntelectualRegistrado = Convert.ToInt32(dr["PROPRIEDADE_INTELECTUAL_REGISTRADO"]);
+                        professor.TraducaoDeLivrosCapitulosArtigosPublicados = Convert.ToInt32(dr["TRADUCOES_LIVROS"]);
+                        professor.ProjetosProducoesTecnicosArtisticosCulturais = Convert.ToInt32(dr["PROJETOS_TECNICOS_ARTISTICOS"]);
+                        professor.ProducaoDidaticoPedagogicoRelevante = Convert.ToInt32(dr["PRODUCAO_DIDATICO_PEDAGOGICO"]);
+                    }
+                }
+
+                return (professor);
             }
             catch (Exception ex)
             {

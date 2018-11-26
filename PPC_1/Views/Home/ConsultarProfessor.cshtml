@@ -25,44 +25,30 @@
                                 <th></th>
                                 <th>ID Professor</th>
                                 <th>Nome</th>
-                                <th>Denominação</th>
+                                <th>CPF</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a onclick="mostrarTabela()" class="btn btn-primary">Abrir</a></td>
-                                <td>Trident</td>
-                                <td>
-                                    Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
-                                    <a href="#" class="btn btn-warning">Editar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="btn btn-primary">Abrir</a></td>
-                                <td>Trident</td>
-                                <td>
-                                    Internet
-                                    Explorer 5.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger">Excluir</a>
-                                    <a href="#" class="btn btn-warning">Editar</a>
-                                </td>
-                            </tr>
+                            @foreach (var item in ViewBag.ListaDeProfessores)
+                            {
+                                <tr>
+                                    <td><button iddoprofessor="@item.Id" class="btn btn-primary CarregarProfessor" id="listaDeProfessor">Abrir</button></td>
+                                    <td>@item.Id</td>
+                                    <td>@item.Nome</td>
+                                    <td>@item.CPF</td>
+                                    <td>
+                                        <a href="/Home/excluirCurso?id=@item.Id" class="btn btn-danger">Excluir</a>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th>ID PPC</th>
-                                <th>Curso</th>
-                                <th>Perfil do Curso</th>
+                                <th>ID Professor</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
                                 <th>Opções</th>
                             </tr>
                         </tfoot>
@@ -76,91 +62,394 @@
 <section id="tabelaescondida" class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Todos os Cursos</h3>
-                </div>
-                <form role="form">
-                    <div class="box-body">
-                        <div class="form-group col-xs-6">
-                            <label>Tipo do Curso</label>
-                            <input type="text" class="form-control" placeholder="Tipo ..." />
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab" aria-expanded="true">Dados Pessoais</a></li>
+                    <li><a href="#tab2" data-toggle="tab" aria-expanded="true">Atuação IES</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <input type="hidden" id="idProf" />
+                        <div class="box-body">
+
+                            <div class="box box-primary">
+                                <div class="box-body">
+                                    <div class="form-group col-xs-8">
+                                        <label>Nome: </label>
+                                        <input type="text" class="form-control" id="Nome" placeholder="Nome ..." />
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <label>CPF: </label>
+                                        <input type="text" class="form-control" id="CPF" placeholder="CPF ..." />
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label>Maior Titulação</label>
+                                        <input type="text" class="form-control" id="MaiorTitulacao" placeholder="Maior Titulação ..." />
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label>Área de Formação</label>
+                                        <input type="text" class="form-control" id="AreaFormacao" placeholder="Área de Formação" />
+                                    </div>
+                                    <div class="form-group col-xs-8">
+                                        <label>Curriculo Lattos (link)</label>
+                                        <input type="text" class="form-control" id="CurriculoLattos" placeholder="Curriculo Lattos" />
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <label>Data de Atualização</label>
+                                        <input type="date" class="form-control" id="DataAtualizacao" placeholder="Data de atualização ..." />
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <button class="btn btn-primary pull-right salvarProf" idcomando="1">Cadastrar</button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="form-group col-xs-6 pull-right">
-                            <label>Modalidade:</label>
-                            <input type="text" class="form-control" placeholder="Modalidade ..." />
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label>Denominação do Curso:</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Habilitação:</label>
-                            <input type="text" class="form-control" placeholder="Habilitação ..." />
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Local de Oferta:</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Turnos de Funcionamento:</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Números de vagas para cada turno:</label>
-                            <input type="number" class="form-control" />
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label>Carga Horária do Curso</label>
-                            <input type="number" class="form-control-static" maxlength="10" />
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <h4>Estrutura Curricular</h4>
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Regime Letivo:</label>
-                            <input type="text" class="form-control" />
-                        </div>
-                        <div class="form-group col-xs-6">
-                            <label>Periodos:</label>
-                            <input class="form-control" placeholder="Texto ..." />
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <h4>Coordenador do Curso</h4>
-                        </div>
-                        <div class="form-group col-xs-10">
-                            <label>Nome</label>
-                            <select class="form-control">
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                                <option>NOME1</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-xs-2">
-                            <a class="form-control btn btn-info">Cadastrar novo Coordenador</a>
-                        </div>
-                        <div class="form-group col-xs-5">
-                            <label>CPF</label>
-                            <input type="number" class="form-control" readonly />
-                        </div>
-                        <div class="form-group col-xs-7">
-                            <label>Titulação</label>
-                            <input type="text" class="form-control" readonly />
-                        </div>
-                        <div class="form-group col-xs-5">
-                            <label>Tempo de Dedicação</label>
-                            <input type="text" class="form-control" readonly />
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <button class="btn btn-primary pull-right espaco">Salvar</button>
-                            <button class="btn btn-warning pull-right espaco">Cancelar</button>
-                            <button onclick="AdicionarReadonly()" class="btn btn-warning pull-right espaco">Alterar</button>
-                            <button href="/Home/ConsultarCurso" class="btn btn-info pull-right espaco">Voltar</button>
+
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="nav-tabs-custom ">
+                            <ul class="nav nav-tabs ">
+                                <li class="active"><a href="#tab2_1" data-toggle="tab" aria-expanded="true">Geral</a></li>
+                                <li><a href="#tab2_2" data-toggle="tab" aria-expanded="true">Atuação Profissional</a></li>
+                                <li><a href="#tab2_3" data-toggle="tab" aria-expanded="true">Publicações</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab2_1">
+
+                                    <div class="box-body">
+                                        <div class="form-group col-xs-12">
+                                            <div class="box box-primary">
+                                                <div class="box-body">
+                                                    <div class="form-group col-xs-4">
+                                                        <label>Matrícula *</label>
+                                                        <input type="number" id="Matricula" class="form-control" />
+                                                    </div>
+                                                    <div class="form-group col-xs-4">
+                                                        <label>Data Admissão *</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar">
+                                                                </i>
+                                                            </div>
+                                                            <input type="date" class="form-control pull-right" id="DataAdmissao" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <label>informe a quantidade de horas das atividades</label>
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <div class="form-group col-xs-6">
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="HorasNde" class="form-control" />
+                                                                <label>Horas NDE</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="OrientacaoTcc" class="form-control" />
+                                                                <label>Orientação TCC</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="CoordenacaoCurso" class="form-control" />
+                                                                <label>Coordenação Curso</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="CoordenacaoOutrosCursos" class="form-control" />
+                                                                <label>Coordenação Outros Cursos</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="Pesquisa" class="form-control" />
+                                                                <label>Pesquisa (Semestre Atual)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6">
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="AtividadesExtraClasseNoCurso" class="form-control" />
+                                                                <label>Atividades extra classe no curso</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="AtividadesExtraClasseOutrosCursos" class="form-control" />
+                                                                <label>Atividades extra classe outros curso</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="QtdeHorasCurso" class="form-control" />
+                                                                <label>Qtde de Horas Curso</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <input type="number" id="QtdeHorasOutrosCursos" class="form-control" />
+                                                                <label>Qtde de Horas Outros Cursos</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <div class="form-group col-xs-12">
+                                                            <div class="form-group col-xs-6">
+                                                                <h4>Disciplinas ministradas no Curso *</h4>
+
+
+                                                                <div class="box box-primary">
+                                                                    <table class="table table-bordered table-striped" id="tabelaDeDisciplinas">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th id="NomeDoCurso"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody></tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col-xs-3">
+                                                                    <button class="btn btn-info form-control" id="adicionarDisciplina">+ Adicionar</button>
+                                                                </div>
+                                                                <div class="col-xs-9">
+                                                                    <select class="form-control selecaoDisciplina">
+                                                                        <option value="0">< Selecione uma disciplina ></option>
+                                                                        @foreach (var item in ViewBag.ListaDeDisciplinasF)
+                                                                        {
+                                                                            <option value="@item.Id">@item.Nome</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+
+
+
+
+
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <h4>Disciplinas ministradas em outros Cursos da IES</h4>
+
+                                                                <div class="box box-primary">
+                                                                    <table class="table table-bordered table-striped" id="tabelaDeDisciplinas">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th id="NomeDoCurso"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody></tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <br />
+                                                                <br />
+                                                                <div class="col-xs-3">
+                                                                    <button class="btn btn-info form-control" id="adicionarDisciplinaProfessor">+ Adicionar</button>
+                                                                </div>
+                                                                <div class="col-xs-9">
+                                                                    <select class="form-control selecaoDisciplina">
+                                                                        <option value="0">< Selecione uma disciplina ></option>
+                                                                        @foreach (var item in ViewBag.ListaDeDisciplinasF)
+                                                                        {
+                                                                            <option value="@item.Id">@item.Nome</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
+
+                                                                <!--Desenvolver em js uma funcão que faça a linha da tabela mudar de cor quando tiver sido escolhido o curso-->
+                                                            </div>
+                                                            <div class="form-group col-xs-12">
+                                                                <button class="btn btn-primary pull-right salvarProf" idcomando="2">Salvar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="tab2_2">
+
+                                    <div class="box-body">
+                                        <div class="form-group col-xs-12">
+                                            <div class="box box-primary">
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-xs-12">
+                                                            <div class="form-group col-xs-6">
+                                                                <label>
+                                                                    <input type="checkbox" id="membroNde" name="membroNde" class="minimal">
+                                                                </label>
+                                                                <label>Membro NDE</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-6">
+                                                                <label>
+                                                                    <input type="checkbox" id="membroColegiado" name="membroColegiado" class="minimal">
+                                                                </label>
+                                                                <label>Membro Colegiado?</label>
+                                                            </div>
+                                                            <div class="form-group col-xs-12">
+                                                                <label>
+                                                                    <input type="checkbox" id="docenteFormacao" name="docenteFormacao" class="minimal">
+                                                                </label>
+                                                                <label>Docente com formação/capacitação/experiência pedagogica?</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <h4 class="centro">O Sistema irá calcular o tempo em anos e meses a partir da diferença com a data atual.</h4>
+                                                        <br />
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Tempo de Vínculo Initerrupto do docente com o curso</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Data Inicial</label>
+                                                                <input type="datetime" id="TempoDeVinculoIniterrupto" total="1" class="form-control calculardiferenca" />
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Tempo Total</label>
+                                                                <input type="text" id="total1" class="form-control" readonly />
+                                                                <input type="hidden" id="hiddentotal1" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Tempo Experiência Magistério Superior</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Data Inicial</label>
+                                                                <input type="datetime" id="TempoExperienciaMagisterioSuperior" total="2" class="form-control calculardiferenca" />
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Tempo Total</label>
+                                                                <input type="text" id="total2" class="form-control" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Experiência em curso a distância</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Data Inicial</label>
+                                                                <input type="datetime" id="ExperienciaCursoDistancia" total="3" class="form-control calculardiferenca" />
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Tempo Total</label>
+                                                                <input type="text" id="total3" class="form-control" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 borda">
+                                                            <div class="box-header with-border">
+                                                                <h4>Tempo Experiência Profissional</h4>
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Data Inicial</label>
+                                                                <input type="datetime" id="TempoExperienciaProfissional" total="4" class="form-control calculardiferenca" />
+                                                            </div>
+                                                            <div class="form-group col-xs-3">
+                                                                <label>Tempo Total</label>
+                                                                <input type="text" id="total4" class="form-control" readonly />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-header with-border">
+                                                        <h4>Participação em Eventos</h4>
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <input type="number" id="QtdeParticipacoesEventos" class="form-group-lg col-xs-2" />
+                                                        <label>Quantidade</label>
+                                                    </div>
+                                                    @*<div class="form-group col-xs-12 borda">
+                                                <h4 class="centro">Anexar Comprovantes: </h4>
+                                                <input type="file" id="arquivo" multiple/>
+                                            </div>*@
+                                                    <div class="form-group col-xs-12">
+                                                        <button class="btn btn-primary pull-right salvarProf" idcomando="3">Salvar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="tab2_3">
+
+                                    <div class="box-body">
+                                        <div class="form-group col-xs-12">
+                                            <div class="box box-primary">
+                                                <div class="box-body">
+                                                    <div class="form-group col-xs-6 borda">
+                                                        <div class="box-header with-border">
+                                                            <h4>Artigos publicados em períodos científicos</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="ArtigosPublicadosPeriodosCientificosNaArea" />
+                                                            <label>na área (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="ArtigosPublicadosPeriodosCientificosOutrasAreas" />
+                                                            <label>em outras áreas (qtde)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-6 borda">
+                                                        <div class="box-header with-border">
+                                                            <h4>Livros ou capítulos</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="LivrosPrublicadosNaArea" />
+                                                            <label>livros publicados na área (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="LivrosPublicadosEmOutrasAreas" />
+                                                            <label>livros publicados em outras áreas (qtde)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-6 borda">
+                                                        <div class="box-header with-border">
+                                                            <h4>Trabalhos publicados anuais</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="TrabalhosCompletosPublicadosAnuaisNaArea" />
+                                                            <label>completos (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="TrabalhosResumosPublicadosAnuaisNaArea" />
+                                                            <label>resumos (qtde)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-6 borda">
+                                                        <div class="box-header with-border">
+                                                            <h4>Propriedade Intelectual</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="PropriedadeintelectualDepositado" />
+                                                            <label>depositado (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="PropriedadeIntelectualRegistrado" />
+                                                            <label>registrado (qtde)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-12 borda">
+                                                        <div class="box-header with-border">
+                                                            <h4>Outras Puplicações</h4>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="TraducaoDeLivrosCapitulosArtigosPublicados" />
+                                                            <label>Tradução de livros, capitulos de livros ou artigos publicados (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="ProjetosProducoesTecnicosArtisticosCulturais" />
+                                                            <label>Projetos e/ou produções técnicos artisticos e culturais (qtde)</label>
+                                                        </div>
+                                                        <div class="form-group col-xs-6 inputsAlinhados">
+                                                            <input class="mone" type="number" id="ProducaoDidaticoPedagogicoRelevante" />
+                                                            <label>Produção didático-pedagógico relevante, publicado ou não (qtde)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <button class="btn btn-primary pull-right salvarProf" idcomando="4">Salvar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

@@ -74,6 +74,13 @@ namespace PPC_1.Controllers
             List<Disciplina> ListaDeDisciplinas = disciplinas.BuscarDisciplinasFiltradas();
             ViewBag.ListaDeDisciplinasF = ListaDeDisciplinas;
         }
+
+        private void PreencheViewBagListaProfessores()
+        {
+            PPCDB professores = new PPCDB();
+            List<Professor> ListaDeProfessores = professores.GetProfessores();
+            ViewBag.ListaDeProfessores = ListaDeProfessores;
+        }
         public ActionResult ConsultarCurso()
         {
             PreencheViewBagListaCursos();
@@ -100,6 +107,8 @@ namespace PPC_1.Controllers
 
         public ActionResult ConsultarProfessor()
         {
+            PreencheViewBagListaDisciplinasFiltradas();
+            PreencheViewBagListaProfessores();
             return View();
         }
 
@@ -453,6 +462,16 @@ namespace PPC_1.Controllers
             professorB = pPCDB.InserirProfessorIesPublicacoes(ProfessorConvertido);
 
             return (null);
+        }
+
+        [HttpPost]
+        public JsonResult GetProfessor(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+
+            Professor professor = new Professor();
+            professor = pPCDB.GetProfessor(id);
+            return Json(professor);
         }
     }
 }
