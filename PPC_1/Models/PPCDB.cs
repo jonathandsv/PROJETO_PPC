@@ -1202,7 +1202,7 @@ namespace PPC_1.Models
                                                                         MEMBRO_COLEGIADO, 
                                                                         DOCENTE_FORMACAO,      
                                                                         TEMPO_VINCULO, 
-                                                                        TEMPO_MAGISTERIO,
+                                                                        TEMPO_MAGISTERIO_SUPERIOR,
                                                                         TEMPO_EXPERIENCIA_CURSO_DISTANCIA,   
                                                                         TEMPO_EXPERIENCIA_PROFISSIONAL, 
                                                                         PARTICIPACAO_EVENTOS, 
@@ -1211,7 +1211,7 @@ namespace PPC_1.Models
                                                                             @MEMBRO_COLEGIADO, 
                                                                             @DOCENTE_FORMACAO, 
                                                                             @TEMPO_VINCULO,
-                                                                            @TEMPO_MAGISTERIO,
+                                                                            @TEMPO_MAGISTERIO_SUPERIOR,
                                                                             @TEMPO_EXPERIENCIA_CURSO_DISTANCIA, 
                                                                             @TEMPO_EXPERIENCIA_PROFISSIONAL, 
                                                                             @PARTICIPACAO_EVENTOS, 
@@ -1226,7 +1226,7 @@ namespace PPC_1.Models
                         comm.Parameters.Add("@MEMBRO_COLEGIADO", SqlDbType.Bit).Value = professor.MembroColegiado;
                         comm.Parameters.Add("@DOCENTE_FORMACAO", SqlDbType.Bit).Value = professor.DocenteFormacao;
                         comm.Parameters.Add("@TEMPO_VINCULO", SqlDbType.VarChar).Value = professor.TempoDeVinculoIniterrupto;
-                        comm.Parameters.Add("@TEMPO_MAGISTERIO", SqlDbType.VarChar).Value = professor.TempoMagisterioSuperior;
+                        comm.Parameters.Add("@TEMPO_MAGISTERIO_SUPERIOR", SqlDbType.VarChar).Value = professor.TempoMagisterioSuperior;
                         comm.Parameters.Add("@TEMPO_EXPERIENCIA_CURSO_DISTANCIA", SqlDbType.VarChar).Value = professor.ExperienciaEmCursoADistacia;
                         comm.Parameters.Add("@TEMPO_EXPERIENCIA_PROFISSIONAL", SqlDbType.VarChar).Value = professor.TempoExperienciaProfissional;
                         comm.Parameters.Add("@PARTICIPACAO_EVENTOS", SqlDbType.Int).Value = professor.QtdeParticipacoesEventos;
@@ -1453,7 +1453,7 @@ namespace PPC_1.Models
                         professor.MembroColegiado = Convert.ToBoolean(dr["MEMBRO_COLEGIADO"]);
                         professor.DocenteFormacao = Convert.ToBoolean(dr["DOCENTE_FORMACAO"]);
                         professor.TempoDeVinculoIniterrupto = dr["TEMPO_VINCULO"].ToString();
-                        professor.TempoMagisterioSuperior = dr["TEMPO_MAGISTERIO"].ToString();
+                        professor.TempoMagisterioSuperior = dr["TEMPO_MAGISTERIO_SUPERIOR"].ToString();
                         professor.ExperienciaEmCursoADistacia = dr["TEMPO_EXPERIENCIA_CURSO_DISTANCIA"].ToString();
                         professor.TempoExperienciaProfissional = dr["TEMPO_EXPERIENCIA_PROFISSIONAL"].ToString();
                         professor.QtdeParticipacoesEventos = Convert.ToInt32(dr["PARTICIPACAO_EVENTOS"]);

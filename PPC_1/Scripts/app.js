@@ -749,26 +749,77 @@ $(".CarregarProfessor").click(function () {
         dataType: 'json',
         data: { id: id },
         success: function (retorno) {
-            $("#TipoDeCurso").val(retorno.TipoDeCurso);
-            $("#TipoDeCurso").prop('readonly', 'readonly');
-            $("#Modalidade").val(retorno.Modalidade);
-            $("#Modalidade").prop('readonly', 'readonly');
-            $("#Denominacao").val(retorno.DenominacaoCurso);
-            $("#Denominacao").prop('readonly', 'readonly');
-            $("#Habilitacao").val(retorno.Habilitacao);
-            $("#Habilitacao").prop('readonly', 'readonly');
-            $("#LocalOferta").val(retorno.LocalDeOferta);
-            $("#LocalOferta").prop('readonly', 'readonly');
-            $("#TurnosDeFuncionamento").val(retorno.TurnosDeFuncionamento);
-            $("#TurnosDeFuncionamento").prop('readonly', 'readonly');
-            $("#NumeroDeVagas").val(retorno.NumerosDeVagasCadaTurno);
-            $("#NumeroDeVagas").prop('readonly', 'readonly');
-            $("#CargaHorariaDoCurso").val(retorno.CargaHorariaDoCurso);
-            $("#CargaHorariaDoCurso").prop('readonly', 'readonly');
-            $("#RegimeLetivo").val(retorno.RegimeLetivo);
-            $("#RegimeLetivo").prop('readonly', 'readonly');
-            $("#Periodos").val(retorno.Periodos);
-            $("#Periodos").prop('readonly', 'readonly');
+            $("#Nome").val(retorno.Nome);
+            $("#Nome").prop('readonly', 'readonly');
+            $("#CPF").val(retorno.CPF);
+            $("#CPF").prop('readonly', 'readonly');
+            $("#MaiorTitulacao").val(retorno.MaiorTitulacao);
+            $("#MaiorTitulacao").prop('readonly', 'readonly');
+            $("#AreaFormacao").val(retorno.AreaFormacao);
+            $("#AreaFormacao").prop('readonly', 'readonly');
+            $("#CurriculoLattos").val(retorno.CurriculoLattos);
+            $("#CurriculoLattos").prop('readonly', 'readonly');
+            $("#DataAtualizacao").val(retorno.DataAtualizacao);
+            $("#DataAtualizacao").prop('readonly', 'readonly');
+
+            $("#Matricula").val(retorno.Matricula);
+            $("#Matricula").prop('readonly', 'readonly');
+            $("#DataAdmissao").val(retorno.DataAdmissao);
+            $("#DataAdmissao").prop('readonly', 'readonly');
+            $("#HorasNde").val(retorno.HorasNde);
+            $("#HorasNde").prop('readonly', 'readonly');
+            $("#OrientacaoTcc").val(retorno.OrientacaoTcc);
+            $("#OrientacaoTcc").prop('readonly', 'readonly');
+            $("#CoordenacaoCurso").val(retorno.CoordenacaoCurso);
+            $("#CoordenacaoCurso").prop('readonly', 'readonly');
+            $("#CoordenacaoOutrosCursos").val(retorno.CoordenacaoOutrosCursos);
+            $("#CoordenacaoOutrosCursos").prop('readonly', 'readonly');
+            $("#Pesquisa").val(retorno.Pesquisa);
+            $("#Pesquisa").prop('readonly', 'readonly');
+            $("#AtividadesExtraClasseNoCurso").val(retorno.AtividadesExtraClasseNoCurso);
+            $("#AtividadesExtraClasseNoCurso").prop('readonly', 'readonly');
+            $("#AtividadesExtraClasseOutrosCursos").val(retorno.AtividadesExtraClasseOutrosCursos);
+            $("#AtividadesExtraClasseOutrosCursos").prop('readonly', 'readonly');
+            $("#QtdeHorasCurso").val(retorno.QtdeHorasCurso);
+            $("#QtdeHorasCurso").prop('readonly', 'readonly');
+            $("#QtdeHorasOutrosCursos").val(retorno.QtdeHorasOutrosCursos);
+            $("#QtdeHorasOutrosCursos").prop('readonly', 'readonly');
+
+            $("#TempoDeVinculoIniterrupto").val(retorno.TempoDeVinculoIniterrupto);
+            $("#TempoDeVinculoIniterrupto").prop('readonly', 'readonly');
+            $("#total1").val(retorno.total1);
+            $("#total1").prop('readonly', 'readonly');
+            $("#total2").val(retorno.total2);
+            $("#total2").prop('readonly', 'readonly');
+            $("#total3").val(retorno.total2);
+            $("#total3").prop('readonly', 'readonly');
+            $("#total4").val(retorno.total2);
+            $("#total4").prop('readonly', 'readonly');
+            $("#QtdeParticipacoesEventos").val(retorno.QtdeParticipacoesEventos);
+            $("#QtdeParticipacoesEventos").prop('readonly', 'readonly');
+
+            $("#ArtigosPublicadosPeriodosCientificosNaArea").val(retorno.ArtigosPublicadosPeriodosCientificosNaArea);
+            $("#ArtigosPublicadosPeriodosCientificosNaArea").prop('readonly', 'readonly');
+            $("#ArtigosPublicadosPeriodosCientificosOutrasAreas").val(retorno.ArtigosPublicadosPeriodosCientificosOutrasAreas);
+            $("#ArtigosPublicadosPeriodosCientificosOutrasAreas").prop('readonly', 'readonly');
+            $("#LivrosPublicadosNaArea").val(retorno.LivrosPrublicadosNaArea);
+            $("#LivrosPublicadosNaArea").prop('readonly', 'readonly');
+            $("#LivrosPublicadosEmOutrasAreas").val(retorno.LivrosPublicadosEmOutrasAreas);
+            $("#LivrosPublicadosEmOutrasAreas").prop('readonly', 'readonly');
+            $("#TrabalhosCompletosPublicadosAnuaisNaArea").val(retorno.TrabalhosCompletosPublicadosAnuaisNaArea);
+            $("#TrabalhosCompletosPublicadosAnuaisNaArea").prop('readonly', 'readonly');
+            $("#TrabalhosResumosPublicadosAnuaisNaArea").val(retorno.TrabalhosResumosPublicadosAnuaisNaArea);
+            $("#TrabalhosResumosPublicadosAnuaisNaArea").prop('readonly', 'readonly');
+            $("#PropriedadeintelectualDepositado").val(retorno.PropriedadeintelectualDepositado);
+            $("#PropriedadeintelectualDepositado").prop('readonly', 'readonly');
+            $("#PropriedadeIntelectualRegistrado").val(retorno.PropriedadeIntelectualRegistrado);
+            $("#PropriedadeIntelectualRegistrado").prop('readonly', 'readonly');
+            $("#TraducaoDeLivrosCapitulosArtigosPublicados").val(retorno.TraducaoDeLivrosCapitulosArtigosPublicados);
+            $("#TraducaoDeLivrosCapitulosArtigosPublicados").prop('readonly', 'readonly');
+            $("#ProjetosProducoesTecnicosArtisticosCulturais").val(retorno.ProjetosProducoesTecnicosArtisticosCulturais);
+            $("#ProjetosProducoesTecnicosArtisticosCulturais").prop('readonly', 'readonly');
+            $("#ProducaoDidaticoPedagogicoRelevante").val(retorno.ProducaoDidaticoPedagogicoRelevante);
+            $("#ProducaoDidaticoPedagogicoRelevante").prop('readonly', 'readonly');
             $("#Id_Curso").val(retorno.Id);
 
             $("#salvar").prop('disabled', 'disabled');
@@ -786,4 +837,45 @@ $(".CarregarProfessor").click(function () {
 
     });
 })
+
+$("#alterarCadastroProfessor").click(function () {
+    $("#Nome").removeAttr('readonly');
+    $("#CPF").removeAttr('readonly');
+    $("#MaiorTitulacao").removeAttr('readonly');
+    $("#AreaFormacao").removeAttr('readonly');
+    $("#CurriculoLattos").removeAttr('readonly');
+    $("#DataAtualizacao").removeAttr('readonly');
+
+    $("#Matricula").removeAttr('readonly');
+    $("#DataAdmissao").removeAttr('readonly');
+    $("#HorasNde").removeAttr('readonly');
+    $("#OrientacaoTcc").removeAttr('readonly');
+    $("#CoordenacaoCurso").removeAttr('readonly');
+    $("#CoordenacaoOutrosCursos").removeAttr('readonly');
+    $("#Pesquisa").removeAttr('readonly');
+    $("#AtividadesExtraClasseNoCurso").removeAttr('readonly');
+    $("#AtividadesExtraClasseOutrosCursos").removeAttr('readonly');
+    $("#QtdeHorasCurso").removeAttr('readonly');
+    $("#QtdeHorasOutrosCursos").removeAttr('readonly');
+
+    $("#TempoDeVinculoIniterrupto").removeAttr('readonly');
+    $("#total1").removeAttr('readonly');
+    $("#total2").removeAttr('readonly');
+    $("#total3").removeAttr('readonly');
+    $("#total4").removeAttr('readonly');
+    $("#QtdeParticipacoesEventos").removeAttr('readonly');
+
+    $("#ArtigosPublicadosPeriodosCientificosNaArea").removeAttr('readonly');
+    $("#ArtigosPublicadosPeriodosCientificosOutrasAreas").removeAttr('readonly');
+    $("#LivrosPublicadosNaArea").removeAttr('readonly');
+    $("#LivrosPublicadosEmOutrasAreas").removeAttr('readonly');
+    $("#TrabalhosCompletosPublicadosAnuaisNaArea").removeAttr('readonly');
+    $("#TrabalhosResumosPublicadosAnuaisNaArea").removeAttr('readonly');
+    $("#PropriedadeintelectualDepositado").removeAttr('readonly');
+    $("#PropriedadeIntelectualRegistrado").removeAttr('readonly');
+    $("#TraducaoDeLivrosCapitulosArtigosPublicados").removeAttr('readonly');
+    $("#ProjetosProducoesTecnicosArtisticosCulturais").removeAttr('readonly');
+    $("#ProducaoDidaticoPedagogicoRelevante").removeAttr('readonly');
+    $("#salvar").removeAttr('disabled');
+});
 
