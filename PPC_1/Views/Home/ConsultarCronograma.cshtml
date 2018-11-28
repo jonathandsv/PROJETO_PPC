@@ -73,9 +73,9 @@
                             @Html.TextBoxFor(x => x.Descricao, new { @class = "form-control", type = "text", id = "Descricao" })
                         </div>
                         <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-primary pull-right espaco" id="salvar">Salvar</button>
-                            <a class=" btn btn-warning pull-right espaco" id="alterarCadastroCronograma">Alterar</a>
-                            <a href="/Home/ConsultarCronograma" class="btn btn-warning pull-right espaco">Cancelar</a>
+                            <button type="submit" class="btn btn-primary pull-right espaco" id="salvar" name="salvar">Salvar</button>
+                            <a class=" btn btn-warning pull-right espaco" id="alterarCadastroCronograma" name="alterar">Alterar</a>
+                            <a href="/Home/ConsultarCronograma" class="btn btn-warning pull-right espaco" name="cancelar">Cancelar</a>
                         </div>
                     </div>
                 </form>
