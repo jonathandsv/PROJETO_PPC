@@ -1489,6 +1489,36 @@ namespace PPC_1.Models
             }
         }
 
+        public int DeleteProfessor(int id)
+        {
+            int retorno = 0;
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringDeletar = @"DELETE FROM USUARIOS WHERE ID_USUARIO = @id";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+                using (SqlCommand apagador = new SqlCommand(stringDeletar, sqlConn))
+                {
+                    apagador.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    retorno = apagador.ExecuteNonQuery();
+                    sqlConn.Close();
+                }
+
+
+
+                return (0);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
         //fim
     }

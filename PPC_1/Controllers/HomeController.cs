@@ -473,5 +473,17 @@ namespace PPC_1.Controllers
             professor = pPCDB.GetProfessor(id);
             return Json(professor);
         }
+
+        [HttpDelete]
+        public JsonResult DeleteProfessor(int id)
+        {
+            PPCDB pPCDB = new PPCDB();
+
+            Professor professor = new Professor();
+            professor = pPCDB.DeleteProfessor(id);
+
+            retorno
+            return ();
+        }
     }
 }
