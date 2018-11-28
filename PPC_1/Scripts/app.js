@@ -822,8 +822,7 @@ $(".CarregarProfessor").click(function () {
             $("#ProducaoDidaticoPedagogicoRelevante").prop('readonly', 'readonly');
             $("#Id_Curso").val(retorno.Id);
 
-            $("#salvar").prop('disabled', 'disabled');
-            $("#selecaoDeCoordenador").prop('disabled', 'disabled');
+            $(".salvarProf").prop('disabled', 'disabled');
 
             var id = retorno.CoordenadorCurso;
             buscarCoordenadorIni(id);
@@ -876,6 +875,6 @@ $("#alterarCadastroProfessor").click(function () {
     $("#TraducaoDeLivrosCapitulosArtigosPublicados").removeAttr('readonly');
     $("#ProjetosProducoesTecnicosArtisticosCulturais").removeAttr('readonly');
     $("#ProducaoDidaticoPedagogicoRelevante").removeAttr('readonly');
-    $("#salvar").removeAttr('disabled');
+    $(".salvarProf").removeAttr('disabled');
 });
 

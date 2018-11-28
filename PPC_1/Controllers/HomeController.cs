@@ -432,9 +432,21 @@ namespace PPC_1.Controllers
 
             var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
 
-            Professor professorB = new Professor();
+            Professor professorC = new Professor();
 
-            professorB = pPCDB.InserirProfessorIesAtuacaoGeral(ProfessorConvertido);
+            professorC = pPCDB.BuscarAtuacaoIesGeral(ProfessorConvertido.Id);
+
+            if (professorC.Id == ProfessorConvertido.Id)
+            {
+                RedirectToAction("ConsultarProfessor");
+            }
+            else
+            {
+                Professor professorB = new Professor();
+
+                professorB = pPCDB.InserirProfessorIesAtuacaoGeral(ProfessorConvertido);
+            }
+
 
 
             return (null);
@@ -445,9 +457,21 @@ namespace PPC_1.Controllers
             PPCDB pPCDB = new PPCDB();
 
             var ProfessorConvertido = JsonConvert.DeserializeObject<Professor>(professor);
-            Professor professorB = new Professor();
 
-            professorB = pPCDB.InserirProfessorIesAtuacaoProfissional(ProfessorConvertido);
+            Professor professorC = new Professor();
+
+            professorC = pPCDB.BuscarAtuacaoIesGeral(ProfessorConvertido.Id);
+
+            if (professorC.Id == ProfessorConvertido.Id)
+            {
+                RedirectToAction("ConsultarProfessor");
+            }
+            else
+            {
+                Professor professorB = new Professor();
+
+                professorB = pPCDB.InserirProfessorIesAtuacaoProfissional(ProfessorConvertido);
+            }
             return (null);
         }
 
@@ -473,17 +497,19 @@ namespace PPC_1.Controllers
             professor = pPCDB.GetProfessor(id);
             return Json(professor);
         }
-
-        [HttpDelete]
-        public JsonResult DeleteProfessor(int id)
+        public ActionResult DeleteProfessor(int id)
         {
             PPCDB pPCDB = new PPCDB();
+            pPCDB.DeleteProfessor(id);
 
-            Professor professor = new Professor();
-            professor = pPCDB.DeleteProfessor(id);
+            PreencheViewBagListaDisciplinasFiltradas();
+            PreencheViewBagListaProfessores();
+            return View("ConsultarProfessor");
+        }
 
-            retorno
-            return ();
+        public ActionResult BuscarAtuacaoIesGeral()
+        {
+
         }
     }
 }

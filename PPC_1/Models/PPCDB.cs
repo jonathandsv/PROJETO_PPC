@@ -1518,6 +1518,41 @@ namespace PPC_1.Models
                 throw ex;
             }
         }
+    
+        public Professor BuscarAtuacaoIesGeral(int ID)
+        {
+            try
+            {
+                string conexao = ConexaoBanco();
+
+                string stringBuscar = @"SELECT * FROM ATUACAO_IES_GERAL WHERE ID_PERFIL = @ID";
+
+                SqlConnection sqlConn = new SqlConnection(conexao);
+
+                sqlConn.Open();
+
+                Professor professor = new Professor();
+
+                using (SqlCommand leitor = new SqlCommand(stringBuscar, sqlConn))
+                {
+                    leitor.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                    SqlDataReader dr = leitor.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        professor.Id = Convert.ToInt32(dr["ID_USUARIO"]);
+                    }
+                }
+
+                return (professor);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
 
         //fim
